@@ -20,30 +20,38 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="如果你在的时候，会不会伸手拥抱我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我还没想好这网站叫什么名字">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="一、前言在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西  如果你只是想编译内核而不是使用kernelsu，你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（转载）为非gki内核添加KernelSU支持">
+<meta property="og:url" content="http://example.com/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%BA%E9%9D%9Egki%E5%86%85%E6%A0%B8%E6%B7%BB%E5%8A%A0KernelSU%E6%94%AF%E6%8C%81/index.html">
 <meta property="og:site_name" content="我还没想好这网站叫什么名字">
-<meta property="og:description" content="如果你在的时候，会不会伸手拥抱我">
+<meta property="og:description" content="一、前言在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西  如果你只是想编译内核而不是使用kernelsu，你">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/passage2/step2.1.png">
+<meta property="og:image" content="http://example.com/images/passage2/step2.2.png">
+<meta property="og:image" content="http://example.com/images/passage2/step2.3.png">
+<meta property="article:published_time" content="2025-09-09T14:35:03.000Z">
+<meta property="article:modified_time" content="2025-09-09T15:11:13.668Z">
 <meta property="article:author" content="kk3TWT">
+<meta property="article:tag" content="内核编译">
+<meta property="article:tag" content="安卓刷机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/passage2/step2.1.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%BA%E9%9D%9Egki%E5%86%85%E6%A0%B8%E6%B7%BB%E5%8A%A0KernelSU%E6%94%AF%E6%8C%81/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>我还没想好这网站叫什么名字</title>
+  <title>（转载）为非gki内核添加KernelSU支持 | 我还没想好这网站叫什么名字</title>
   
 
 
@@ -175,73 +183,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/09/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E4%B8%96%E7%95%8C%EF%BC%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我还没想好这网站叫什么名字">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E4%B8%96%E7%95%8C%EF%BC%81/" class="post-title-link" itemprop="url">你好，世界！</a>
-        </h2>
-
-        <div class="post-meta">
-		
-			<i class="fa fa-thumb-tack"></i>
-			<font color=9A9A9A>置顶</font>
-			<span class="post-meta-divider">|</span>
-		
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-09 15:15:33 / 修改时间：15:50:52" itemprop="dateCreated datePublished" datetime="2025-09-09T15:15:33+08:00">2025-09-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>无论如何，这个博客确实是搭建好了。<br>不赖好吧<br>是时候吧我那些搜刮到的教程复制过来了(((<br>如果以后我想写什么小说之类的我也会发在这上面了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -257,10 +202,9 @@
       <meta itemprop="name" content="我还没想好这网站叫什么名字">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%BA%E9%9D%9Egki%E5%86%85%E6%A0%B8%E6%B7%BB%E5%8A%A0KernelSU%E6%94%AF%E6%8C%81/" class="post-title-link" itemprop="url">（转载）为非gki内核添加KernelSU支持</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          （转载）为非gki内核添加KernelSU支持
+        </h1>
 
         <div class="post-meta">
 		
@@ -294,7 +238,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.<br>​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.<br>​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西</p>
 <blockquote>
 <p>如果你只是想编译内核而不是使用kernelsu，你可以忽略本文中拉去kernelsu和修改内核配置的部分</p>
 </blockquote>
@@ -358,242 +302,34 @@
 </ul>
 <p>————————————————<br>版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43283565/article/details/137374337">为非gki内核添加KernelSU支持</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/" rel="tag"># 内核编译</a>
+              <a href="/tags/%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA/" rel="tag"># 安卓刷机</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我还没想好这网站叫什么名字">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/" class="post-title-link" itemprop="url">用gcc编译老内核（步骤篇）</a>
-        </h2>
-
-        <div class="post-meta">
-		
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-09 16:00:00 / 修改时间：22:31:15" itemprop="dateCreated datePublished" datetime="2025-09-09T16:00:00+08:00">2025-09-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是gcc编译安卓内核的基本方法，适用于比较老的内核（如4.4.x）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/the-first-test-post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我还没想好这网站叫什么名字">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/the-first-test-post/" class="post-title-link" itemprop="url">the first(test) post</a>
-        </h2>
-
-        <div class="post-meta">
-		
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-09 15:01:24 / 修改时间：22:23:44" itemprop="dateCreated datePublished" datetime="2025-09-09T15:01:24+08:00">2025-09-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8B%E8%AF%95%E6%96%87%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">测试文本</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>海内存知己，天涯若比邻</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我还没想好这网站叫什么名字">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-		
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-09-09 00:00:00 / 修改时间：22:23:27" itemprop="dateCreated datePublished" datetime="2025-09-09T00:00:00+08:00">2025-09-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8B%E8%AF%95%E6%96%87%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">测试文本</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to Hexo!</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/hello-world/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/" rel="prev" title="用gcc编译老内核（步骤篇）">
+      <i class="fa fa-chevron-left"></i> 用gcc编译老内核（步骤篇）
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -646,6 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">1.环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">2.准备工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8B%89%E5%8F%96%E8%B5%84%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">二、拉取资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">三、修改配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="nav-number">4.</span> <span class="nav-text">四、编译内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%AF%95%E9%AA%8C"><span class="nav-number">5.</span> <span class="nav-text">五、试验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%81%AD%E5%96%9C%E4%BD%A0%EF%BC%8C%E7%9C%8B%E6%9D%A5%E4%BD%A0%E4%B8%8D%E6%98%AF%E5%B9%B8%E8%BF%90%E5%84%BF"><span class="nav-number">6.</span> <span class="nav-text">六、恭喜你，看来你不是幸运儿</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
