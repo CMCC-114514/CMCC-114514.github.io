@@ -1,17 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>你好，世界！</title>
-    <url>/2025/09/09/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E4%B8%96%E7%95%8C%EF%BC%81/</url>
-    <content><![CDATA[<p>无论如何，这个博客确实是搭建好了。<br>不赖好吧<br>是时候把我那些搜刮到的教程复制过来了(((<br>如果以后我想写什么小说之类的我也会发在这上面了</p>
+    <title>Hello, world!</title>
+    <url>/2025/09/09/the-first-test-post/</url>
+    <content><![CDATA[<p>海内存知己，天涯若比邻</p>
 ]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
       <tags>
-        <tag>hello world!</tag>
+        <tag>test post</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译过程中遇到的各种问题（gcc篇）</title>
+    <url>/2025/09/10/%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%EF%BC%88gcc%E7%AF%87%EF%BC%89/</url>
+    <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译成功完成了<br>但是给我的米板4刷进去之后并不能开机……</p>
+<h2 id="1-NR-CPUS配置错误"><a href="#1-NR-CPUS配置错误" class="headerlink" title="1.NR_CPUS配置错误"></a>1.NR_CPUS配置错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/trace/events/sched.h:875:2: error: <span class="comment">#error &quot;Unsupported NR_CPUS for lb tracepoint.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入&quot;General setup&quot; -&gt; &quot;Maximum number of CPUs&quot;</span></span><br><span class="line"><span class="comment"># 将值设置为一个较小的数字（如8或16）</span></span><br><span class="line"><span class="comment"># 保存配置并退出</span></span><br></pre></td></tr></table></figure>
+
+<p>或者编辑内核配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑.config文件</span></span><br><span class="line">vi .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到并修改CONFIG_NR_CPUS</span></span><br><span class="line">CONFIG_NR_CPUS=8</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-函数cpuid-feature-extract-field参数不匹配"><a href="#2-函数cpuid-feature-extract-field参数不匹配" class="headerlink" title="2.函数cpuid_feature_extract_field参数不匹配"></a>2.函数<code>cpuid_feature_extract_field</code>参数不匹配</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./arch/arm64/include/asm/kvm_mmu.h:309:17: error: too few arguments to <span class="keyword">function</span> <span class="string">&#x27;cpuid_feature_extract_field&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<p>编辑文件<code>./arch/arm64/include/asm/kvm_mmu.h</code>，找到第309行附近的代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT, <span class="number">0</span>) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;\</span><br></pre></td></tr></table></figure>
+
+<p>注意：第三个参数的具体值需要根据<code>cpuid_feature_extract_field</code>函数的定义来确定，可能需要查看相关头文件</p>
+<h2 id="3-devfreq-simple-ondemand-data结构体类型不完整"><a href="#3-devfreq-simple-ondemand-data结构体类型不完整" class="headerlink" title="3.devfreq_simple_ondemand_data结构体类型不完整"></a>3.<code>devfreq_simple_ondemand_data</code>结构体类型不完整</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/linux/mmc/host.h:331:54: error: field <span class="string">&#x27;ondemand_gov_data&#x27;</span> has incomplete <span class="built_in">type</span></span><br><span class="line">  331 |         struct          devfreq_simple_ondemand_data ondemand_gov_data;</span><br><span class="line">      |                                                      ^~~~~~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导航到以下路径并启用选项：</span></span><br><span class="line"><span class="comment"># Device Drivers -&gt; Generic Driver Options -&gt; Devfreq drivers -&gt; Generic Dynamic Voltage and Frequency Scaling (DVFS) support</span></span><br><span class="line"><span class="comment"># 然后启用 &quot;Simple Ondemand&quot; governor</span></span><br></pre></td></tr></table></figure>
+
+<p>或者编辑内核配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用相关配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y&quot;</span> &gt;&gt; .config</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_PM_DEVFREQ=y&quot;</span> &gt;&gt; .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新生成配置</span></span><br><span class="line">make oldconfig</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-变量phdr重复声明"><a href="#4-变量phdr重复声明" class="headerlink" title="4.变量phdr重复声明"></a>4.变量phdr重复声明</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drivers/soc/qcom/smem.c: In <span class="keyword">function</span> <span class="string">&#x27;qcom_smem_alloc_private&#x27;</span>:</span><br><span class="line">drivers/soc/qcom/smem.c:305:39: error: redeclaration of <span class="string">&#x27;phdr&#x27;</span> with no linkage</span><br><span class="line">  305 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br><span class="line">drivers/soc/qcom/smem.c:303:39: note: previous declaration of <span class="string">&#x27;phdr&#x27;</span> with <span class="built_in">type</span> <span class="string">&#x27;struct smem_partition_header *&#x27;</span></span><br><span class="line">  303 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑文件 drivers/soc/qcom/smem.c</span></span><br><span class="line">vi drivers/soc/qcom/smem.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到函数 qcom_smem_alloc_private</span></span><br><span class="line"><span class="comment"># 删除第305行的重复声明：</span></span><br><span class="line"><span class="comment"># struct smem_partition_header *phdr;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者用sed命令修复</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除第305行的重复声明</span></span><br><span class="line">sed -i <span class="string">&#x27;305d&#x27;</span> drivers/soc/qcom/smem.c</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>错误分析</category>
+      </categories>
+      <tags>
+        <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
   <entry>
     <title>（转载）为非gki内核添加KernelSU支持</title>
-    <url>/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%BA%E9%9D%9Egki%E5%86%85%E6%A0%B8%E6%B7%BB%E5%8A%A0KernelSU%E6%94%AF%E6%8C%81/</url>
+    <url>/2025/09/09/%E6%95%99%E7%A8%8B/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%BA%E9%9D%9Egki%E5%86%85%E6%A0%B8%E6%B7%BB%E5%8A%A0KernelSU%E6%94%AF%E6%8C%81/</url>
     <content><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.<br>​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西</p>
 <blockquote>
 <p>如果你只是想编译内核而不是使用kernelsu，你可以忽略本文中拉去kernelsu和修改内核配置的部分</p>
@@ -80,13 +134,13 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>安卓刷机</tag>
         <tag>内核编译</tag>
+        <tag>安卓刷机</tag>
       </tags>
   </entry>
   <entry>
     <title>用gcc编译老内核（步骤篇）</title>
-    <url>/2025/09/09/%E6%95%99%E7%A8%8B%E7%B1%BB%E6%96%87%E7%AB%A0/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/</url>
+    <url>/2025/09/09/%E6%95%99%E7%A8%8B/%E7%94%A8gcc%E7%BC%96%E8%AF%91%E8%80%81%E5%86%85%E6%A0%B8/</url>
     <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
 <li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
 <li>一部比较老的测试用设备（比如我手上的米板4）</li>
@@ -121,9 +175,10 @@
 
 <h2 id="第三步：开始编译内核"><a href="#第三步：开始编译内核" class="headerlink" title="第三步：开始编译内核"></a>第三步：开始编译内核</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make -j$(<span class="built_in">nproc</span>)  <span class="comment"># 使用所有可用核心编译</span></span><br></pre></td></tr></table></figure>
 
-<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像</p>
+<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像<br>如果编译的是arm32的内核，镜像文件可能为<code>zImage</code></p>
 <p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
-]]></content>
+<h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>教程</category>
       </categories>
@@ -131,38 +186,5 @@
         <tag>内核编译</tag>
         <tag>安卓</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>the first(test) post</title>
-    <url>/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/the-first-test-post/</url>
-    <content><![CDATA[<p>海内存知己，天涯若比邻</p>
-]]></content>
-      <categories>
-        <category>测试文本</category>
-      </categories>
-      <tags>
-        <tag>test post</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/09/09/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>测试文本</category>
-      </categories>
   </entry>
 </search>
