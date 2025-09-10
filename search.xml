@@ -59,8 +59,57 @@
         <category>错误分析</category>
       </categories>
       <tags>
-        <tag>内核编译</tag>
         <tag>安卓</tag>
+        <tag>内核编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用gcc编译老内核（步骤篇）</title>
+    <url>//post/50843/</url>
+    <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
+<li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
+<li>一部比较老的测试用设备（比如我手上的米板4）</li>
+<li>一个聪明的大脑</li>
+</ul>
+<h2 id="安装gcc和各种依赖"><a href="#安装gcc和各种依赖" class="headerlink" title="安装gcc和各种依赖"></a>安装gcc和各种依赖</h2><p>依赖部分是我从 <a href="https://blog.csdn.net/qq_43283565/article/details/137374337">另一个教程</a> 里搞来的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
+
+<p>gcc是编译内核必须的工具链，没有安装gcc就绝对不能编译</p>
+<p>安装gcc aarch64和arm32的代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> apt-get install aarch64-linux-gnu-gcc arm-linux-gnueabi-gcc</span><br></pre></td></tr></table></figure>
+
+<p>安装后输出版本号确认</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aarch64-linux-gnu-gcc --version</span><br><span class="line">$ arm-linux-gnueabi-gcc --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取内核源代码"><a href="#获取内核源代码" class="headerlink" title="获取内核源代码"></a>获取内核源代码</h2><p>源代码一般在github就能找到<br>先进入 <a href="https://github.com/">github</a> 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索</p>
+<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/passage1/step1.1.png"></p>
+<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/passage1/step1.2.png"></p>
+<p>然后在虚拟机里唤出终端（ctrl + alt + T），输入代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> (你复制到的代码)</span><br></pre></td></tr></table></figure>
+
+<p>一切顺利的话，git就会将内核源代码clone到<code>home/android_kernel_(品牌)_(机型)</code>了<br>当然，如果clone过程报错，挂个梯子再试试<br>如果还是出现问题，问问ai更好</p>
+<h2 id="配置编译环境"><a href="#配置编译环境" class="headerlink" title="配置编译环境"></a>配置编译环境</h2><p>我试过很多的教程，它们用的都是编译脚本，可是全都失败了<br>我问deepseek之后才勉强编译出来一个内核（虽然没有开机）<br>如果之后我用编译脚本成功编译出来内核，我应该会修改这一部分</p>
+<p>现在先进入内核根目录吧：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/android_kernel_(品牌)_(机型)</span><br></pre></td></tr></table></figure>
+
+<p>首先按照目标架构选择工具链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于ARM64 (aarch64)</span></span><br><span class="line">$ <span class="built_in">export</span> ARCH=arm64</span><br><span class="line">$ <span class="built_in">export</span> CROSS_COMPILE=aarch64-linux-gnu-</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于ARM32</span></span><br><span class="line">$ <span class="built_in">export</span> ARCH=arm</span><br><span class="line">$ <span class="built_in">export</span> CROSS_COMPILE=arm-linux-gnueabi-</span><br></pre></td></tr></table></figure>
+
+<p>然后配置内核</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make defconfig  <span class="comment"># 使用默认配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开始编译内核"><a href="#开始编译内核" class="headerlink" title="开始编译内核"></a>开始编译内核</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make -j$(<span class="built_in">nproc</span>)  <span class="comment"># 使用所有可用核心编译</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像<br>如果编译的是arm32的内核，镜像文件可能为<code>zImage</code></p>
+<p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
+<h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>安卓</tag>
+        <tag>内核编译</tag>
       </tags>
   </entry>
   <entry>
@@ -136,55 +185,6 @@
       <tags>
         <tag>内核编译</tag>
         <tag>安卓刷机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用gcc编译老内核（步骤篇）</title>
-    <url>//post/50843/</url>
-    <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
-<li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
-<li>一部比较老的测试用设备（比如我手上的米板4）</li>
-<li>一个聪明的大脑</li>
-</ul>
-<h2 id="安装gcc和各种依赖"><a href="#安装gcc和各种依赖" class="headerlink" title="安装gcc和各种依赖"></a>安装gcc和各种依赖</h2><p>依赖部分是我从 <a href="https://blog.csdn.net/qq_43283565/article/details/137374337">另一个教程</a> 里搞来的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
-
-<p>gcc是编译内核必须的工具链，没有安装gcc就绝对不能编译</p>
-<p>安装gcc aarch64和arm32的代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> apt-get install aarch64-linux-gnu-gcc arm-linux-gnueabi-gcc</span><br></pre></td></tr></table></figure>
-
-<p>安装后输出版本号确认</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ aarch64-linux-gnu-gcc --version</span><br><span class="line">$ arm-linux-gnueabi-gcc --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取内核源代码"><a href="#获取内核源代码" class="headerlink" title="获取内核源代码"></a>获取内核源代码</h2><p>源代码一般在github就能找到<br>先进入 <a href="https://github.com/">github</a> 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索</p>
-<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/passage1/step1.1.png"></p>
-<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/passage1/step1.2.png"></p>
-<p>然后在虚拟机里唤出终端（ctrl + alt + T），输入代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> (你复制到的代码)</span><br></pre></td></tr></table></figure>
-
-<p>一切顺利的话，git就会将内核源代码clone到<code>home/android_kernel_(品牌)_(机型)</code>了<br>当然，如果clone过程报错，挂个梯子再试试<br>如果还是出现问题，问问ai更好</p>
-<h2 id="配置编译环境"><a href="#配置编译环境" class="headerlink" title="配置编译环境"></a>配置编译环境</h2><p>我试过很多的教程，它们用的都是编译脚本，可是全都失败了<br>我问deepseek之后才勉强编译出来一个内核（虽然没有开机）<br>如果之后我用编译脚本成功编译出来内核，我应该会修改这一部分</p>
-<p>现在先进入内核根目录吧：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/android_kernel_(品牌)_(机型)</span><br></pre></td></tr></table></figure>
-
-<p>首先按照目标架构选择工具链：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于ARM64 (aarch64)</span></span><br><span class="line">$ <span class="built_in">export</span> ARCH=arm64</span><br><span class="line">$ <span class="built_in">export</span> CROSS_COMPILE=aarch64-linux-gnu-</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于ARM32</span></span><br><span class="line">$ <span class="built_in">export</span> ARCH=arm</span><br><span class="line">$ <span class="built_in">export</span> CROSS_COMPILE=arm-linux-gnueabi-</span><br></pre></td></tr></table></figure>
-
-<p>然后配置内核</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make defconfig  <span class="comment"># 使用默认配置</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开始编译内核"><a href="#开始编译内核" class="headerlink" title="开始编译内核"></a>开始编译内核</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make -j$(<span class="built_in">nproc</span>)  <span class="comment"># 使用所有可用核心编译</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像<br>如果编译的是arm32的内核，镜像文件可能为<code>zImage</code></p>
-<p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
-<h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>内核编译</tag>
-        <tag>安卓</tag>
       </tags>
   </entry>
 </search>
