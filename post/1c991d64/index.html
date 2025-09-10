@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="非常好的个人博客爱来自南京邮电大学github: https:&#x2F;&#x2F;github.com&#x2F;CMCC-114514twitter: https:&#x2F;&#x2F;x.com&#x2F;Forrest81780021如果你也玩osu，那就更好了：https:&#x2F;&#x2F;osu.ppy.sh&#x2F;users&#x2F;25288520">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <meta name="description" content="DTC链接错误可能出现的报错： 1234&#x2F;usr&#x2F;bin&#x2F;ld: scripts&#x2F;dtc&#x2F;dtc-parser.tab.o:(.bss+0x10): multiple definition of &#96;yylloc&#x27;; scripts&#x2F;dtc&#x2F;dtc-lexer.lex.o:(.bss+0x0): first defined herecollect2: error: ld returned">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译内核时遇到的各种问题（clang篇）">
+<meta property="og:url" content="http://example.com/post/1c991d64/index.html">
 <meta property="og:site_name" content="我还没想好这网站叫什么名字">
-<meta property="og:description" content="非常好的个人博客爱来自南京邮电大学github: https:&#x2F;&#x2F;github.com&#x2F;CMCC-114514twitter: https:&#x2F;&#x2F;x.com&#x2F;Forrest81780021如果你也玩osu，那就更好了：https:&#x2F;&#x2F;osu.ppy.sh&#x2F;users&#x2F;25288520">
+<meta property="og:description" content="DTC链接错误可能出现的报错： 1234&#x2F;usr&#x2F;bin&#x2F;ld: scripts&#x2F;dtc&#x2F;dtc-parser.tab.o:(.bss+0x10): multiple definition of &#96;yylloc&#x27;; scripts&#x2F;dtc&#x2F;dtc-lexer.lex.o:(.bss+0x0): first defined herecollect2: error: ld returned">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-09T13:59:41.000Z">
-<meta property="article:modified_time" content="2025-09-10T05:13:30.520Z">
+<meta property="article:published_time" content="2025-09-10T13:10:25.000Z">
+<meta property="article:modified_time" content="2025-09-10T14:26:00.456Z">
 <meta property="article:author" content="kk3TWT">
+<meta property="article:tag" content="内核编译">
+<meta property="article:tag" content="安卓">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/about/">
+<link rel="canonical" href="http://example.com/post/1c991d64/">
 
 
 <script id="page-configurations">
@@ -40,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>关于 | 我还没想好这网站叫什么名字
-</title>
+  <title>编译内核时遇到的各种问题（clang篇） | 我还没想好这网站叫什么名字</title>
   
 
 
@@ -177,44 +178,107 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/1c991d64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kk3TWT">
+      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我还没想好这网站叫什么名字">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编译内核时遇到的各种问题（clang篇）
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于
-</h1>
+        <div class="post-meta">
+		
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2025-09-10 21:10:25 / 修改时间：22:26:00" itemprop="dateCreated datePublished" datetime="2025-09-10T21:10:25+08:00">2025-09-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">错误分析</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
+<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
+<p>然后重新运行<code>./build.sh</code></p>
+<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的时<code>/bin/ld.lld</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/" rel="tag"># 内核编译</a>
+              <a href="/tags/%E5%AE%89%E5%8D%93/" rel="tag"># 安卓</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/29837/" rel="prev" title="编译过程中遇到的各种问题（gcc篇）">
+      <i class="fa fa-chevron-left"></i> 编译过程中遇到的各种问题（gcc篇）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <p>非常好的个人博客<br>爱来自南京邮电大学<br>github: <a target="_blank" rel="noopener" href="https://github.com/CMCC-114514">https://github.com/CMCC-114514</a><br>twitter: <a target="_blank" rel="noopener" href="https://x.com/Forrest81780021">https://x.com/Forrest81780021</a><br>如果你也玩osu，那就更好了：<a target="_blank" rel="noopener" href="https://osu.ppy.sh/users/25288520">https://osu.ppy.sh/users/25288520</a></p>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -265,6 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DTC%E9%93%BE%E6%8E%A5%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">DTC链接错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91VDSO%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%B1%87%E7%BC%96%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF"><span class="nav-number">2.</span> <span class="nav-text">编译VDSO时出现的汇编语法错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ld%E6%97%A0%E6%B3%95%E8%BE%A8%E8%AE%A4aarch64linux%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">ld无法辨认aarch64linux仿真模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

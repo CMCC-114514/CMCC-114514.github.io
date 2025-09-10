@@ -13,6 +13,32 @@
       </tags>
   </entry>
   <entry>
+    <title>编译内核时遇到的各种问题（clang篇）</title>
+    <url>//post/1c991d64/</url>
+    <content><![CDATA[<h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
+<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
+<p>然后重新运行<code>./build.sh</code></p>
+<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的时<code>/bin/ld.lld</code></p>
+]]></content>
+      <categories>
+        <category>错误分析</category>
+      </categories>
+      <tags>
+        <tag>内核编译</tag>
+        <tag>安卓</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>编译过程中遇到的各种问题（gcc篇）</title>
     <url>//post/29837/</url>
     <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译成功完成了<br>但是给我的米板4刷进去之后并不能开机……</p>
