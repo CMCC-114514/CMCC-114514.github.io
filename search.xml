@@ -13,35 +13,33 @@
       </tags>
   </entry>
   <entry>
-    <title>编译内核时遇到的各种问题（clang篇）</title>
-    <url>//post/1c991d64/</url>
-    <content><![CDATA[<h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
-<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
-<p>然后重新运行<code>./build.sh</code></p>
-<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的时<code>/bin/ld.lld</code></p>
+    <title>使用SakuraFrp实现mc的流畅联机</title>
+    <url>//post/a4b13916/</url>
+    <content><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>搭建网站之前我有想过把我旧手机拿来当服务器<br>我还因此了解到内网穿透这东西<br>发现可以直接用Github直接搭网站之后就放一边了</p>
+<p>这两天玩ow给我玩到破防，想着换个游戏玩玩<br>然后就想到mc联机<br>之前用Radmin LAN和KatoLAN搞虚拟局域网的效果不好<br>所以试试内网穿透，暑假的时候同学用过，效果还挺好<br>想到又可以拉朋（hei）友（nu）一起玩就很爽（</p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>首先进入 <a href="https://www.natfrp.com/">Sakura Frp官网</a> 然后点击注册账号<br>注册好之后登入账号，进入管理面板<br><img src="/images/passage3/step1.png"></p>
+<p>然后点击用户–实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）<br>实名认证名额需要购买，价格为1元<br><img src="/images/passage3/step2.png"></p>
+<p>认证完成之后 <a href="https://www.natfrp.com/tunnel/download">下载SakuraFrp启动器</a> 并安装<br>启动器界面应如下图所示<br><img src="/images/passage3/step3.png"><br>这时回到官网的管理面板，点击用户–个人信息，复制访问密钥，再填入上图启动器中登录<br><img src="/images/passage3/step4.png"></p>
+<p>现在来创建隧道<br>点击服务–隧道列表，再点击创建隧道<br><img src="/images/passage3/step5.png"><br>节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道<br>隧道名随便填<br>本地ip选择“本地主机(127.0.0.1)”<br>本地端口选择“[25565]Minecraft Java”<br>剩下的选项如果你看不懂就不要管，默认会设置好<br>然后点击“创建”<br><img src="/images/passage3/step6.png"></p>
+<p>然后打开mc，开启“对局域网开放”<br>这时候打开Frp启动器，开启隧道，进入日志界面<br>隧道会自动检测mc对局域网开放的端口并提示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TCP隧道启动成功</span><br><span class="line">发现 Minecraft 局域网游戏, 本地 IP/端口 已经设置</span><br><span class="line">使用 &gt;&gt;frp-bar.com:xxxxx&lt;&lt; 连接你的隧道</span><br></pre></td></tr></table></figure>
+<p>这时候你就可以将上面的链接复制给你的好友让他进入你的房间了</p>
+<p>如果有更多问题，参阅官网的 <a href="https://doc.natfrp.com/app/mc.html">帮助文档</a></p>
 ]]></content>
       <categories>
-        <category>错误分析</category>
+        <category>教程</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
-        <tag>内核编译</tag>
+        <tag>内网穿透</tag>
+        <tag>Frp</tag>
+        <tag>我的世界</tag>
       </tags>
   </entry>
   <entry>
-    <title>编译过程中遇到的各种问题（gcc篇）</title>
+    <title>编译过程中遇到的各种问题（持续更新）</title>
     <url>//post/29837/</url>
-    <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译成功完成了<br>但是给我的米板4刷进去之后并不能开机……</p>
+    <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
+<p>二编：我换了个内核进行编译，还想集成kernelsu，可是一直都不成功，气得我鬼火冒</p>
 <h2 id="NR-CPUS配置错误"><a href="#NR-CPUS配置错误" class="headerlink" title="NR_CPUS配置错误"></a>NR_CPUS配置错误</h2><p>可能出现的报错：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/trace/events/sched.h:875:2: error: <span class="comment">#error &quot;Unsupported NR_CPUS for lb tracepoint.&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -80,13 +78,30 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑文件 drivers/soc/qcom/smem.c</span></span><br><span class="line">vi drivers/soc/qcom/smem.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到函数 qcom_smem_alloc_private</span></span><br><span class="line"><span class="comment"># 删除第305行的重复声明：</span></span><br><span class="line"><span class="comment"># struct smem_partition_header *phdr;</span></span><br></pre></td></tr></table></figure>
 
 <p>或者用sed命令修复</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除第305行的重复声明</span></span><br><span class="line">sed -i <span class="string">&#x27;305d&#x27;</span> drivers/soc/qcom/smem.c</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除第305行的重复声明</span></span><br><span class="line">sed -i <span class="string">&#x27;305d&#x27;</span> drivers/soc/qcom/smem.c</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
+<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
+<p>然后重新运行<code>./build.sh</code></p>
+<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的是<code>/bin/ld.lld</code></p>
+]]></content>
       <categories>
         <category>错误分析</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
   <entry>
@@ -209,8 +224,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
 </search>

@@ -20,21 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="直到最后也没有成功......">
-<meta property="og:type" content="article">
-<meta property="og:title" content="编译内核时遇到的各种问题（clang篇）">
-<meta property="og:url" content="http://example.com/post/1c991d64/index.html">
+  <meta name="description" content="如果你在的时候，会不会伸手拥抱我">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我还没想好这网站叫什么名字">
+<meta property="og:url" content="http://example.com/tags/Frp/index.html">
 <meta property="og:site_name" content="我还没想好这网站叫什么名字">
-<meta property="og:description" content="直到最后也没有成功......">
+<meta property="og:description" content="如果你在的时候，会不会伸手拥抱我">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-10T13:10:25.000Z">
-<meta property="article:modified_time" content="2025-09-10T23:27:11.595Z">
 <meta property="article:author" content="kk3TWT">
-<meta property="article:tag" content="安卓">
-<meta property="article:tag" content="内核编译">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/post/1c991d64/">
+<link rel="canonical" href="http://example.com/tags/Frp/">
 
 
 <script id="page-configurations">
@@ -42,12 +38,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>编译内核时遇到的各种问题（clang篇） | 我还没想好这网站叫什么名字</title>
+  <title>标签: Frp | 我还没想好这网站叫什么名字</title>
   
 
 
@@ -179,111 +175,51 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content tag">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/post/1c991d64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我还没想好这网站叫什么名字">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          编译内核时遇到的各种问题（clang篇）
-        </h1>
-
-        <div class="post-meta">
-		
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-09-10 21:10:25" itemprop="dateCreated datePublished" datetime="2025-09-10T21:10:25+08:00">2025-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-09-11 07:27:11" itemprop="dateModified" datetime="2025-09-11T07:27:11+08:00">2025-09-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">错误分析</span></a>
-                </span>
-            </span>
-
-          
-            <div class="post-description">直到最后也没有成功......</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">Frp
+          <small>标签</small>
+        </h2>
+      </div>
 
       
-        <h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
-<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
-<p>然后重新运行<code>./build.sh</code></p>
-<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的时<code>/bin/ld.lld</code></p>
-
+    <div class="collection-year">
+      <span class="collection-header">2025</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%AE%89%E5%8D%93/" rel="tag"># 安卓</a>
-              <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/" rel="tag"># 内核编译</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2025-09-11T21:45:22+08:00"
+              content="2025-09-11">
+          09-11
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/post/a4b13916/" itemprop="url">
+            <span itemprop="name">使用SakuraFrp实现mc的流畅联机</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/post/29837/" rel="prev" title="编译过程中遇到的各种问题（gcc篇）">
-      <i class="fa fa-chevron-left"></i> 编译过程中遇到的各种问题（gcc篇）
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
@@ -336,7 +272,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DTC%E9%93%BE%E6%8E%A5%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">DTC链接错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91VDSO%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%B1%87%E7%BC%96%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF"><span class="nav-number">2.</span> <span class="nav-text">编译VDSO时出现的汇编语法错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ld%E6%97%A0%E6%B3%95%E8%BE%A8%E8%AE%A4aarch64linux%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">ld无法辨认aarch64linux仿真模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -360,7 +295,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
