@@ -86,6 +86,7 @@
     <url>//post/29837/</url>
     <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
 <p>二编：我换了个内核进行编译，还想集成kernelsu，可是一直都不成功，气得我鬼火冒</p>
+<p>三编：换了魅蓝note6的内核，编译进行地异常顺利，刷进去之后也开机了，可是kernelsu并没有成功集成。。。</p>
 <h2 id="NR-CPUS配置错误"><a href="#NR-CPUS配置错误" class="headerlink" title="NR_CPUS配置错误"></a>NR_CPUS配置错误</h2><p>可能出现的报错：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/trace/events/sched.h:875:2: error: <span class="comment">#error &quot;Unsupported NR_CPUS for lb tracepoint.&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -150,8 +151,8 @@
         <category>错误分析</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
   <entry>
@@ -274,8 +275,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
 </search>
