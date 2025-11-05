@@ -1,14 +1,15 @@
 ---
 title: 使用SakuraFrp实现mc的流畅联机
-categories: 教程
-tags:
-  - 内网穿透
-  - Frp
-  - 我的世界
 description: 玩ow破防之后，我又开始玩起mc......
+categories: 学习记录
 abbrlink: a4b13916
-date: 2025-09-13 19:40
+date: 2025-09-13 19:40:09
+tags:
+- 内网穿透
+- Sakura Frp
+- 我的世界
 ---
+
 ## 杂谈
 
 搭建网站之前我有想过把我旧手机拿来当服务器
@@ -22,6 +23,7 @@ date: 2025-09-13 19:40
 想到又可以拉朋（hei）友（nu）一起玩就很爽（
 
 ## 教程开始
+
 首先进入 [Sakura Frp官网](https://www.natfrp.com/) 然后点击注册账号
 注册好之后登入账号，进入管理面板
 ![](/images/passage3/step1.png)
@@ -50,11 +52,13 @@ date: 2025-09-13 19:40
 然后打开mc，开启“对局域网开放”
 这时候打开Frp启动器，开启隧道，进入日志界面
 隧道会自动检测mc对局域网开放的端口并提示
-``` log
+
+```log
 TCP隧道启动成功
 发现 Minecraft 局域网游戏, 本地 IP/端口 已经设置
 使用 >>frp-bar.com:xxxxx<< 连接你的隧道
 ```
+
 这时候你就可以将上面的链接复制给你的好友让他进入你的房间了
 
 如果有更多问题，参阅官网的 [帮助文档](https://doc.natfrp.com/app/mc.html)

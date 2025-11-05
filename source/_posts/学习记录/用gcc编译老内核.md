@@ -1,30 +1,33 @@
 ---
 title: 用gcc编译老内核（步骤篇）
-date: '2025-09-09 16:00'
+date: 2025-09-09 16:00:19
 description: 用gcc编译老内核，比如4.4.x版本的内核
 categories: 教程
+abbrlink: 50843
 tags:
   - 内核编译
   - 安卓
-abbrlink: 50843
 ---
 
 ## 准备条件：
-  - 一台linux虚拟机（比如我用的Ubuntu 22.04)
-  - 一部比较老的测试用设备（比如我手上的米板4）
-  - 一个聪明的大脑
-  
+
+- 一台linux虚拟机（比如我用的Ubuntu 22.04)
+- 一部比较老的测试用设备（比如我手上的米板4）
+- 一个聪明的大脑
+
 ## 安装gcc和各种依赖
 
 依赖部分是我从 [另一个教程](https://blog.csdn.net/qq_43283565/article/details/137374337) 里搞来的
-``` bash
+
+```bash
 sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev
 ```
 
 gcc是编译内核必须的工具链，没有安装gcc就绝对不能编译
 
 安装gcc aarch64和arm32的代码
-``` bash
+
+```bash
 #安装gcc aarch64
 sudo apt install gcc-aarch64-linux-gnu
 
@@ -33,7 +36,8 @@ sudo apt install gcc-arm-linux-gnueabi
 ```
 
 安装后输出版本号确认
-``` bash
+
+```bash
 aarch64-linux-gnu-gcc --version
 arm-linux-gnueabi-gcc --version
 ```
@@ -51,7 +55,8 @@ arm-linux-gnueabi-gcc --version
 ![](/images/passage1/step1.2.png)
 
 然后在虚拟机里唤出终端（ctrl + alt + T），输入代码
-``` bash
+
+```bash
 git clone (你复制到的代码)
 ```
 
@@ -66,12 +71,14 @@ git clone (你复制到的代码)
 如果之后我用编译脚本成功编译出来内核，我应该会修改这一部分
 
 现在先进入内核根目录吧：
-``` bash
+
+```bash
 cd ~/android_kernel_(品牌)_(机型)
 ```
 
 首先按照目标架构选择工具链：
-``` bash
+
+```bash
 # 对于ARM64 (aarch64)
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
@@ -82,13 +89,14 @@ export CROSS_COMPILE=arm-linux-gnueabi-
 ```
 
 然后配置内核
-``` bash
+
+```bash
 make defconfig  # 使用默认配置
 ```
 
 ## 开始编译内核
 
-``` bash
+```bash
 make -j$(nproc)  # 使用所有可用核心编译
 ```
 
@@ -106,7 +114,7 @@ make -j$(nproc)  # 使用所有可用核心编译
 
 如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：
 
-``` bash
+```bash
 # 下载Android NDK
 wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
 unzip android-ndk-r21e-linux-x86_64.zip
