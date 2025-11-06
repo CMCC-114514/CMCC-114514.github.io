@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="稀疏矩阵的转置算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="南邮数据结构作业 - 第四章">
+<meta property="og:url" content="http://example.com/post/86c33f9b/index.html">
+<meta property="og:site_name" content="kk的兔子洞">
+<meta property="og:description" content="稀疏矩阵的转置算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/86c33f9b/p1.png">
+<meta property="article:published_time" content="2025-11-06T14:23:46.000Z">
+<meta property="article:modified_time" content="2025-11-06T14:50:01.941Z">
+<meta property="article:author" content="kk3TWT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/86c33f9b/p1.png">
+
+<link rel="canonical" href="http://example.com/post/86c33f9b/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>南邮数据结构作业 - 第四章 | kk的兔子洞</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">kk的兔子洞</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">我不到啊，导员没说</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/86c33f9b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kk3TWT">
+      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kk的兔子洞">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          南邮数据结构作业 - 第四章
+        </h1>
+
+        <div class="post-meta">
+		
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-11-06 22:23:46 / 修改时间：22:50:01" itemprop="dateCreated datePublished" datetime="2025-11-06T22:23:46+08:00">2025-11-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">学习记录</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">稀疏矩阵的转置算法</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
+<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
+<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
+<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<p><strong>三元组和三元组表定义</strong></p>
+<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
+
+<p><strong>算法的代码实现</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/fe9a3018/" rel="prev" title="在多台电脑上提交和更新Hexo博客">
+      <i class="fa fa-chevron-left"></i> 在多台电脑上提交和更新Hexo博客
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99%E5%87%BA%E5%A6%82%E4%B8%8B%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%EF%BC%8C%E8%AF%B7%E8%AE%BE%E8%AE%A1%E4%B8%80%E7%A7%8D%E9%AB%98%E6%95%88%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%AE%97%E6%B3%95-%E6%A0%B9%E6%8D%AE%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3-%E9%87%87%E7%94%A8C-C-%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0-%E7%BB%99%E5%87%BA%E6%B3%A8%E9%87%8A-%E5%B9%B6%E7%BB%99%E5%87%BA%E8%BF%90%E8%A1%8C%E5%8F%8A%E7%BB%93%E6%9E%9C%E6%88%AA%E5%9B%BE%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kk3TWT</p>
+  <div class="site-description" itemprop="description">如果你在的时候，会不会伸手拥抱我</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kk3TWT</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div> -->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

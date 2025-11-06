@@ -13,13 +13,46 @@
       </tags>
   </entry>
   <entry>
+    <title>南邮数据结构作业 - 第四章</title>
+    <url>//post/86c33f9b/</url>
+    <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
+<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
+<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
+<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<p><strong>三元组和三元组表定义</strong></p>
+<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
+
+<p><strong>算法的代码实现</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+  </entry>
+  <entry>
     <title>在多台电脑上提交和更新Hexo博客</title>
     <url>//post/fe9a3018/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我现在有两台电脑，最初第一次装好hexo环境的电脑在宿舍，姑且叫这台电脑 <strong>“老电脑”</strong> 吧，代表最初拥有hexo环境的电脑，然后事情是这样的去到工位的电脑上想要更新博客总是要远程启动宿舍的电脑才行，于是想要在工位电脑也能更新，这里工位的电脑姑且叫做 <strong>“新电脑”</strong> 吧。</p>
 <p>最初搞这个多设备同步属实折腾了好半天，看了很多博客也在知乎上参考了不少，但总是需要在不同博客之间相互参考最终才完美解决，所以想要把这几天的经历总结一下。</p>
 <h4 id="hexo同步原理"><a href="#hexo同步原理" class="headerlink" title="hexo同步原理"></a>hexo同步原理</h4><p><strong>1. hexo博客目录结构说明</strong></p>
 <p>这是老电脑上的目录结构</p>
-<p><img src="/%5Cimages%5Cfe9a3018%5Cp1.png"></p>
+<p><img src="/images/fe9a3018/p1.png"></p>
 <table>
 <thead>
 <tr>
@@ -76,19 +109,19 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
-<p><img src="/%5Cimages%5Cfe9a3018%5Cp2.png"></p>
+<p><img src="/images/fe9a3018/p2.png"></p>
 <p>把source分支设置成默认分支，用来存放源文件，master分支依然存放静态文件。在老电脑上，我们需要把必要的源文件push到source分支。换新电脑时，直接<code>git clone 仓库地址</code>此时会从source分支下载源文件，剩下的就是安装hexo环境，在新电脑上就可以重新生成静态页面了，并且因为配置文件clone下来，deploy配置依旧是master分支，所以在新电脑上执行<code>hexo d</code>还是会把更新过后的静态文件推送到master分支上。</p>
 <p>由于master分支和source分支实际上是相互独立的两个普通的分支，所以我们源文件和静态页面的更新也是相互独立的，故而需要手动分别执行<code>git add . git commit git push</code>来更新源文件,然后执行<code>hexo d</code>更新静态页面。</p>
 <h4 id="老电脑上的具体操作"><a href="#老电脑上的具体操作" class="headerlink" title="老电脑上的具体操作"></a>老电脑上的具体操作</h4><p>这里直接引用我看的一篇博客的步骤：</p>
 <p><strong>1. Github准备</strong></p>
 <p>先创建一个分支hexo</p>
-<p><img src="/%5Cimages%5Cfe9a3018%5Cp3.png"></p>
+<p><img src="/images/fe9a3018/p3.png"></p>
 <p>将其设置为默认分支</p>
-<p><img src="/%5Cimages%5Cfe9a3018%5Cp4.png"></p>
+<p><img src="/images/fe9a3018/p4.png"></p>
 <p><strong>2. 打包将要推送到Github上的原始文件</strong></p>
 <p>（1）clone该仓库到本地（clone的是hexo默认分支）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:username/username.github.io.git</span><br></pre></td></tr></table></figure>
@@ -384,10 +417,10 @@
     <url>//post/a4b13916/</url>
     <content><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>搭建网站之前我有想过把我旧手机拿来当服务器<br>我还因此了解到内网穿透这东西<br>发现可以直接用Github直接搭网站之后就放一边了</p>
 <p>这两天玩ow给我玩到破防，想着换个游戏玩玩<br>然后就想到mc联机<br>之前用Radmin LAN和KatoLAN搞虚拟局域网的效果不好<br>所以试试内网穿透，暑假的时候同学用过，效果还挺好<br>想到又可以拉朋（hei）友（nu）一起玩就很爽（</p>
-<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>首先进入 <a href="https://www.natfrp.com/">Sakura Frp官网</a> 然后点击注册账号<br>注册好之后登入账号，进入管理面板<br><img src="/images/passage3/step1.png"></p>
-<p>然后点击用户–实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）<br>实名认证名额需要购买，价格为1元<br><img src="/images/passage3/step2.png"></p>
-<p>认证完成之后 <a href="https://www.natfrp.com/tunnel/download">下载SakuraFrp启动器</a> 并安装<br>启动器界面应如下图所示<br><img src="/images/passage3/step3.png"><br>这时回到官网的管理面板，点击用户–个人信息，复制访问密钥，再填入上图启动器中登录<br><img src="/images/passage3/step4.png"></p>
-<p>现在来创建隧道<br>点击服务–隧道列表，再点击创建隧道<br><img src="/images/passage3/step5.png"><br>节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道<br>隧道名随便填<br>本地ip选择“本地主机(127.0.0.1)”<br>本地端口选择“[25565]Minecraft Java”<br>剩下的选项如果你看不懂就不要管，默认会设置好<br>然后点击“创建”<br><img src="/images/passage3/step6.png"></p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>首先进入 <a href="https://www.natfrp.com/">Sakura Frp官网</a> 然后点击注册账号<br>注册好之后登入账号，进入管理面板<br><img src="/images/a4b13916/p1.png"></p>
+<p>然后点击用户–实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）<br>实名认证名额需要购买，价格为1元<br><img src="/images/a4b13916/p2.png"></p>
+<p>认证完成之后 <a href="https://www.natfrp.com/tunnel/download">下载SakuraFrp启动器</a> 并安装<br>启动器界面应如下图所示<br><img src="/images/a4b13916/p3.png"><br>这时回到官网的管理面板，点击用户–个人信息，复制访问密钥，再填入上图启动器中登录<br><img src="/images/a4b13916/p4.png"></p>
+<p>现在来创建隧道<br>点击服务–隧道列表，再点击创建隧道<br><img src="/images/a4b13916/p5.png"><br>节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道<br>隧道名随便填<br>本地ip选择“本地主机(127.0.0.1)”<br>本地端口选择“[25565]Minecraft Java”<br>剩下的选项如果你看不懂就不要管，默认会设置好<br>然后点击“创建”<br><img src="/images/a4b13916/p6.png"></p>
 <p>然后打开mc，开启“对局域网开放”<br>这时候打开Frp启动器，开启隧道，进入日志界面<br>隧道会自动检测mc对局域网开放的端口并提示</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TCP隧道启动成功</span><br><span class="line">发现 Minecraft 局域网游戏, 本地 IP/端口 已经设置</span><br><span class="line">使用 &gt;&gt;frp-bar.com:xxxxx&lt;&lt; 连接你的隧道</span><br></pre></td></tr></table></figure>
 
@@ -444,11 +477,11 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">aosp-clang</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建文件夹让后直接curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line">curl &lt;需要拉取的clang连接&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">具体版本在这找</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main</span></span><br></pre></td></tr></table></figure>
 
-<p>按这个图片找对应版本<br><img src="/images/passage2/step2.1.png"></p>
-<p>找到需要的版本后看下图<br><img src="/images/passage2/step2.2.png"></p>
+<p>按这个图片找对应版本<br><img src="/images/57133/p1.png"></p>
+<p>找到需要的版本后看下图<br><img src="/images/57133/p2.png"></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第三方clang(以Zyclang举例)，在github仓库的release</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制链接直接在当前用户目录下curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">记得选择对应版本</span></span><br><span class="line">curl &lt;下图获取的连接&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/passage2/step2.3.png"></p>
+<p><img src="/images/57133/p3.png"></p>
 <ul>
 <li>拉取kernelsu</li>
 </ul>
@@ -469,7 +502,8 @@
 <ul>
 <li>如果你刷入内核后手机不能正常启动，你可以需要按照术哥（kernelsu的作者，就是那只皮卡丘）的办法，放弃使用kprobe集成的办法，转去修改那么几个内核文件，具体请参考 <a href="https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html">https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html</a> 中手动修改内核源码部分的内容。在修改完成后再次拉取kernelsu(只是为了执行那个脚本，当然你也可以在内核根文件夹内执行kernelsu的脚本)</li>
 </ul>
-<p>————————————————<br>版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43283565/article/details/137374337">为非gki内核添加KernelSU支持</a></p>
+<hr>
+<p>版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43283565/article/details/137374337">为非gki内核添加KernelSU支持</a></p>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -481,7 +515,7 @@
       </tags>
   </entry>
   <entry>
-    <title>用gcc编译老内核（步骤篇）</title>
+    <title>用gcc编译老内核</title>
     <url>//post/50843/</url>
     <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
 <li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
@@ -499,8 +533,8 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">aarch64-linux-gnu-gcc --version</span><br><span class="line">arm-linux-gnueabi-gcc --version</span><br></pre></td></tr></table></figure>
 
 <h2 id="获取内核源代码"><a href="#获取内核源代码" class="headerlink" title="获取内核源代码"></a>获取内核源代码</h2><p>源代码一般在github就能找到<br>先进入 <a href="https://github.com/">github</a> 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索</p>
-<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/passage1/step1.1.png"></p>
-<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/passage1/step1.2.png"></p>
+<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/50843/p1.png"></p>
+<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/50843/p2.png"></p>
 <p>然后在虚拟机里唤出终端（ctrl + alt + T），输入代码</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> (你复制到的代码)</span><br></pre></td></tr></table></figure>
 
@@ -522,7 +556,7 @@
 <h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>教程</category>
+        <category>学习记录</category>
       </categories>
       <tags>
         <tag>内核编译</tag>
