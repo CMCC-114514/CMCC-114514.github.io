@@ -1,8 +1,8 @@
 ---
-title: 用gcc编译老内核（步骤篇）
+title: 用gcc编译老内核
 date: 2025-09-09 16:00:19
 description: 用gcc编译老内核，比如4.4.x版本的内核
-categories: 教程
+categories: 学习记录
 abbrlink: 50843
 tags:
   - 内核编译
@@ -48,11 +48,11 @@ arm-linux-gnueabi-gcc --version
 先进入 [github](https://github.com/) 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索
 
 比如小米平板4的品牌是xiaomi，机型是clover：
-![](/images/passage1/step1.1.png)
+![](/images/50843/p1.png)
 
 然后挑选你中意的内核点进去，再点击那个绿色的"Code"按钮复制clone链接
 就是那个两个方框连起来那个链接
-![](/images/passage1/step1.2.png)
+![](/images/50843/p2.png)
 
 然后在虚拟机里唤出终端（ctrl + alt + T），输入代码
 

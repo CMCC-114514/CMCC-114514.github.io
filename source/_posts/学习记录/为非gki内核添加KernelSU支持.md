@@ -91,10 +91,10 @@ curl <需要拉取的clang连接>
 ```
 
 按这个图片找对应版本
-![](images/passage2/step2.1.png)
+![](images/57133/p1.png)
 
 找到需要的版本后看下图
-![](images/passage2/step2.2.png)
+![](images/57133/p2.png)
 
 ```shell
 # 第三方clang(以Zyclang举例)，在github仓库的release
@@ -106,7 +106,7 @@ cd ~/android
 curl <下图获取的连接>
 ```
 
-![](images/passage2/step2.3.png)
+![](images/57133/p3.png)
 
 - 拉取kernelsu
 
@@ -188,6 +188,7 @@ source ./build.sh
 
 - 如果你刷入内核后手机不能正常启动，你可以需要按照术哥（kernelsu的作者，就是那只皮卡丘）的办法，放弃使用kprobe集成的办法，转去修改那么几个内核文件，具体请参考 https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html 中手动修改内核源码部分的内容。在修改完成后再次拉取kernelsu(只是为了执行那个脚本，当然你也可以在内核根文件夹内执行kernelsu的脚本)
 
-————————————————
+---
+
 版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：[为非gki内核添加KernelSU支持](https://blog.csdn.net/qq_43283565/article/details/137374337)

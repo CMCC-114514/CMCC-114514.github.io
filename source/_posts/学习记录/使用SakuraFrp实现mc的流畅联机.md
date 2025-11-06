@@ -26,28 +26,28 @@ tags:
 
 首先进入 [Sakura Frp官网](https://www.natfrp.com/) 然后点击注册账号
 注册好之后登入账号，进入管理面板
-![](/images/passage3/step1.png)
+![](/images/a4b13916/p1.png)
 
 然后点击用户--实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）
 实名认证名额需要购买，价格为1元
-![](/images/passage3/step2.png)
+![](/images/a4b13916/p2.png)
 
 认证完成之后 [下载SakuraFrp启动器](https://www.natfrp.com/tunnel/download) 并安装
 启动器界面应如下图所示
-![](/images/passage3/step3.png)
+![](/images/a4b13916/p3.png)
 这时回到官网的管理面板，点击用户--个人信息，复制访问密钥，再填入上图启动器中登录
-![](/images/passage3/step4.png)
+![](/images/a4b13916/p4.png)
 
 现在来创建隧道
 点击服务--隧道列表，再点击创建隧道
-![](/images/passage3/step5.png)
+![](/images/a4b13916/p5.png)
 节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道
 隧道名随便填
 本地ip选择“本地主机(127.0.0.1)”
 本地端口选择“[25565]Minecraft Java”
 剩下的选项如果你看不懂就不要管，默认会设置好
 然后点击“创建”
-![](/images/passage3/step6.png)
+![](/images/a4b13916/p6.png)
 
 然后打开mc，开启“对局域网开放”
 这时候打开Frp启动器，开启隧道，进入日志界面
