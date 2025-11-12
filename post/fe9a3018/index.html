@@ -24,7 +24,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="在多台电脑上提交和更新Hexo博客">
 <meta property="og:url" content="http://example.com/post/fe9a3018/index.html">
-<meta property="og:site_name" content="kk的兔子洞">
+<meta property="og:site_name" content="kk的小窝">
 <meta property="og:description" content="Hexo博客多设备提交和更新教程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/fe9a3018/p1.png">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>在多台电脑上提交和更新Hexo博客 | kk的兔子洞</title>
+  <title>在多台电脑上提交和更新Hexo博客 | kk的小窝</title>
   
 
 
@@ -105,7 +105,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">kk的兔子洞</h1>
+      <h1 class="site-title">kk的小窝</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">我不到啊，导员没说</p>
@@ -198,11 +198,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="kk3TWT">
-      <meta itemprop="description" content="如果你在的时候，会不会伸手拥抱我">
+      <meta itemprop="description" content="作为小县城唯一何过意味的人，我的眼神里总是透着同龄人不懂的意味，每次家里跳闸停电，我都会平静地抬手轻按空气开关：“何意味？”作为小县城唯一何过意味的人，我的眼神里总带着同龄人没有的意味，每次看到老人在巷口摆摊卖手作小物件，我都会蹲下来轻声问：“何意味？”作为小县城唯一何过意味的人，我的眼神里藏着同龄人不懂的意味，每次县里举办文艺汇演台下掌声雷动，我都会笑着拍手：“何意味？”作为小县城唯一何过意味的人，我的眼神里总有着同龄人没有的意味，每次在书店看到孩子捧着绘本认真阅读，我都会放轻脚步：“何意味？”">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kk的兔子洞">
+      <meta itemprop="name" content="kk的小窝">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -309,7 +309,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
@@ -456,13 +456,13 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">kk3TWT</p>
-  <div class="site-description" itemprop="description">如果你在的时候，会不会伸手拥抱我</div>
+  <div class="site-description" itemprop="description">作为小县城唯一何过意味的人，我的眼神里总是透着同龄人不懂的意味，每次家里跳闸停电，我都会平静地抬手轻按空气开关：“何意味？”作为小县城唯一何过意味的人，我的眼神里总带着同龄人没有的意味，每次看到老人在巷口摆摊卖手作小物件，我都会蹲下来轻声问：“何意味？”作为小县城唯一何过意味的人，我的眼神里藏着同龄人不懂的意味，每次县里举办文艺汇演台下掌声雷动，我都会笑着拍手：“何意味？”作为小县城唯一何过意味的人，我的眼神里总有着同龄人没有的意味，每次在书店看到孩子捧着绘本认真阅读，我都会放轻脚步：“何意味？”</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -473,7 +473,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

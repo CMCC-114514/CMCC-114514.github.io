@@ -13,6 +13,57 @@
       </tags>
   </entry>
   <entry>
+    <title>关于做梦</title>
+    <url>//post/2648f620/</url>
+    <content><![CDATA[<p>最近我每天晚上都在做梦，有一部分还相当真实。</p>
+<p>比如昨天晚上的梦，我梦到我的两只手肘部以下部分被砍掉了，后面被不知道谁带去医院接了假肢。说实话我当时一下就惊醒了，赶紧检查自己的小臂还在不在。</p>
+<p>检查完睡下之后，我又做了一个不同的梦，梦里我看着我爸和一个陌生人互殴，然后那个陌生人拿着菜刀正一刀一刀往我爸的背上砍。可奇怪的是我对这种场景没有什么感觉，不会像往常做噩梦一样呼吸急促和心跳加快，可能是我意识到那个被砍的人是和我爸长得很像的人吧。</p>
+<p>我的舍友都说我睡相差，会打呼噜还会说梦话，我也一直对这种事情感到非常抱歉。但还好他们对我睡觉这件事情不会很较真，虽然有时候起床会听到其中一个人对我说“你昨天晚上说了xxxx你知道吗“这样子的话。</p>
+<p>据睡在我对面床铺的那个哥们说，去年刚玩ow的时候，我某天晚上睡着睡着就叫起”推车推车“的话。我不记得那天我干了什么（反正肯定有玩ow），但是就结果而言，我肯定是因为某一把没推车输的比赛说的梦话。挺奇异搞笑的。</p>
+<p>好像还有一次，我梦游了，是在床上坐起来然后拉开床帘。这一次我倒是有点印象，不过具体原因就不知道了，也许也是因为做噩梦然后惊醒了吧。然后好像还把半夜上厕所的舍友吓到了。有点抽象。</p>
+<p>好在无论是说梦话还是梦游，我整体的睡眠质量还是很好的。就是睡觉的时间还是不太够，可能以后我会早点睡觉吧（虽然不太可能）。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>南邮数据结构作业 - 第四章</title>
+    <url>//post/86c33f9b/</url>
+    <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
+<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
+<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
+<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<p><strong>三元组和三元组表定义</strong></p>
+<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
+
+<p><strong>算法的代码实现</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+  </entry>
+  <entry>
     <title>编译过程中遇到的各种问题（持续更新）</title>
     <url>//post/acd9767d/</url>
     <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
@@ -80,8 +131,8 @@
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
   <entry>
@@ -148,7 +199,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
@@ -526,8 +577,8 @@
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>安卓</tag>
         <tag>内核编译</tag>
+        <tag>安卓</tag>
       </tags>
   </entry>
 </search>
