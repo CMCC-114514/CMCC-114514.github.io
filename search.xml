@@ -13,6 +13,24 @@
       </tags>
   </entry>
   <entry>
+    <title>关于做梦</title>
+    <url>//post/2648f620/</url>
+    <content><![CDATA[<p>最近我每天晚上都在做梦，有一部分还相当真实。</p>
+<p>比如昨天晚上的梦，我梦到我的两只手肘部以下部分被砍掉了，后面被不知道谁带去医院接了假肢。说实话我当时一下就惊醒了，赶紧检查自己的小臂还在不在。</p>
+<p>检查完睡下之后，我又做了一个不同的梦，梦里我看着我爸和一个陌生人互殴，然后那个陌生人拿着菜刀正一刀一刀往我爸的背上砍。可奇怪的是我对这种场景没有什么感觉，不会像往常做噩梦一样呼吸急促和心跳加快，可能是我意识到那个被砍的人是和我爸长得很像的人吧。</p>
+<p>我的舍友都说我睡相差，会打呼噜还会说梦话，我也一直对这种事情感到非常抱歉。但还好他们对我睡觉这件事情不会很较真，虽然有时候起床会听到其中一个人对我说“你昨天晚上说了xxxx你知道吗“这样子的话。</p>
+<p>据睡在我对面床铺的那个哥们说，去年刚玩ow的时候，我某天晚上睡着睡着就叫起”推车推车“的话。我不记得那天我干了什么（反正肯定有玩ow），但是就结果而言，我肯定是因为某一把没推车输的比赛说的梦话。挺奇异搞笑的。</p>
+<p>好像还有一次，我梦游了，是在床上坐起来然后拉开床帘。这一次我倒是有点印象，不过具体原因就不知道了，也许也是因为做噩梦然后惊醒了吧。然后好像还把半夜上厕所的舍友吓到了。有点抽象。</p>
+<p>好在无论是说梦话还是梦游，我整体的睡眠质量还是很好的。就是睡觉的时间还是不太够，可能以后我会早点睡觉吧（虽然不太可能）。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>南邮数据结构作业 - 第四章</title>
     <url>//post/86c33f9b/</url>
     <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
@@ -44,169 +62,10 @@
       <categories>
         <category>学习记录</category>
       </categories>
-  </entry>
-  <entry>
-    <title>为非gki内核添加KernelSU支持</title>
-    <url>//post/57133/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.<br>​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西</p>
-<blockquote>
-<p>如果你只是想编译内核而不是使用kernelsu，你可以忽略本文中拉去kernelsu和修改内核配置的部分</p>
-</blockquote>
-<h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><p>一台Linux设备（虚拟机，Docker，WSL，甚至是手机上的Terumx都是可以的），我这里以WSL2，Ubuntu 22.04.2 LTS为例</p>
-<p>一部可以正常使用的安卓手机（废话+2）</p>
-<p>可以让你连接到github和google的方法（你懂的§(￣▽￣)§）</p>
-<p>最后再带上你聪明的小脑袋瓜，粗发！</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
-<li>首先需要下载所需要的依赖，跟坨屎一样多，直接复制执行就好</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>下载适合自己手机的内核build</li>
-</ul>
-<p>这个东西需要自己去Github找，一般为<code>(android)_kernel_&lt;手机厂商&gt;_&lt;cpu代号&gt;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以一加8T为例，高通骁龙865代号为sm8250，那么内核仓库名就可能是</span></span><br><span class="line">android_kernel_oneplus_sm8250</span><br><span class="line">kernel_oneplus_sm8250</span><br></pre></td></tr></table></figure>
-
-<p>我这里的例子是Handelinkernel-v2.6，我在氢的时候最喜欢的一个内核（同时也是最喜欢的一个版本）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 仓库地址</span></span><br><span class="line">https://git.drg.fi/drgreen/android_kernel_oneplus_sm8250.git</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>下载所需的交叉编译器</li>
-</ul>
-<p>​ 由于这个内核自带了编译脚本，所以我们就根据脚本里的的clang版本下载(至于编译脚本我后面再说)<br><strong>当然，其实我更推荐第三方的<em>clang</em>，因为比较省事</strong>比如：<a href="https://github.com/ZyCromerZ/Clang">ZyC clang</a> 、<a href="https://github.com/kdrag0n/proton-clang">proton-clang</a> 或者<a href="https://github.com/Neutron-Toolchains/clang-build-catalogue">clang-build-catalogue</a><br>使用方法也都差不多，当然你也可以使用谷歌官方的clang不过第三方有的更省事直接用就完事了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以我为例，我把它们分别放在了</span></span><br><span class="line">~/android/clang-r407598b</span><br><span class="line">~/android/toolchain</span><br></pre></td></tr></table></figure>
-
-<h2 id="拉取资源"><a href="#拉取资源" class="headerlink" title="拉取资源"></a>拉取资源</h2><ul>
-<li>拉取内核源码</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span>到用户文件夹</span></span><br><span class="line">cd ~</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拉取内核,有的内核还有submodules，所以直接加上--recurse-submodules</span></span><br><span class="line">git clone --recurse-submodules https://git.drg.fi/drgreen/android_kernel_oneplus_sm8250.git</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>拉取交叉编译工具<br><strong>aosp-clang和第三方clang选其中一个就好</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">aosp-clang</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建文件夹让后直接curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line">curl &lt;需要拉取的clang连接&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">具体版本在这找</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main</span></span><br></pre></td></tr></table></figure>
-
-<p>按这个图片找对应版本<br><img src="/images/57133/p1.png"></p>
-<p>找到需要的版本后看下图<br><img src="/images/57133/p2.png"></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第三方clang(以Zyclang举例)，在github仓库的release</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制链接直接在当前用户目录下curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">记得选择对应版本</span></span><br><span class="line">curl &lt;下图获取的连接&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/57133/p3.png"></p>
-<ul>
-<li>拉取kernelsu</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/&lt;内核文件夹&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在内核文件夹的根目录执行以下命令</span></span><br><span class="line">curl -LSs <span class="string">&quot;https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh&quot;</span> | bash -s v0.9.5</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>KernelSU 1.0 及更高版本已经不再支持非 GKI 内核，最后的支持版本为 v0.9.5，请注意使用正确的版本。</p>
-</blockquote>
-<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><ul>
-<li>修改配置文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/android_kernel_oneplus_sm8250/arch/arm64/configs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时你所需要的配置文件可能在./defconfig</span></span><br><span class="line"><span class="comment"># 但大概率可能会在./vendor/&lt;配置文件&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以本内核为例</span></span><br><span class="line">vi /vendor/kona-perf_defconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在配置文件最底下加上</span></span><br><span class="line">CONFIG_KPROBES=y</span><br><span class="line">CONFIG_HAVE_KPROBES=y</span><br><span class="line">CONFIG_KPROBE_EVENTS=y</span><br></pre></td></tr></table></figure>
-
-<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进去内核的根目录</span></span><br><span class="line">cd ~/android_kernel_oneplus_sm8250</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建一个shell文件</span></span><br><span class="line">vim ./build.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入以下内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">shell开始</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">export ARCH=arm64</span><br><span class="line">export SUBARCH=arm64</span><br><span class="line"></span><br><span class="line">args=&quot;-j$(nproc --all) \</span><br><span class="line">O=out \</span><br><span class="line">CC=clang \</span><br><span class="line">ARCH=arm64 \</span><br><span class="line">LD=ld.lld \</span><br><span class="line">LLVM=1 \</span><br><span class="line">LLVM_IAS=1 \</span><br><span class="line">CROSS_COMPILE=aarch64-linux-gnu- \</span><br><span class="line">CROSS_COMPILE_COMPAT=arm-linux-gnueabi- &quot;        #根据需要可将COMPAT改为ARM32</span><br><span class="line"></span><br><span class="line">export PATH=&quot;$HOME/&lt;clang文件夹路径&gt;/bin:$PATH&quot;</span><br><span class="line">make $&#123;args&#125; vendor/kona-perf_defconfig</span><br><span class="line">make $&#123;args&#125;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">shell结束</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存后退出，给shell执行权限</span></span><br><span class="line">chmod a+x ./buids.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行,用<span class="built_in">source</span>方便报错后调试</span></span><br><span class="line">source ./build.sh</span><br></pre></td></tr></table></figure>
-
-<h2 id="试验"><a href="#试验" class="headerlink" title="试验"></a>试验</h2><p>如果你足够幸运的话，那么你现在已经成功一半了<br>去内核文件夹的out&#x2F;arch&#x2F;arm64&#x2F;boot&#x2F;文件夹看看你的成果<br>把<em>Image</em>放入Anykernel中然后压缩刷入(不同内核压缩方式不同，比如：Image.gz）<br><a href="https://github.com/tiann/KernelSU/discussions/952#discussion-5623210">Anykernel的使用方法</a></p>
-<h2 id="恭喜你，看来你不是幸运儿"><a href="#恭喜你，看来你不是幸运儿" class="headerlink" title="恭喜你，看来你不是幸运儿"></a>恭喜你，看来你不是幸运儿</h2><p>如果你此时将内核刷入后发现各种问题，比如黑屏，重启，高通崩溃（甚至你的out路径里根本就没有出现镜像文件），又或者你编译时报错，所以我将会继续为你排忧解难</p>
-<ul>
-<li>如果你刷入内核后手机不能正常启动，你可以需要按照术哥（kernelsu的作者，就是那只皮卡丘）的办法，放弃使用kprobe集成的办法，转去修改那么几个内核文件，具体请参考 <a href="https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html">https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html</a> 中手动修改内核源码部分的内容。在修改完成后再次拉取kernelsu(只是为了执行那个脚本，当然你也可以在内核根文件夹内执行kernelsu的脚本)</li>
-</ul>
-<hr>
-<p>版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43283565/article/details/137374337">为非gki内核添加KernelSU支持</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
-        <tag>安卓刷机</tag>
-        <tag>内核编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>南邮数据结构作业 - 第二章</title>
-    <url>//post/f93c4f64/</url>
-    <content><![CDATA[<h4 id="第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。"><a href="#第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。" class="headerlink" title="第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。"></a>第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。</h4><ul>
-<li><p><strong>算法思想</strong><br>要求是将单链表中序号奇数和偶数的元素分到两个单链表中，所以创建两个带头结点的单链表M和N，其中M储存原来序号为奇数的元素，N储存原来序号为偶数的元素。<br>然后遍历原链表A，当序号为奇数的时候，将对应的元素存储到M，序号为偶数的时候存储到N，添加元素的位置均为链表的末尾。<br>要考虑元素之间相对顺序不变，所以还要另外定义两个int变量m和n代表链表M和N的下标，每添加一个元素，下标就加1</p>
-</li>
-<li><p><strong>代码实现</strong></p>
-</li>
-</ul>
-<p><strong>结点定义</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemType element;        <span class="comment">//结点的数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">link</span>;</span>        <span class="comment">//结点的指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
-
-<p><strong>带头结点的单链表定义</strong>，head作为头节点</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">headerList</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    <span class="type">int</span> n;        <span class="comment">//单链表的长度n</span></span><br><span class="line">&#125;HeaderList;</span><br></pre></td></tr></table></figure>
-
-<p><strong>初始化运算</strong>：生成空表</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Init</span><span class="params">(HeaderList* h)</span></span><br><span class="line">&#123;</span><br><span class="line">    h-&gt;head = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));        <span class="comment">//生成表头结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!h-&gt;head)            <span class="comment">//表头结点为空返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    h-&gt;head-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">    h-&gt;n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>查找运算</strong>：根据下标i查找元素，并通过x返回值</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(HeaderList L, <span class="type">int</span> i, ElemType* x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; L.n<span class="number">-1</span>)        <span class="comment">//对i进行越界检查</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L.head-&gt;link;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)            <span class="comment">//从头结点开始查找下标i的元素</span></span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    *x = p-&gt;element;                <span class="comment">//通过x返回元素值（传地址）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>插入运算</strong>：根据下标i插入元素x</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(HeaderList* h, <span class="type">int</span> i, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p, * q;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">-1</span> || i&gt;h-&gt;n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = h-&gt;head;                      <span class="comment">//从头结点开始找a(i)元素所在的结点p</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    q = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//生成新结点q</span></span><br><span class="line"></span><br><span class="line">    q-&gt;element = x;                    <span class="comment">//将元素x赋值到新结点q</span></span><br><span class="line">    q-&gt;link = p-&gt;link;              <span class="comment">//将新结点q插在p之后</span></span><br><span class="line">    p-&gt;link = q;</span><br><span class="line">    h-&gt;n++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出运算</strong>：输出链表的所有元素</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Output</span><span class="params">(HeaderList* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!L-&gt;n)                        <span class="comment">//判空运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L-&gt;head-&gt;link;</span><br><span class="line">    <span class="keyword">while</span> (p)                        <span class="comment">//依次输出每个元素</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;element);</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>主程序步骤</strong><br>1.先生成原链表A和待存储链表M和N，以及对应的下标m和n<br>  (M储存原来序号为奇数的元素，N储存原来序号为偶数的元素)<br>2.使用查找运算遍历链表A，用变量x存储返回值<br>3.用if语句根据下标的奇偶性将a插入链表M和N中<br>4.当链表A遍历完成后，输出链表A、M和N，验证程序是否有错误</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HeaderList A, M, N;</span><br><span class="line">    <span class="type">int</span> i, m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    Init(&amp;A);        <span class="comment">//初始化链表</span></span><br><span class="line">    Init(&amp;M);</span><br><span class="line">    Init(&amp;N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)        <span class="comment">//给链表A插入0~9</span></span><br><span class="line">        Insert(&amp;A, i - <span class="number">1</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原List:&quot;</span>);    <span class="comment">//输出链表A</span></span><br><span class="line">    Output(&amp;A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Find(A, i, &amp;x);            <span class="comment">//用查找运算遍历链表A，用x存储返回值</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;M, m - <span class="number">1</span>, x);    <span class="comment">//下标为奇数时，将元素添加至链表M</span></span><br><span class="line">            m++;    <span class="comment">//m表示链表M的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;N, n - <span class="number">1</span>, x);    <span class="comment">//下标为偶数时，加元素添加至链表N</span></span><br><span class="line">            n++;    <span class="comment">//n表示链表N的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（奇数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;M);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（偶数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>输出结果</strong></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">原List:0 1 2 3 4 5 6 7 8</span><br><span class="line">List（奇数下标）:1 3 5 7</span><br><span class="line">List（偶数下标）:0 2 4 6 8</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 12624)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O"><a href="#第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O" class="headerlink" title="第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。"></a>第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。</h4><blockquote>
-<p>首先声明，作者的做法大概率是错的，这一题的做法应该使用循环链表</p>
-</blockquote>
-<ul>
-<li><strong>算法思想</strong></li>
-</ul>
-<p>要将n个整数存放到一维数组而且能左移n个位置，就要先定义一个长度至少为2n的数组<br>因为是将元素左移，所以将元素内容储存在数组下标较大的一端<br>然后从第一个元素开始遍历数组R，将下标为i的元素和下标为i-p的元素交换<br>最后输出数组，验证算法是否成功</p>
-<ul>
-<li><strong>代码实现</strong></li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 14        <span class="comment">//n为7，所以数组最大长度N应该至少为14</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="type">int</span> R[N] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义一维数组R</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//将n个整数存放到R中</span></span><br><span class="line">        R[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;数组下标：&quot;</span>);        <span class="comment">//输出下标</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之前：&quot;</span>);        <span class="comment">//输出移动元素前下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//从第一个元素开始交换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; n || p &lt; <span class="number">0</span>)        <span class="comment">//保证0&lt;p&lt;n，超出范围跳出循环</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;不能这么移动！&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = R[i - p];</span><br><span class="line">        R[i - p] = R[i];</span><br><span class="line">        R[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之后：&quot;</span>);        <span class="comment">//输出移动元素后下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>输出结果</strong></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数组下标：0     1       2       3       4       5       6       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之前：0     0       0       0       0       0       0       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之后：0     0       7       8       9       10      11      12      13      0       0       0       0       0</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 7828)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
       <tags>
         <tag>学习记录</tag>
         <tag>数据结构</tag>
         <tag>C语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用SakuraFrp实现mc的流畅联机</title>
-    <url>//post/a4b13916/</url>
-    <content><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>搭建网站之前我有想过把我旧手机拿来当服务器<br>我还因此了解到内网穿透这东西<br>发现可以直接用Github直接搭网站之后就放一边了</p>
-<p>这两天玩ow给我玩到破防，想着换个游戏玩玩<br>然后就想到mc联机<br>之前用Radmin LAN和KatoLAN搞虚拟局域网的效果不好<br>所以试试内网穿透，暑假的时候同学用过，效果还挺好<br>想到又可以拉朋（hei）友（nu）一起玩就很爽（</p>
-<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>首先进入 <a href="https://www.natfrp.com/">Sakura Frp官网</a> 然后点击注册账号<br>注册好之后登入账号，进入管理面板<br><img src="/images/a4b13916/p1.png"></p>
-<p>然后点击用户–实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）<br>实名认证名额需要购买，价格为1元<br><img src="/images/a4b13916/p2.png"></p>
-<p>认证完成之后 <a href="https://www.natfrp.com/tunnel/download">下载SakuraFrp启动器</a> 并安装<br>启动器界面应如下图所示<br><img src="/images/a4b13916/p3.png"><br>这时回到官网的管理面板，点击用户–个人信息，复制访问密钥，再填入上图启动器中登录<br><img src="/images/a4b13916/p4.png"></p>
-<p>现在来创建隧道<br>点击服务–隧道列表，再点击创建隧道<br><img src="/images/a4b13916/p5.png"><br>节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道<br>隧道名随便填<br>本地ip选择“本地主机(127.0.0.1)”<br>本地端口选择“[25565]Minecraft Java”<br>剩下的选项如果你看不懂就不要管，默认会设置好<br>然后点击“创建”<br><img src="/images/a4b13916/p6.png"></p>
-<p>然后打开mc，开启“对局域网开放”<br>这时候打开Frp启动器，开启隧道，进入日志界面<br>隧道会自动检测mc对局域网开放的端口并提示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TCP隧道启动成功</span><br><span class="line">发现 Minecraft 局域网游戏, 本地 IP/端口 已经设置</span><br><span class="line">使用 &gt;&gt;frp-bar.com:xxxxx&lt;&lt; 连接你的隧道</span><br></pre></td></tr></table></figure>
-
-<p>这时候你就可以将上面的链接复制给你的好友让他进入你的房间了</p>
-<p>如果有更多问题，参阅官网的 <a href="https://doc.natfrp.com/app/mc.html">帮助文档</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>内网穿透</tag>
-        <tag>Sakura Frp</tag>
-        <tag>我的世界</tag>
       </tags>
   </entry>
   <entry>
@@ -273,7 +132,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
@@ -393,123 +252,6 @@
       </tags>
   </entry>
   <entry>
-    <title>用gcc编译老内核</title>
-    <url>//post/50843/</url>
-    <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
-<li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
-<li>一部比较老的测试用设备（比如我手上的米板4）</li>
-<li>一个聪明的大脑</li>
-</ul>
-<h2 id="安装gcc和各种依赖"><a href="#安装gcc和各种依赖" class="headerlink" title="安装gcc和各种依赖"></a>安装gcc和各种依赖</h2><p>依赖部分是我从 <a href="https://blog.csdn.net/qq_43283565/article/details/137374337">另一个教程</a> 里搞来的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
-
-<p>gcc是编译内核必须的工具链，没有安装gcc就绝对不能编译</p>
-<p>安装gcc aarch64和arm32的代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装gcc aarch64</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gcc-aarch64-linux-gnu</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装gcc arm32</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gcc-arm-linux-gnueabi</span><br></pre></td></tr></table></figure>
-
-<p>安装后输出版本号确认</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">aarch64-linux-gnu-gcc --version</span><br><span class="line">arm-linux-gnueabi-gcc --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取内核源代码"><a href="#获取内核源代码" class="headerlink" title="获取内核源代码"></a>获取内核源代码</h2><p>源代码一般在github就能找到<br>先进入 <a href="https://github.com/">github</a> 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索</p>
-<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/50843/p1.png"></p>
-<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/50843/p2.png"></p>
-<p>然后在虚拟机里唤出终端（ctrl + alt + T），输入代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> (你复制到的代码)</span><br></pre></td></tr></table></figure>
-
-<p>一切顺利的话，git就会将内核源代码clone到<code>home/android_kernel_(品牌)_(机型)</code>了<br>当然，如果clone过程报错，挂个梯子再试试<br>如果还是出现问题，问问ai更好</p>
-<h2 id="配置编译环境"><a href="#配置编译环境" class="headerlink" title="配置编译环境"></a>配置编译环境</h2><p>我试过很多的教程，它们用的都是编译脚本，可是全都失败了<br>我问deepseek之后才勉强编译出来一个内核（虽然没有开机）<br>如果之后我用编译脚本成功编译出来内核，我应该会修改这一部分</p>
-<p>现在先进入内核根目录吧：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/android_kernel_(品牌)_(机型)</span><br></pre></td></tr></table></figure>
-
-<p>首先按照目标架构选择工具链：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于ARM64 (aarch64)</span></span><br><span class="line"><span class="built_in">export</span> ARCH=arm64</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=aarch64-linux-gnu-</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于ARM32</span></span><br><span class="line"><span class="built_in">export</span> ARCH=arm</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=arm-linux-gnueabi-</span><br></pre></td></tr></table></figure>
-
-<p>然后配置内核</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make defconfig  <span class="comment"># 使用默认配置</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开始编译内核"><a href="#开始编译内核" class="headerlink" title="开始编译内核"></a>开始编译内核</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j$(<span class="built_in">nproc</span>)  <span class="comment"># 使用所有可用核心编译</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像<br>如果编译的是arm32的内核，镜像文件可能为<code>zImage</code></p>
-<p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
-<h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>内核编译</tag>
-        <tag>安卓</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于做梦</title>
-    <url>//post/2648f620/</url>
-    <content><![CDATA[<p>最近我每天晚上都在做梦，有一部分还相当真实。</p>
-<p>比如昨天晚上的梦，我梦到我的两只手肘部以下部分被砍掉了，后面被不知道谁带去医院接了假肢。说实话我当时一下就惊醒了，赶紧检查自己的小臂还在不在。</p>
-<p>检查完睡下之后，我又做了一个不同的梦，梦里我看着我爸和一个陌生人互殴，然后那个陌生人拿着菜刀正一刀一刀往我爸的背上砍。可奇怪的是我对这种场景没有什么感觉，不会像往常做噩梦一样呼吸急促和心跳加快，可能是我意识到那个被砍的人是和我爸长得很像的人吧。</p>
-<p>我的舍友都说我睡相差，会打呼噜还会说梦话，我也一直对这种事情感到非常抱歉。但还好他们对我睡觉这件事情不会很较真，虽然有时候起床会听到其中一个人对我说“你昨天晚上说了xxxx你知道吗“这样子的话。</p>
-<p>据睡在我对面床铺的那个哥们说，去年刚玩ow的时候，我某天晚上睡着睡着就叫起”推车推车“的话。我不记得那天我干了什么（反正肯定有玩ow），但是就结果而言，我肯定是因为某一把没推车输的比赛说的梦话。挺奇异搞笑的。</p>
-<p>好像还有一次，我梦游了，是在床上坐起来然后拉开床帘。这一次我倒是有点印象，不过具体原因就不知道了，也许也是因为做噩梦然后惊醒了吧。然后好像还把半夜上厕所的舍友吓到了。有点抽象。</p>
-<p>好在无论是说梦话还是梦游，我整体的睡眠质量还是很好的。就是睡觉的时间还是不太够，可能以后我会早点睡觉吧（虽然不太可能）。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用dd命令提取boot</title>
-    <url>//post/e8bec2d1/</url>
-    <content><![CDATA[<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><ul>
-<li><strong>首先在手机上启用开发者选项，并打开以root身份的adb调试</strong></li>
-</ul>
-<p>设置导航到关于手机，连续点击版本号直到出现“你已启用开发者选项”<br>然后找到开发者选项，找到“adb调试”和“以root身份的调试”并打开<br>如果开发者选项中没有“以root身份的调试”，那么你首先得获取root权限</p>
-<ul>
-<li><strong>手机连接电脑，然后在电脑上以打开adb</strong></li>
-</ul>
-<p>win+R输入cmd唤出命令提示符，然后输入<code>adb devices</code>来检测设备：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">721QAD4S44CXQ   device    #检测到设备会像这样子显示</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>要事先将adb所在目录添加到系统变量才能直接在cmd中打开adb，如果没有添加的话必须先定位到adb所在目录</p>
-</blockquote>
-<p>检测到设备后，输入<code>adb root</code>以root身份打开adb</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb root</span><br><span class="line">restarting adbd as root</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果开发者选项中没有“以root身份的调试”，可以不用做这一步</p>
-</blockquote>
-<ul>
-<li><strong>进入shell，然后找到boot所在的目录</strong></li>
-</ul>
-<p>输入<code>adb shell</code>，进入shell</p>
-<blockquote>
-<p>若上一步没有用root身份打开adb，进入shell后输入su就可以让shell获取root权限（前提是你已经root）</p>
-</blockquote>
-<p>然后输入<code>cd /dev/block/by-name</code>进入boot所在目录<br>再输入<code>ls -l boot</code>查看boot的具体路径</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb shell</span><br><span class="line">m1721:/ # cd /dev/block/by-name</span><br><span class="line">m1721:/dev/block/by-name # ls -l boot</span><br><span class="line">lrwxrwxrwx 1 root root 21 1970-01-01 09:47 boot -&gt; /dev/block/mmcblk0p21        #这里的/dev/block/mmcblk0p21就是boot的真实路径</span><br><span class="line">m1721:/dev/block/by-name #</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>现在较新的手机都是Vab分区，所以会存在boot_a和boot_b，按需提取即可</p>
-</blockquote>
-<ul>
-<li><strong>使用dd命令提取boot</strong></li>
-</ul>
-<p>复制boot的路径，输入<code>dd if=&lt;复制的boot路径&gt; of=/sdcard/boot.img</code>来提取</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">m1721:/dev/block/by-name # dd if=/dev/block/mmcblk0p21 of=/sdcard/boot.img</span><br><span class="line">65536+0 records in</span><br><span class="line">65536+0 records out</span><br><span class="line">33554432 bytes (32 M) copied, 0.625224 s, 51 M/s</span><br><span class="line">m1721:/dev/block/by-name #</span><br></pre></td></tr></table></figure>
-
-<p>这个时候在手机上打开文件管理器，就能在根目录找到刚刚提取的<code>boot.img</code>了</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>安卓</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>编译过程中遇到的各种问题（持续更新）</title>
     <url>//post/acd9767d/</url>
     <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
@@ -573,6 +315,269 @@
 
 <p><strong>解决方式：</strong><br>修改<code>build.sh</code>，添加禁用efi功能的代码：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make <span class="variable">$&#123;args&#125;</span> m1721_defconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在编译默认配置代码之后添加禁用 EFI 相关选项</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;禁用 EFI 相关配置...&quot;</span></span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_STUB</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_RUNTIME_WRAPPERS</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_CAPSULE_LOADER</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_TEST</span><br><span class="line"></span><br><span class="line">make <span class="variable">$&#123;args&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>内核编译</tag>
+        <tag>安卓</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>南邮数据结构作业 - 第二章</title>
+    <url>//post/f93c4f64/</url>
+    <content><![CDATA[<h4 id="第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。"><a href="#第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。" class="headerlink" title="第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。"></a>第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。</h4><ul>
+<li><p><strong>算法思想</strong><br>要求是将单链表中序号奇数和偶数的元素分到两个单链表中，所以创建两个带头结点的单链表M和N，其中M储存原来序号为奇数的元素，N储存原来序号为偶数的元素。<br>然后遍历原链表A，当序号为奇数的时候，将对应的元素存储到M，序号为偶数的时候存储到N，添加元素的位置均为链表的末尾。<br>要考虑元素之间相对顺序不变，所以还要另外定义两个int变量m和n代表链表M和N的下标，每添加一个元素，下标就加1</p>
+</li>
+<li><p><strong>代码实现</strong></p>
+</li>
+</ul>
+<p><strong>结点定义</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemType element;        <span class="comment">//结点的数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">link</span>;</span>        <span class="comment">//结点的指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
+
+<p><strong>带头结点的单链表定义</strong>，head作为头节点</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">headerList</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    <span class="type">int</span> n;        <span class="comment">//单链表的长度n</span></span><br><span class="line">&#125;HeaderList;</span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化运算</strong>：生成空表</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Init</span><span class="params">(HeaderList* h)</span></span><br><span class="line">&#123;</span><br><span class="line">    h-&gt;head = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));        <span class="comment">//生成表头结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!h-&gt;head)            <span class="comment">//表头结点为空返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    h-&gt;head-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">    h-&gt;n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>查找运算</strong>：根据下标i查找元素，并通过x返回值</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(HeaderList L, <span class="type">int</span> i, ElemType* x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; L.n<span class="number">-1</span>)        <span class="comment">//对i进行越界检查</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L.head-&gt;link;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)            <span class="comment">//从头结点开始查找下标i的元素</span></span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    *x = p-&gt;element;                <span class="comment">//通过x返回元素值（传地址）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入运算</strong>：根据下标i插入元素x</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(HeaderList* h, <span class="type">int</span> i, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p, * q;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">-1</span> || i&gt;h-&gt;n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = h-&gt;head;                      <span class="comment">//从头结点开始找a(i)元素所在的结点p</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    q = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//生成新结点q</span></span><br><span class="line"></span><br><span class="line">    q-&gt;element = x;                    <span class="comment">//将元素x赋值到新结点q</span></span><br><span class="line">    q-&gt;link = p-&gt;link;              <span class="comment">//将新结点q插在p之后</span></span><br><span class="line">    p-&gt;link = q;</span><br><span class="line">    h-&gt;n++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出运算</strong>：输出链表的所有元素</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Output</span><span class="params">(HeaderList* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!L-&gt;n)                        <span class="comment">//判空运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L-&gt;head-&gt;link;</span><br><span class="line">    <span class="keyword">while</span> (p)                        <span class="comment">//依次输出每个元素</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;element);</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>主程序步骤</strong><br>1.先生成原链表A和待存储链表M和N，以及对应的下标m和n<br>  (M储存原来序号为奇数的元素，N储存原来序号为偶数的元素)<br>2.使用查找运算遍历链表A，用变量x存储返回值<br>3.用if语句根据下标的奇偶性将a插入链表M和N中<br>4.当链表A遍历完成后，输出链表A、M和N，验证程序是否有错误</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HeaderList A, M, N;</span><br><span class="line">    <span class="type">int</span> i, m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    Init(&amp;A);        <span class="comment">//初始化链表</span></span><br><span class="line">    Init(&amp;M);</span><br><span class="line">    Init(&amp;N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)        <span class="comment">//给链表A插入0~9</span></span><br><span class="line">        Insert(&amp;A, i - <span class="number">1</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原List:&quot;</span>);    <span class="comment">//输出链表A</span></span><br><span class="line">    Output(&amp;A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Find(A, i, &amp;x);            <span class="comment">//用查找运算遍历链表A，用x存储返回值</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;M, m - <span class="number">1</span>, x);    <span class="comment">//下标为奇数时，将元素添加至链表M</span></span><br><span class="line">            m++;    <span class="comment">//m表示链表M的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;N, n - <span class="number">1</span>, x);    <span class="comment">//下标为偶数时，加元素添加至链表N</span></span><br><span class="line">            n++;    <span class="comment">//n表示链表N的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（奇数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;M);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（偶数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>输出结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">原List:0 1 2 3 4 5 6 7 8</span><br><span class="line">List（奇数下标）:1 3 5 7</span><br><span class="line">List（偶数下标）:0 2 4 6 8</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 12624)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O"><a href="#第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O" class="headerlink" title="第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。"></a>第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。</h4><blockquote>
+<p>首先声明，作者的做法大概率是错的，这一题的做法应该使用循环链表</p>
+</blockquote>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>要将n个整数存放到一维数组而且能左移n个位置，就要先定义一个长度至少为2n的数组<br>因为是将元素左移，所以将元素内容储存在数组下标较大的一端<br>然后从第一个元素开始遍历数组R，将下标为i的元素和下标为i-p的元素交换<br>最后输出数组，验证算法是否成功</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 14        <span class="comment">//n为7，所以数组最大长度N应该至少为14</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="type">int</span> R[N] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义一维数组R</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//将n个整数存放到R中</span></span><br><span class="line">        R[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;数组下标：&quot;</span>);        <span class="comment">//输出下标</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之前：&quot;</span>);        <span class="comment">//输出移动元素前下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//从第一个元素开始交换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; n || p &lt; <span class="number">0</span>)        <span class="comment">//保证0&lt;p&lt;n，超出范围跳出循环</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;不能这么移动！&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = R[i - p];</span><br><span class="line">        R[i - p] = R[i];</span><br><span class="line">        R[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之后：&quot;</span>);        <span class="comment">//输出移动元素后下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>输出结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数组下标：0     1       2       3       4       5       6       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之前：0     0       0       0       0       0       0       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之后：0     0       7       8       9       10      11      12      13      0       0       0       0       0</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 7828)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>学习记录</tag>
+        <tag>数据结构</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用dd命令提取boot</title>
+    <url>//post/e8bec2d1/</url>
+    <content><![CDATA[<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><ul>
+<li><strong>首先在手机上启用开发者选项，并打开以root身份的adb调试</strong></li>
+</ul>
+<p>设置导航到关于手机，连续点击版本号直到出现“你已启用开发者选项”<br>然后找到开发者选项，找到“adb调试”和“以root身份的调试”并打开<br>如果开发者选项中没有“以root身份的调试”，那么你首先得获取root权限</p>
+<ul>
+<li><strong>手机连接电脑，然后在电脑上以打开adb</strong></li>
+</ul>
+<p>win+R输入cmd唤出命令提示符，然后输入<code>adb devices</code>来检测设备：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">721QAD4S44CXQ   device    #检测到设备会像这样子显示</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>要事先将adb所在目录添加到系统变量才能直接在cmd中打开adb，如果没有添加的话必须先定位到adb所在目录</p>
+</blockquote>
+<p>检测到设备后，输入<code>adb root</code>以root身份打开adb</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb root</span><br><span class="line">restarting adbd as root</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果开发者选项中没有“以root身份的调试”，可以不用做这一步</p>
+</blockquote>
+<ul>
+<li><strong>进入shell，然后找到boot所在的目录</strong></li>
+</ul>
+<p>输入<code>adb shell</code>，进入shell</p>
+<blockquote>
+<p>若上一步没有用root身份打开adb，进入shell后输入su就可以让shell获取root权限（前提是你已经root）</p>
+</blockquote>
+<p>然后输入<code>cd /dev/block/by-name</code>进入boot所在目录<br>再输入<code>ls -l boot</code>查看boot的具体路径</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\29395&gt;adb shell</span><br><span class="line">m1721:/ # cd /dev/block/by-name</span><br><span class="line">m1721:/dev/block/by-name # ls -l boot</span><br><span class="line">lrwxrwxrwx 1 root root 21 1970-01-01 09:47 boot -&gt; /dev/block/mmcblk0p21        #这里的/dev/block/mmcblk0p21就是boot的真实路径</span><br><span class="line">m1721:/dev/block/by-name #</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现在较新的手机都是Vab分区，所以会存在boot_a和boot_b，按需提取即可</p>
+</blockquote>
+<ul>
+<li><strong>使用dd命令提取boot</strong></li>
+</ul>
+<p>复制boot的路径，输入<code>dd if=&lt;复制的boot路径&gt; of=/sdcard/boot.img</code>来提取</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">m1721:/dev/block/by-name # dd if=/dev/block/mmcblk0p21 of=/sdcard/boot.img</span><br><span class="line">65536+0 records in</span><br><span class="line">65536+0 records out</span><br><span class="line">33554432 bytes (32 M) copied, 0.625224 s, 51 M/s</span><br><span class="line">m1721:/dev/block/by-name #</span><br></pre></td></tr></table></figure>
+
+<p>这个时候在手机上打开文件管理器，就能在根目录找到刚刚提取的<code>boot.img</code>了</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>安卓</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用SakuraFrp实现mc的流畅联机</title>
+    <url>//post/a4b13916/</url>
+    <content><![CDATA[<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>搭建网站之前我有想过把我旧手机拿来当服务器<br>我还因此了解到内网穿透这东西<br>发现可以直接用Github直接搭网站之后就放一边了</p>
+<p>这两天玩ow给我玩到破防，想着换个游戏玩玩<br>然后就想到mc联机<br>之前用Radmin LAN和KatoLAN搞虚拟局域网的效果不好<br>所以试试内网穿透，暑假的时候同学用过，效果还挺好<br>想到又可以拉朋（hei）友（nu）一起玩就很爽（</p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>首先进入 <a href="https://www.natfrp.com/">Sakura Frp官网</a> 然后点击注册账号<br>注册好之后登入账号，进入管理面板<br><img src="/images/a4b13916/p1.png"></p>
+<p>然后点击用户–实名认证，按步骤进行实名认证（不实名认证无法使用内网穿透）<br>实名认证名额需要购买，价格为1元<br><img src="/images/a4b13916/p2.png"></p>
+<p>认证完成之后 <a href="https://www.natfrp.com/tunnel/download">下载SakuraFrp启动器</a> 并安装<br>启动器界面应如下图所示<br><img src="/images/a4b13916/p3.png"><br>这时回到官网的管理面板，点击用户–个人信息，复制访问密钥，再填入上图启动器中登录<br><img src="/images/a4b13916/p4.png"></p>
+<p>现在来创建隧道<br>点击服务–隧道列表，再点击创建隧道<br><img src="/images/a4b13916/p5.png"><br>节点任意选（可能选离自己所在地更近的节点连接效果更好），然后选择TCP隧道<br>隧道名随便填<br>本地ip选择“本地主机(127.0.0.1)”<br>本地端口选择“[25565]Minecraft Java”<br>剩下的选项如果你看不懂就不要管，默认会设置好<br>然后点击“创建”<br><img src="/images/a4b13916/p6.png"></p>
+<p>然后打开mc，开启“对局域网开放”<br>这时候打开Frp启动器，开启隧道，进入日志界面<br>隧道会自动检测mc对局域网开放的端口并提示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TCP隧道启动成功</span><br><span class="line">发现 Minecraft 局域网游戏, 本地 IP/端口 已经设置</span><br><span class="line">使用 &gt;&gt;frp-bar.com:xxxxx&lt;&lt; 连接你的隧道</span><br></pre></td></tr></table></figure>
+
+<p>这时候你就可以将上面的链接复制给你的好友让他进入你的房间了</p>
+<p>如果有更多问题，参阅官网的 <a href="https://doc.natfrp.com/app/mc.html">帮助文档</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>内网穿透</tag>
+        <tag>Sakura Frp</tag>
+        <tag>我的世界</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为非gki内核添加KernelSU支持</title>
+    <url>//post/57133/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Non-gki内核中添加KernelSU的前提得是编译好的内核能够正常开机（废话+1），所以本文也将会详细介绍安卓内核的编译过程以及在编译过程中可能遇到的情况.<br>​写这个文章不是因为我技术有多好，只是因为我刚开始搞这个跟个伞兵一样找不到路，所以现在稍微明白点了就写下来给想搞这个的看看，也是为了防止我自己以后忘了。。奶子不大好使记不住东西</p>
+<blockquote>
+<p>如果你只是想编译内核而不是使用kernelsu，你可以忽略本文中拉去kernelsu和修改内核配置的部分</p>
+</blockquote>
+<h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><p>一台Linux设备（虚拟机，Docker，WSL，甚至是手机上的Terumx都是可以的），我这里以WSL2，Ubuntu 22.04.2 LTS为例</p>
+<p>一部可以正常使用的安卓手机（废话+2）</p>
+<p>可以让你连接到github和google的方法（你懂的§(￣▽￣)§）</p>
+<p>最后再带上你聪明的小脑袋瓜，粗发！</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>首先需要下载所需要的依赖，跟坨屎一样多，直接复制执行就好</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载适合自己手机的内核build</li>
+</ul>
+<p>这个东西需要自己去Github找，一般为<code>(android)_kernel_&lt;手机厂商&gt;_&lt;cpu代号&gt;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以一加8T为例，高通骁龙865代号为sm8250，那么内核仓库名就可能是</span></span><br><span class="line">android_kernel_oneplus_sm8250</span><br><span class="line">kernel_oneplus_sm8250</span><br></pre></td></tr></table></figure>
+
+<p>我这里的例子是Handelinkernel-v2.6，我在氢的时候最喜欢的一个内核（同时也是最喜欢的一个版本）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 仓库地址</span></span><br><span class="line">https://git.drg.fi/drgreen/android_kernel_oneplus_sm8250.git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载所需的交叉编译器</li>
+</ul>
+<p>​ 由于这个内核自带了编译脚本，所以我们就根据脚本里的的clang版本下载(至于编译脚本我后面再说)<br><strong>当然，其实我更推荐第三方的<em>clang</em>，因为比较省事</strong>比如：<a href="https://github.com/ZyCromerZ/Clang">ZyC clang</a> 、<a href="https://github.com/kdrag0n/proton-clang">proton-clang</a> 或者<a href="https://github.com/Neutron-Toolchains/clang-build-catalogue">clang-build-catalogue</a><br>使用方法也都差不多，当然你也可以使用谷歌官方的clang不过第三方有的更省事直接用就完事了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以我为例，我把它们分别放在了</span></span><br><span class="line">~/android/clang-r407598b</span><br><span class="line">~/android/toolchain</span><br></pre></td></tr></table></figure>
+
+<h2 id="拉取资源"><a href="#拉取资源" class="headerlink" title="拉取资源"></a>拉取资源</h2><ul>
+<li>拉取内核源码</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span>到用户文件夹</span></span><br><span class="line">cd ~</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拉取内核,有的内核还有submodules，所以直接加上--recurse-submodules</span></span><br><span class="line">git clone --recurse-submodules https://git.drg.fi/drgreen/android_kernel_oneplus_sm8250.git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>拉取交叉编译工具<br><strong>aosp-clang和第三方clang选其中一个就好</strong></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">aosp-clang</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建文件夹让后直接curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line">curl &lt;需要拉取的clang连接&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">具体版本在这找</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main</span></span><br></pre></td></tr></table></figure>
+
+<p>按这个图片找对应版本<br><img src="/images/57133/p1.png"></p>
+<p>找到需要的版本后看下图<br><img src="/images/57133/p2.png"></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第三方clang(以Zyclang举例)，在github仓库的release</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制链接直接在当前用户目录下curl</span></span><br><span class="line">mkdir ~/android</span><br><span class="line">cd ~/android</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">记得选择对应版本</span></span><br><span class="line">curl &lt;下图获取的连接&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/57133/p3.png"></p>
+<ul>
+<li>拉取kernelsu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/&lt;内核文件夹&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在内核文件夹的根目录执行以下命令</span></span><br><span class="line">curl -LSs <span class="string">&quot;https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh&quot;</span> | bash -s v0.9.5</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>KernelSU 1.0 及更高版本已经不再支持非 GKI 内核，最后的支持版本为 v0.9.5，请注意使用正确的版本。</p>
+</blockquote>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><ul>
+<li>修改配置文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/android_kernel_oneplus_sm8250/arch/arm64/configs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时你所需要的配置文件可能在./defconfig</span></span><br><span class="line"><span class="comment"># 但大概率可能会在./vendor/&lt;配置文件&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以本内核为例</span></span><br><span class="line">vi /vendor/kona-perf_defconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在配置文件最底下加上</span></span><br><span class="line">CONFIG_KPROBES=y</span><br><span class="line">CONFIG_HAVE_KPROBES=y</span><br><span class="line">CONFIG_KPROBE_EVENTS=y</span><br></pre></td></tr></table></figure>
+
+<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进去内核的根目录</span></span><br><span class="line">cd ~/android_kernel_oneplus_sm8250</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建一个shell文件</span></span><br><span class="line">vim ./build.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入以下内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">shell开始</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">export ARCH=arm64</span><br><span class="line">export SUBARCH=arm64</span><br><span class="line"></span><br><span class="line">args=&quot;-j$(nproc --all) \</span><br><span class="line">O=out \</span><br><span class="line">CC=clang \</span><br><span class="line">ARCH=arm64 \</span><br><span class="line">LD=ld.lld \</span><br><span class="line">LLVM=1 \</span><br><span class="line">LLVM_IAS=1 \</span><br><span class="line">CROSS_COMPILE=aarch64-linux-gnu- \</span><br><span class="line">CROSS_COMPILE_COMPAT=arm-linux-gnueabi- &quot;        #根据需要可将COMPAT改为ARM32</span><br><span class="line"></span><br><span class="line">export PATH=&quot;$HOME/&lt;clang文件夹路径&gt;/bin:$PATH&quot;</span><br><span class="line">make $&#123;args&#125; vendor/kona-perf_defconfig</span><br><span class="line">make $&#123;args&#125;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">shell结束</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存后退出，给shell执行权限</span></span><br><span class="line">chmod a+x ./buids.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行,用<span class="built_in">source</span>方便报错后调试</span></span><br><span class="line">source ./build.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="试验"><a href="#试验" class="headerlink" title="试验"></a>试验</h2><p>如果你足够幸运的话，那么你现在已经成功一半了<br>去内核文件夹的out&#x2F;arch&#x2F;arm64&#x2F;boot&#x2F;文件夹看看你的成果<br>把<em>Image</em>放入Anykernel中然后压缩刷入(不同内核压缩方式不同，比如：Image.gz）<br><a href="https://github.com/tiann/KernelSU/discussions/952#discussion-5623210">Anykernel的使用方法</a></p>
+<h2 id="恭喜你，看来你不是幸运儿"><a href="#恭喜你，看来你不是幸运儿" class="headerlink" title="恭喜你，看来你不是幸运儿"></a>恭喜你，看来你不是幸运儿</h2><p>如果你此时将内核刷入后发现各种问题，比如黑屏，重启，高通崩溃（甚至你的out路径里根本就没有出现镜像文件），又或者你编译时报错，所以我将会继续为你排忧解难</p>
+<ul>
+<li>如果你刷入内核后手机不能正常启动，你可以需要按照术哥（kernelsu的作者，就是那只皮卡丘）的办法，放弃使用kprobe集成的办法，转去修改那么几个内核文件，具体请参考 <a href="https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html">https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html</a> 中手动修改内核源码部分的内容。在修改完成后再次拉取kernelsu(只是为了执行那个脚本，当然你也可以在内核根文件夹内执行kernelsu的脚本)</li>
+</ul>
+<hr>
+<p>版权声明：本文为CSDN博主「果呆皮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43283565/article/details/137374337">为非gki内核添加KernelSU支持</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>转载</tag>
+        <tag>安卓刷机</tag>
+        <tag>内核编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用gcc编译老内核</title>
+    <url>//post/50843/</url>
+    <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
+<li>一台linux虚拟机（比如我用的Ubuntu 22.04)</li>
+<li>一部比较老的测试用设备（比如我手上的米板4）</li>
+<li>一个聪明的大脑</li>
+</ul>
+<h2 id="安装gcc和各种依赖"><a href="#安装gcc和各种依赖" class="headerlink" title="安装gcc和各种依赖"></a>安装gcc和各种依赖</h2><p>依赖部分是我从 <a href="https://blog.csdn.net/qq_43283565/article/details/137374337">另一个教程</a> 里搞来的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev</span><br></pre></td></tr></table></figure>
+
+<p>gcc是编译内核必须的工具链，没有安装gcc就绝对不能编译</p>
+<p>安装gcc aarch64和arm32的代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装gcc aarch64</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gcc-aarch64-linux-gnu</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装gcc arm32</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gcc-arm-linux-gnueabi</span><br></pre></td></tr></table></figure>
+
+<p>安装后输出版本号确认</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">aarch64-linux-gnu-gcc --version</span><br><span class="line">arm-linux-gnueabi-gcc --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取内核源代码"><a href="#获取内核源代码" class="headerlink" title="获取内核源代码"></a>获取内核源代码</h2><p>源代码一般在github就能找到<br>先进入 <a href="https://github.com/">github</a> 官网，然后在搜索栏中输入android_kernel_(品牌)_(机型)，回车搜索</p>
+<p>比如小米平板4的品牌是xiaomi，机型是clover：<br><img src="/images/50843/p1.png"></p>
+<p>然后挑选你中意的内核点进去，再点击那个绿色的”Code”按钮复制clone链接<br>就是那个两个方框连起来那个链接<br><img src="/images/50843/p2.png"></p>
+<p>然后在虚拟机里唤出终端（ctrl + alt + T），输入代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> (你复制到的代码)</span><br></pre></td></tr></table></figure>
+
+<p>一切顺利的话，git就会将内核源代码clone到<code>home/android_kernel_(品牌)_(机型)</code>了<br>当然，如果clone过程报错，挂个梯子再试试<br>如果还是出现问题，问问ai更好</p>
+<h2 id="配置编译环境"><a href="#配置编译环境" class="headerlink" title="配置编译环境"></a>配置编译环境</h2><p>我试过很多的教程，它们用的都是编译脚本，可是全都失败了<br>我问deepseek之后才勉强编译出来一个内核（虽然没有开机）<br>如果之后我用编译脚本成功编译出来内核，我应该会修改这一部分</p>
+<p>现在先进入内核根目录吧：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/android_kernel_(品牌)_(机型)</span><br></pre></td></tr></table></figure>
+
+<p>首先按照目标架构选择工具链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于ARM64 (aarch64)</span></span><br><span class="line"><span class="built_in">export</span> ARCH=arm64</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=aarch64-linux-gnu-</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于ARM32</span></span><br><span class="line"><span class="built_in">export</span> ARCH=arm</span><br><span class="line"><span class="built_in">export</span> CROSS_COMPILE=arm-linux-gnueabi-</span><br></pre></td></tr></table></figure>
+
+<p>然后配置内核</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make defconfig  <span class="comment"># 使用默认配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开始编译内核"><a href="#开始编译内核" class="headerlink" title="开始编译内核"></a>开始编译内核</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j$(<span class="built_in">nproc</span>)  <span class="comment"># 使用所有可用核心编译</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你非常非常幸运，那么这一步你将得到编译完成的内核<br>一般情况下，编译完成的内核存放在：<br><code>~/arch/arm64/boot/Image</code> - 未压缩的内核镜像<br><code>~/arch/arm64/boot/Image.gz</code> - 压缩的内核镜像<br>如果编译的是arm32的内核，镜像文件可能为<code>zImage</code></p>
+<p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
+<h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>学习记录</category>
       </categories>
