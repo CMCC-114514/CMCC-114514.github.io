@@ -13,24 +13,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于做梦</title>
-    <url>//post/2648f620/</url>
-    <content><![CDATA[<p>最近我每天晚上都在做梦，有一部分还相当真实。</p>
-<p>比如昨天晚上的梦，我梦到我的两只手肘部以下部分被砍掉了，后面被不知道谁带去医院接了假肢。说实话我当时一下就惊醒了，赶紧检查自己的小臂还在不在。</p>
-<p>检查完睡下之后，我又做了一个不同的梦，梦里我看着我爸和一个陌生人互殴，然后那个陌生人拿着菜刀正一刀一刀往我爸的背上砍。可奇怪的是我对这种场景没有什么感觉，不会像往常做噩梦一样呼吸急促和心跳加快，可能是我意识到那个被砍的人是和我爸长得很像的人吧。</p>
-<p>我的舍友都说我睡相差，会打呼噜还会说梦话，我也一直对这种事情感到非常抱歉。但还好他们对我睡觉这件事情不会很较真，虽然有时候起床会听到其中一个人对我说“你昨天晚上说了xxxx你知道吗“这样子的话。</p>
-<p>据睡在我对面床铺的那个哥们说，去年刚玩ow的时候，我某天晚上睡着睡着就叫起”推车推车“的话。我不记得那天我干了什么（反正肯定有玩ow），但是就结果而言，我肯定是因为某一把没推车输的比赛说的梦话。挺奇异搞笑的。</p>
-<p>好像还有一次，我梦游了，是在床上坐起来然后拉开床帘。这一次我倒是有点印象，不过具体原因就不知道了，也许也是因为做噩梦然后惊醒了吧。然后好像还把半夜上厕所的舍友吓到了。有点抽象。</p>
-<p>好在无论是说梦话还是梦游，我整体的睡眠质量还是很好的。就是睡觉的时间还是不太够，可能以后我会早点睡觉吧（虽然不太可能）。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>南邮数据结构作业 - 第四章</title>
     <url>//post/86c33f9b/</url>
     <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
@@ -62,6 +44,11 @@
       <categories>
         <category>学习记录</category>
       </categories>
+      <tags>
+        <tag>学习记录</tag>
+        <tag>数据结构</tag>
+        <tag>C语言</tag>
+      </tags>
   </entry>
   <entry>
     <title>编译过程中遇到的各种问题（持续更新）</title>
@@ -199,7 +186,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
