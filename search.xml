@@ -13,57 +13,57 @@
       </tags>
   </entry>
   <entry>
-    <title>时间与日期计算器</title>
-    <url>//post/72e1e7d8/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>事情的起因是这个月16号还是17号那天，我一个QQ群里发“2025年11月17日（反正就是当天）是董卓去世350234天”这个消息，还附上了和AI对话的截图来佐证。当时我信以为真，但是过不久就看见了辟谣的消息。这时候我就想自己写一个日期计算器来看能不能算这个问题，于是就有了这个时间与日期计算器</p>
-<p>以后的更新我都会发在这里，做出来一个小更新就发一次，也许以后会发展成像一个木函那样的小工具合集（</p>
+    <title>南邮数据结构作业 - 第二章</title>
+    <url>//post/f93c4f64/</url>
+    <content><![CDATA[<h4 id="第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。"><a href="#第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。" class="headerlink" title="第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。"></a>第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。</h4><ul>
+<li><p><strong>算法思想</strong><br>要求是将单链表中序号奇数和偶数的元素分到两个单链表中，所以创建两个带头结点的单链表M和N，其中M储存原来序号为奇数的元素，N储存原来序号为偶数的元素。<br>然后遍历原链表A，当序号为奇数的时候，将对应的元素存储到M，序号为偶数的时候存储到N，添加元素的位置均为链表的末尾。<br>要考虑元素之间相对顺序不变，所以还要另外定义两个int变量m和n代表链表M和N的下标，每添加一个元素，下标就加1</p>
+</li>
+<li><p><strong>代码实现</strong></p>
+</li>
+</ul>
+<p><strong>结点定义</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemType element;        <span class="comment">//结点的数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">link</span>;</span>        <span class="comment">//结点的指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
+
+<p><strong>带头结点的单链表定义</strong>，head作为头节点</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">headerList</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    <span class="type">int</span> n;        <span class="comment">//单链表的长度n</span></span><br><span class="line">&#125;HeaderList;</span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化运算</strong>：生成空表</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Init</span><span class="params">(HeaderList* h)</span></span><br><span class="line">&#123;</span><br><span class="line">    h-&gt;head = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));        <span class="comment">//生成表头结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!h-&gt;head)            <span class="comment">//表头结点为空返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    h-&gt;head-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">    h-&gt;n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>查找运算</strong>：根据下标i查找元素，并通过x返回值</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(HeaderList L, <span class="type">int</span> i, ElemType* x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; L.n<span class="number">-1</span>)        <span class="comment">//对i进行越界检查</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L.head-&gt;link;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)            <span class="comment">//从头结点开始查找下标i的元素</span></span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    *x = p-&gt;element;                <span class="comment">//通过x返回元素值（传地址）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入运算</strong>：根据下标i插入元素x</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(HeaderList* h, <span class="type">int</span> i, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p, * q;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">-1</span> || i&gt;h-&gt;n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = h-&gt;head;                      <span class="comment">//从头结点开始找a(i)元素所在的结点p</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    q = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//生成新结点q</span></span><br><span class="line"></span><br><span class="line">    q-&gt;element = x;                    <span class="comment">//将元素x赋值到新结点q</span></span><br><span class="line">    q-&gt;link = p-&gt;link;              <span class="comment">//将新结点q插在p之后</span></span><br><span class="line">    p-&gt;link = q;</span><br><span class="line">    h-&gt;n++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出运算</strong>：输出链表的所有元素</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Output</span><span class="params">(HeaderList* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!L-&gt;n)                        <span class="comment">//判空运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L-&gt;head-&gt;link;</span><br><span class="line">    <span class="keyword">while</span> (p)                        <span class="comment">//依次输出每个元素</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;element);</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>主程序步骤</strong><br>1.先生成原链表A和待存储链表M和N，以及对应的下标m和n<br>  (M储存原来序号为奇数的元素，N储存原来序号为偶数的元素)<br>2.使用查找运算遍历链表A，用变量x存储返回值<br>3.用if语句根据下标的奇偶性将a插入链表M和N中<br>4.当链表A遍历完成后，输出链表A、M和N，验证程序是否有错误</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HeaderList A, M, N;</span><br><span class="line">    <span class="type">int</span> i, m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    Init(&amp;A);        <span class="comment">//初始化链表</span></span><br><span class="line">    Init(&amp;M);</span><br><span class="line">    Init(&amp;N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)        <span class="comment">//给链表A插入0~9</span></span><br><span class="line">        Insert(&amp;A, i - <span class="number">1</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原List:&quot;</span>);    <span class="comment">//输出链表A</span></span><br><span class="line">    Output(&amp;A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Find(A, i, &amp;x);            <span class="comment">//用查找运算遍历链表A，用x存储返回值</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;M, m - <span class="number">1</span>, x);    <span class="comment">//下标为奇数时，将元素添加至链表M</span></span><br><span class="line">            m++;    <span class="comment">//m表示链表M的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;N, n - <span class="number">1</span>, x);    <span class="comment">//下标为偶数时，加元素添加至链表N</span></span><br><span class="line">            n++;    <span class="comment">//n表示链表N的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（奇数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;M);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（偶数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>输出结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">原List:0 1 2 3 4 5 6 7 8</span><br><span class="line">List（奇数下标）:1 3 5 7</span><br><span class="line">List（偶数下标）:0 2 4 6 8</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 12624)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="Date-Calculator-v0-0-1"><a href="#Date-Calculator-v0-0-1" class="headerlink" title="Date-Calculator v0.0.1"></a>Date-Calculator v0.0.1</h4><p>实现了以下三个功能：</p>
-<ol>
-<li><p>天数转日期：XX天转为年月日格式</p>
-</li>
-<li><p>日期推算：目前只能向后推算，就是“X年X月X日过后AAA天是Y年Y月Y日”</p>
-</li>
-<li><p>日期间隔计算：日期A到日期B之间有多少天</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>学习记录</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>南邮数据结构作业 - 第四章</title>
-    <url>//post/86c33f9b/</url>
-    <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
+<h4 id="第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O"><a href="#第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O" class="headerlink" title="第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。"></a>第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。</h4><blockquote>
+<p>首先声明，作者的做法大概率是错的，这一题的做法应该使用循环链表</p>
+</blockquote>
 <ul>
 <li><strong>算法思想</strong></li>
 </ul>
-<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
-<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
-<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
-<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
+<p>要将n个整数存放到一维数组而且能左移n个位置，就要先定义一个长度至少为2n的数组<br>因为是将元素左移，所以将元素内容储存在数组下标较大的一端<br>然后从第一个元素开始遍历数组R，将下标为i的元素和下标为i-p的元素交换<br>最后输出数组，验证算法是否成功</p>
 <ul>
 <li><strong>代码实现</strong></li>
 </ul>
-<p><strong>三元组和三元组表定义</strong></p>
-<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
-
-<p><strong>算法的代码实现</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>main函数</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 14        <span class="comment">//n为7，所以数组最大长度N应该至少为14</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="type">int</span> R[N] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义一维数组R</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//将n个整数存放到R中</span></span><br><span class="line">        R[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;数组下标：&quot;</span>);        <span class="comment">//输出下标</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之前：&quot;</span>);        <span class="comment">//输出移动元素前下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//从第一个元素开始交换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; n || p &lt; <span class="number">0</span>)        <span class="comment">//保证0&lt;p&lt;n，超出范围跳出循环</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;不能这么移动！&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = R[i - p];</span><br><span class="line">        R[i - p] = R[i];</span><br><span class="line">        R[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之后：&quot;</span>);        <span class="comment">//输出移动元素后下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><strong>运行结果</strong></li>
+<li><strong>输出结果</strong></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数组下标：0     1       2       3       4       5       6       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之前：0     0       0       0       0       0       0       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之后：0     0       7       8       9       10      11      12      13      0       0       0       0       0</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 7828)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -72,135 +72,6 @@
         <tag>学习记录</tag>
         <tag>数据结构</tag>
         <tag>C语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在多台电脑上提交和更新Hexo博客</title>
-    <url>//post/fe9a3018/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我现在有两台电脑，最初第一次装好hexo环境的电脑在宿舍，姑且叫这台电脑 <strong>“老电脑”</strong> 吧，代表最初拥有hexo环境的电脑，然后事情是这样的去到工位的电脑上想要更新博客总是要远程启动宿舍的电脑才行，于是想要在工位电脑也能更新，这里工位的电脑姑且叫做 <strong>“新电脑”</strong> 吧。</p>
-<p>最初搞这个多设备同步属实折腾了好半天，看了很多博客也在知乎上参考了不少，但总是需要在不同博客之间相互参考最终才完美解决，所以想要把这几天的经历总结一下。</p>
-<h4 id="hexo同步原理"><a href="#hexo同步原理" class="headerlink" title="hexo同步原理"></a>hexo同步原理</h4><p><strong>1. hexo博客目录结构说明</strong></p>
-<p>这是老电脑上的目录结构</p>
-<p><img src="/images/fe9a3018/p1.png"></p>
-<table>
-<thead>
-<tr>
-<th align="center">文件夹</th>
-<th align="center">说明</th>
-<th align="center">是否需要上传Github</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">node_modules</td>
-<td align="center">hexo需要的模块，就是一些基础的npm安装模块，比如一些美化插件，在执行<code>npm install</code>的时候会重新生成</td>
-<td align="center">N</td>
-</tr>
-<tr>
-<td align="center">themes</td>
-<td align="center">主题文件</td>
-<td align="center">Y</td>
-</tr>
-<tr>
-<td align="center">public</td>
-<td align="center">hexo g命令执行后生成的静态页面文件</td>
-<td align="center">N</td>
-</tr>
-<tr>
-<td align="center">packages.json</td>
-<td align="center">记录了hexo需要的包的信息，之后换电脑了npm根据这个信息来安装hexo环境</td>
-<td align="center">Y</td>
-</tr>
-<tr>
-<td align="center"><em>config.yml</em></td>
-<td align="center">全局配置文件</td>
-<td align="center">Y</td>
-</tr>
-<tr>
-<td align="center">.gitignore</td>
-<td align="center">hexo生成的默认的.gitignore模块</td>
-<td align="center">Y</td>
-</tr>
-<tr>
-<td align="center">scaffolds</td>
-<td align="center">文章的模板</td>
-<td align="center">Y</td>
-</tr>
-<tr>
-<td align="center">.deploy_git</td>
-<td align="center">hexo g自动生成的</td>
-<td align="center">N</td>
-</tr>
-</tbody></table>
-<p><strong>2. 同步原理</strong></p>
-<p>主要思路是利用git分支来实现hexo的同步。</p>
-<p>hexo生成的静态页面文件默认放在master分支上，这是由_config.yml配置文件所决定的</p>
-<p>你可以在全局配置文件_config.yml中找到这么一段 </p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
-<p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
-<p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
-<p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
-<p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
-<p><img src="/images/fe9a3018/p2.png"></p>
-<p>把source分支设置成默认分支，用来存放源文件，master分支依然存放静态文件。在老电脑上，我们需要把必要的源文件push到source分支。换新电脑时，直接<code>git clone 仓库地址</code>此时会从source分支下载源文件，剩下的就是安装hexo环境，在新电脑上就可以重新生成静态页面了，并且因为配置文件clone下来，deploy配置依旧是master分支，所以在新电脑上执行<code>hexo d</code>还是会把更新过后的静态文件推送到master分支上。</p>
-<p>由于master分支和source分支实际上是相互独立的两个普通的分支，所以我们源文件和静态页面的更新也是相互独立的，故而需要手动分别执行<code>git add . git commit git push</code>来更新源文件,然后执行<code>hexo d</code>更新静态页面。</p>
-<h4 id="老电脑上的具体操作"><a href="#老电脑上的具体操作" class="headerlink" title="老电脑上的具体操作"></a>老电脑上的具体操作</h4><p>这里直接引用我看的一篇博客的步骤：</p>
-<p><strong>1. Github准备</strong></p>
-<p>先创建一个分支hexo</p>
-<p><img src="/images/fe9a3018/p3.png"></p>
-<p>将其设置为默认分支</p>
-<p><img src="/images/fe9a3018/p4.png"></p>
-<p><strong>2. 打包将要推送到Github上的原始文件</strong></p>
-<p>（1）clone该仓库到本地（clone的是hexo默认分支）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:username/username.github.io.git</span><br></pre></td></tr></table></figure>
-
-<p>（2）下载的文件夹里仅留下.git 文件夹，其他的文件都删除</p>
-<p>（3）找见我们hexo原位置，将hexo文件夹内除.deploy_git 以外都复制到clone下来的文件夹中</p>
-<p>注意：1.现在clone下来的文件夹内应该有个<code>.gitignore</code>文件，用来忽略一些不需要的文件，表示这些类型文件不需要git。如果没有，右键新建，内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
-
-<p>2.如果已经clone过主题文件，那么需要把theme主题文件夹里的 .git 也删除。因为git不能嵌套上传，最好是显示隐藏文件，检查一下有没有，否则上传的时候会出错，导致你的主题文件无法上传，这样你的配置在别的电脑上就用不了了。</p>
-<p><strong>3.将clone并修改以后的文件夹推送到远程库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit –m add_branch</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<p>此时已经成功将整个网站推送到了远程库的默认分支hexo</p>
-<p>补充：后续写文章、修改配置后的保存推送操作</p>
-<p>至此，网站部署至master分支，整个网站备份至hexo分支。当网站的配置或文章修改后都要将远程仓库更新。首先，依次执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m ChangeFiles（更新信息内容可改)</span><br><span class="line">git push （或者git push origin hexo)</span><br></pre></td></tr></table></figure>
-
-<p>保证hexo分支版本最新。然后执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
-<p>（在此之前，有时可能需要执行<code>hexo clean</code>），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！</p>
-<h4 id="新电脑上的操作"><a href="#新电脑上的操作" class="headerlink" title="新电脑上的操作"></a>新电脑上的操作</h4><ul>
-<li><p>将新电脑的生成的ssh key添加到GitHub账户上</p>
-</li>
-<li><p>在新电脑上克隆username.github.io仓库的source分支(就是存放源码的分支)到本地，此时本地git仓库处于source分支,可以执行<code>git branch -v</code>查看。</p>
-</li>
-<li><p>在新电脑的username.github.io文件夹下执行<code>npm install hexo</code>、<code>npm install</code>、<code>npm install hexo-deployer-git</code>（记得，不需要<code>hexo init</code>这条指令）</p>
-</li>
-<li><p>最后执行hexo g、hexo s、hexo d等命令即可提交成功</p>
-</li>
-</ul>
-<p>上面步骤中，<code>npm install</code>其实就是读取了packages.json里面的信息，自动安装依赖，有的小伙伴可能只执行<code>npm install</code>就行了，不过按照上面的三步是最稳妥的。</p>
-<p>这里提一嘴，当新电脑上的操作成功之后，其实对于新电脑还是老电脑其实都无所谓了，任何一台电脑包括老电脑只要安装了NodeJs环境，就都可以按照在新电脑上的操作完整地复刻出一个hexo环境，你甚至可以把老电脑原有的hexo工程删掉再执行上面这几步一样可以快速构建hexo环境，可以看到步骤非常简单。</p>
-<p>此外，为了保证同步，推荐先<code>git pull</code>合并更新再进行博客的编写。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.jianshu.com/p/0b1fccce74e0">利用Hexo在多台电脑上提交和更新github pages博客 - 简书 (jianshu.com)</a></p>
-<p><a href="https://www.cnblogs.com/eidolonw/p/13066869.html">hexo源码上传到GitHub-以防多台电脑操作&#x2F;重装系统&#x2F;要将hexo移动到其他磁盘 - 巧莓兔 - 博客园 (cnblogs.com)</a></p>
-<p><a href="https://www.jianshu.com/p/57b5a384f234">Hexo博客备份 - 简书 (jianshu.com)</a></p>
-<p><a href="https://www.zhihu.com/question/21193762">使用hexo，如果换了电脑怎么更新博客？ - 知乎 (zhihu.com)</a></p>
-<hr>
-<p>版权声明：本文为CSDN博主「Kakaluotuo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/K1052176873/article/details/122879462">Hexo在多台电脑上提交和更新_hexo两个设备-CSDN博客</a></p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
-        <tag>Hexo</tag>
-        <tag>Github Pages</tag>
-        <tag>个人博客</tag>
       </tags>
   </entry>
   <entry>
@@ -258,129 +129,33 @@
       </tags>
   </entry>
   <entry>
-    <title>编译过程中遇到的各种问题（持续更新）</title>
-    <url>//post/acd9767d/</url>
-    <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
-<p>二编：我换了个内核进行编译，还想集成kernelsu，可是一直都不成功，气得我鬼火冒</p>
-<p>三编：换了魅蓝note6的内核，编译进行地异常顺利，刷进去之后也开机了，可是kernelsu并没有成功集成。。。</p>
-<h2 id="NR-CPUS配置错误"><a href="#NR-CPUS配置错误" class="headerlink" title="NR_CPUS配置错误"></a>NR_CPUS配置错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/trace/events/sched.h:875:2: error: <span class="comment">#error &quot;Unsupported NR_CPUS for lb tracepoint.&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入&quot;General setup&quot; -&gt; &quot;Maximum number of CPUs&quot;</span></span><br><span class="line"><span class="comment"># 将值设置为一个较小的数字（如8或16）</span></span><br><span class="line"><span class="comment"># 保存配置并退出</span></span><br></pre></td></tr></table></figure>
-
-<p>或者编辑内核配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑.config文件</span></span><br><span class="line">vi .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到并修改CONFIG_NR_CPUS</span></span><br><span class="line">CONFIG_NR_CPUS=8</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数cpuid-feature-extract-field参数不匹配"><a href="#函数cpuid-feature-extract-field参数不匹配" class="headerlink" title="函数cpuid_feature_extract_field参数不匹配"></a>函数<code>cpuid_feature_extract_field</code>参数不匹配</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./arch/arm64/include/asm/kvm_mmu.h:309:17: error: too few arguments to <span class="keyword">function</span> <span class="string">&#x27;cpuid_feature_extract_field&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：</strong></p>
-<p>编辑文件<code>./arch/arm64/include/asm/kvm_mmu.h</code>，找到第309行附近的代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-
-<p>修改为：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT, <span class="number">0</span>) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;\</span><br></pre></td></tr></table></figure>
-
-<p>注意：第三个参数的具体值需要根据<code>cpuid_feature_extract_field</code>函数的定义来确定，可能需要查看相关头文件</p>
-<h2 id="devfreq-simple-ondemand-data结构体类型不完整"><a href="#devfreq-simple-ondemand-data结构体类型不完整" class="headerlink" title="devfreq_simple_ondemand_data结构体类型不完整"></a><code>devfreq_simple_ondemand_data</code>结构体类型不完整</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/linux/mmc/host.h:331:54: error: field <span class="string">&#x27;ondemand_gov_data&#x27;</span> has incomplete <span class="built_in">type</span></span><br><span class="line">  331 |         struct          devfreq_simple_ondemand_data ondemand_gov_data;</span><br><span class="line">      |                                                      ^~~~~~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导航到以下路径并启用选项：</span></span><br><span class="line"><span class="comment"># Device Drivers -&gt; Generic Driver Options -&gt; Devfreq drivers -&gt; Generic Dynamic Voltage and Frequency Scaling (DVFS) support</span></span><br><span class="line"><span class="comment"># 然后启用 &quot;Simple Ondemand&quot; governor</span></span><br></pre></td></tr></table></figure>
-
-<p>或者编辑内核配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用相关配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y&quot;</span> &gt;&gt; .config</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_PM_DEVFREQ=y&quot;</span> &gt;&gt; .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新生成配置</span></span><br><span class="line">make oldconfig</span><br></pre></td></tr></table></figure>
-
-<h2 id="变量phdr重复声明"><a href="#变量phdr重复声明" class="headerlink" title="变量phdr重复声明"></a>变量phdr重复声明</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drivers/soc/qcom/smem.c: In <span class="keyword">function</span> <span class="string">&#x27;qcom_smem_alloc_private&#x27;</span>:</span><br><span class="line">drivers/soc/qcom/smem.c:305:39: error: redeclaration of <span class="string">&#x27;phdr&#x27;</span> with no linkage</span><br><span class="line">  305 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br><span class="line">drivers/soc/qcom/smem.c:303:39: note: previous declaration of <span class="string">&#x27;phdr&#x27;</span> with <span class="built_in">type</span> <span class="string">&#x27;struct smem_partition_header *&#x27;</span></span><br><span class="line">  303 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑文件 drivers/soc/qcom/smem.c</span></span><br><span class="line">vi drivers/soc/qcom/smem.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到函数 qcom_smem_alloc_private</span></span><br><span class="line"><span class="comment"># 删除第305行的重复声明：</span></span><br><span class="line"><span class="comment"># struct smem_partition_header *phdr;</span></span><br></pre></td></tr></table></figure>
-
-<p>或者用sed命令修复</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除第305行的重复声明</span></span><br><span class="line">sed -i <span class="string">&#x27;305d&#x27;</span> drivers/soc/qcom/smem.c</span><br></pre></td></tr></table></figure>
-
-<h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
-<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
-
-<p>然后重新运行<code>./build.sh</code></p>
-<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的是<code>/bin/ld.lld</code></p>
-<h2 id="编译EFI-stub时的绝对符号引用"><a href="#编译EFI-stub时的绝对符号引用" class="headerlink" title="编译EFI stub时的绝对符号引用"></a>编译EFI stub时的绝对符号引用</h2><p>可能出现的报错：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drivers/firmware/efi/libstub/lib-sort.stub.o: absolute symbol references not allowed <span class="keyword">in</span> the EFI stub</span><br><span class="line">make[5]: *** [../drivers/firmware/efi/libstub/Makefile:72：drivers/firmware/efi/libstub/lib-sort.stub.o] 错误 1</span><br><span class="line">make[4]: *** [../scripts/Makefile.build:656：drivers/firmware/efi/libstub] 错误 2</span><br><span class="line">make[3]: *** [../scripts/Makefile.build:656：drivers/firmware/efi] 错误 2</span><br><span class="line">make[2]: *** [../scripts/Makefile.build:656：drivers/firmware] 错误 2</span><br><span class="line">make[1]: *** [/home/abc/android_kernel_meizu_m1721/Makefile:1168：drivers] 错误 2</span><br><span class="line">make[1]: *** 正在等待未完成的任务....</span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方式：</strong><br>修改<code>build.sh</code>，添加禁用efi功能的代码：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make <span class="variable">$&#123;args&#125;</span> m1721_defconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在编译默认配置代码之后添加禁用 EFI 相关选项</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;禁用 EFI 相关配置...&quot;</span></span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_STUB</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_RUNTIME_WRAPPERS</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_CAPSULE_LOADER</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_TEST</span><br><span class="line"></span><br><span class="line">make <span class="variable">$&#123;args&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习记录</category>
-      </categories>
-      <tags>
-        <tag>安卓</tag>
-        <tag>内核编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>南邮数据结构作业 - 第二章</title>
-    <url>//post/f93c4f64/</url>
-    <content><![CDATA[<h4 id="第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。"><a href="#第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。" class="headerlink" title="第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。"></a>第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。</h4><ul>
-<li><p><strong>算法思想</strong><br>要求是将单链表中序号奇数和偶数的元素分到两个单链表中，所以创建两个带头结点的单链表M和N，其中M储存原来序号为奇数的元素，N储存原来序号为偶数的元素。<br>然后遍历原链表A，当序号为奇数的时候，将对应的元素存储到M，序号为偶数的时候存储到N，添加元素的位置均为链表的末尾。<br>要考虑元素之间相对顺序不变，所以还要另外定义两个int变量m和n代表链表M和N的下标，每添加一个元素，下标就加1</p>
-</li>
-<li><p><strong>代码实现</strong></p>
-</li>
-</ul>
-<p><strong>结点定义</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemType element;        <span class="comment">//结点的数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">link</span>;</span>        <span class="comment">//结点的指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
-
-<p><strong>带头结点的单链表定义</strong>，head作为头节点</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">headerList</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    <span class="type">int</span> n;        <span class="comment">//单链表的长度n</span></span><br><span class="line">&#125;HeaderList;</span><br></pre></td></tr></table></figure>
-
-<p><strong>初始化运算</strong>：生成空表</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Init</span><span class="params">(HeaderList* h)</span></span><br><span class="line">&#123;</span><br><span class="line">    h-&gt;head = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));        <span class="comment">//生成表头结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!h-&gt;head)            <span class="comment">//表头结点为空返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    h-&gt;head-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">    h-&gt;n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>查找运算</strong>：根据下标i查找元素，并通过x返回值</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(HeaderList L, <span class="type">int</span> i, ElemType* x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; L.n<span class="number">-1</span>)        <span class="comment">//对i进行越界检查</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L.head-&gt;link;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)            <span class="comment">//从头结点开始查找下标i的元素</span></span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    *x = p-&gt;element;                <span class="comment">//通过x返回元素值（传地址）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>插入运算</strong>：根据下标i插入元素x</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(HeaderList* h, <span class="type">int</span> i, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p, * q;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">-1</span> || i&gt;h-&gt;n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = h-&gt;head;                      <span class="comment">//从头结点开始找a(i)元素所在的结点p</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    q = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//生成新结点q</span></span><br><span class="line"></span><br><span class="line">    q-&gt;element = x;                    <span class="comment">//将元素x赋值到新结点q</span></span><br><span class="line">    q-&gt;link = p-&gt;link;              <span class="comment">//将新结点q插在p之后</span></span><br><span class="line">    p-&gt;link = q;</span><br><span class="line">    h-&gt;n++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出运算</strong>：输出链表的所有元素</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Output</span><span class="params">(HeaderList* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!L-&gt;n)                        <span class="comment">//判空运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L-&gt;head-&gt;link;</span><br><span class="line">    <span class="keyword">while</span> (p)                        <span class="comment">//依次输出每个元素</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;element);</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>主程序步骤</strong><br>1.先生成原链表A和待存储链表M和N，以及对应的下标m和n<br>  (M储存原来序号为奇数的元素，N储存原来序号为偶数的元素)<br>2.使用查找运算遍历链表A，用变量x存储返回值<br>3.用if语句根据下标的奇偶性将a插入链表M和N中<br>4.当链表A遍历完成后，输出链表A、M和N，验证程序是否有错误</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HeaderList A, M, N;</span><br><span class="line">    <span class="type">int</span> i, m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    Init(&amp;A);        <span class="comment">//初始化链表</span></span><br><span class="line">    Init(&amp;M);</span><br><span class="line">    Init(&amp;N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)        <span class="comment">//给链表A插入0~9</span></span><br><span class="line">        Insert(&amp;A, i - <span class="number">1</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原List:&quot;</span>);    <span class="comment">//输出链表A</span></span><br><span class="line">    Output(&amp;A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Find(A, i, &amp;x);            <span class="comment">//用查找运算遍历链表A，用x存储返回值</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;M, m - <span class="number">1</span>, x);    <span class="comment">//下标为奇数时，将元素添加至链表M</span></span><br><span class="line">            m++;    <span class="comment">//m表示链表M的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;N, n - <span class="number">1</span>, x);    <span class="comment">//下标为偶数时，加元素添加至链表N</span></span><br><span class="line">            n++;    <span class="comment">//n表示链表N的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（奇数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;M);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（偶数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>输出结果</strong></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">原List:0 1 2 3 4 5 6 7 8</span><br><span class="line">List（奇数下标）:1 3 5 7</span><br><span class="line">List（偶数下标）:0 2 4 6 8</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 12624)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O"><a href="#第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O" class="headerlink" title="第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。"></a>第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。</h4><blockquote>
-<p>首先声明，作者的做法大概率是错的，这一题的做法应该使用循环链表</p>
-</blockquote>
+    <title>南邮数据结构作业 - 第四章</title>
+    <url>//post/86c33f9b/</url>
+    <content><![CDATA[<h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
 <ul>
 <li><strong>算法思想</strong></li>
 </ul>
-<p>要将n个整数存放到一维数组而且能左移n个位置，就要先定义一个长度至少为2n的数组<br>因为是将元素左移，所以将元素内容储存在数组下标较大的一端<br>然后从第一个元素开始遍历数组R，将下标为i的元素和下标为i-p的元素交换<br>最后输出数组，验证算法是否成功</p>
+<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
+<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
+<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
+<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
 <ul>
 <li><strong>代码实现</strong></li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 14        <span class="comment">//n为7，所以数组最大长度N应该至少为14</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="type">int</span> R[N] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义一维数组R</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//将n个整数存放到R中</span></span><br><span class="line">        R[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;数组下标：&quot;</span>);        <span class="comment">//输出下标</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之前：&quot;</span>);        <span class="comment">//输出移动元素前下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//从第一个元素开始交换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; n || p &lt; <span class="number">0</span>)        <span class="comment">//保证0&lt;p&lt;n，超出范围跳出循环</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;不能这么移动！&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = R[i - p];</span><br><span class="line">        R[i - p] = R[i];</span><br><span class="line">        R[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之后：&quot;</span>);        <span class="comment">//输出移动元素后下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>三元组和三元组表定义</strong></p>
+<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
+
+<p><strong>算法的代码实现</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><strong>输出结果</strong></li>
+<li><strong>运行结果</strong></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数组下标：0     1       2       3       4       5       6       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之前：0     0       0       0       0       0       0       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之后：0     0       7       8       9       10      11      12      13      0       0       0       0       0</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 7828)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>学习记录</category>
@@ -544,6 +319,159 @@
       </tags>
   </entry>
   <entry>
+    <title>在多台电脑上提交和更新Hexo博客</title>
+    <url>//post/fe9a3018/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我现在有两台电脑，最初第一次装好hexo环境的电脑在宿舍，姑且叫这台电脑 <strong>“老电脑”</strong> 吧，代表最初拥有hexo环境的电脑，然后事情是这样的去到工位的电脑上想要更新博客总是要远程启动宿舍的电脑才行，于是想要在工位电脑也能更新，这里工位的电脑姑且叫做 <strong>“新电脑”</strong> 吧。</p>
+<p>最初搞这个多设备同步属实折腾了好半天，看了很多博客也在知乎上参考了不少，但总是需要在不同博客之间相互参考最终才完美解决，所以想要把这几天的经历总结一下。</p>
+<h4 id="hexo同步原理"><a href="#hexo同步原理" class="headerlink" title="hexo同步原理"></a>hexo同步原理</h4><p><strong>1. hexo博客目录结构说明</strong></p>
+<p>这是老电脑上的目录结构</p>
+<p><img src="/images/fe9a3018/p1.png"></p>
+<table>
+<thead>
+<tr>
+<th align="center">文件夹</th>
+<th align="center">说明</th>
+<th align="center">是否需要上传Github</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">node_modules</td>
+<td align="center">hexo需要的模块，就是一些基础的npm安装模块，比如一些美化插件，在执行<code>npm install</code>的时候会重新生成</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td align="center">themes</td>
+<td align="center">主题文件</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">public</td>
+<td align="center">hexo g命令执行后生成的静态页面文件</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td align="center">packages.json</td>
+<td align="center">记录了hexo需要的包的信息，之后换电脑了npm根据这个信息来安装hexo环境</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center"><em>config.yml</em></td>
+<td align="center">全局配置文件</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">.gitignore</td>
+<td align="center">hexo生成的默认的.gitignore模块</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">scaffolds</td>
+<td align="center">文章的模板</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">.deploy_git</td>
+<td align="center">hexo g自动生成的</td>
+<td align="center">N</td>
+</tr>
+</tbody></table>
+<p><strong>2. 同步原理</strong></p>
+<p>主要思路是利用git分支来实现hexo的同步。</p>
+<p>hexo生成的静态页面文件默认放在master分支上，这是由_config.yml配置文件所决定的</p>
+<p>你可以在全局配置文件_config.yml中找到这么一段 </p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
+<p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
+<p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
+<p><img src="/images/fe9a3018/p2.png"></p>
+<p>把source分支设置成默认分支，用来存放源文件，master分支依然存放静态文件。在老电脑上，我们需要把必要的源文件push到source分支。换新电脑时，直接<code>git clone 仓库地址</code>此时会从source分支下载源文件，剩下的就是安装hexo环境，在新电脑上就可以重新生成静态页面了，并且因为配置文件clone下来，deploy配置依旧是master分支，所以在新电脑上执行<code>hexo d</code>还是会把更新过后的静态文件推送到master分支上。</p>
+<p>由于master分支和source分支实际上是相互独立的两个普通的分支，所以我们源文件和静态页面的更新也是相互独立的，故而需要手动分别执行<code>git add . git commit git push</code>来更新源文件,然后执行<code>hexo d</code>更新静态页面。</p>
+<h4 id="老电脑上的具体操作"><a href="#老电脑上的具体操作" class="headerlink" title="老电脑上的具体操作"></a>老电脑上的具体操作</h4><p>这里直接引用我看的一篇博客的步骤：</p>
+<p><strong>1. Github准备</strong></p>
+<p>先创建一个分支hexo</p>
+<p><img src="/images/fe9a3018/p3.png"></p>
+<p>将其设置为默认分支</p>
+<p><img src="/images/fe9a3018/p4.png"></p>
+<p><strong>2. 打包将要推送到Github上的原始文件</strong></p>
+<p>（1）clone该仓库到本地（clone的是hexo默认分支）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:username/username.github.io.git</span><br></pre></td></tr></table></figure>
+
+<p>（2）下载的文件夹里仅留下.git 文件夹，其他的文件都删除</p>
+<p>（3）找见我们hexo原位置，将hexo文件夹内除.deploy_git 以外都复制到clone下来的文件夹中</p>
+<p>注意：1.现在clone下来的文件夹内应该有个<code>.gitignore</code>文件，用来忽略一些不需要的文件，表示这些类型文件不需要git。如果没有，右键新建，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+
+<p>2.如果已经clone过主题文件，那么需要把theme主题文件夹里的 .git 也删除。因为git不能嵌套上传，最好是显示隐藏文件，检查一下有没有，否则上传的时候会出错，导致你的主题文件无法上传，这样你的配置在别的电脑上就用不了了。</p>
+<p><strong>3.将clone并修改以后的文件夹推送到远程库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit –m add_branch</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>此时已经成功将整个网站推送到了远程库的默认分支hexo</p>
+<p>补充：后续写文章、修改配置后的保存推送操作</p>
+<p>至此，网站部署至master分支，整个网站备份至hexo分支。当网站的配置或文章修改后都要将远程仓库更新。首先，依次执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m ChangeFiles（更新信息内容可改)</span><br><span class="line">git push （或者git push origin hexo)</span><br></pre></td></tr></table></figure>
+
+<p>保证hexo分支版本最新。然后执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+
+<p>（在此之前，有时可能需要执行<code>hexo clean</code>），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！</p>
+<h4 id="新电脑上的操作"><a href="#新电脑上的操作" class="headerlink" title="新电脑上的操作"></a>新电脑上的操作</h4><ul>
+<li><p>将新电脑的生成的ssh key添加到GitHub账户上</p>
+</li>
+<li><p>在新电脑上克隆username.github.io仓库的source分支(就是存放源码的分支)到本地，此时本地git仓库处于source分支,可以执行<code>git branch -v</code>查看。</p>
+</li>
+<li><p>在新电脑的username.github.io文件夹下执行<code>npm install hexo</code>、<code>npm install</code>、<code>npm install hexo-deployer-git</code>（记得，不需要<code>hexo init</code>这条指令）</p>
+</li>
+<li><p>最后执行hexo g、hexo s、hexo d等命令即可提交成功</p>
+</li>
+</ul>
+<p>上面步骤中，<code>npm install</code>其实就是读取了packages.json里面的信息，自动安装依赖，有的小伙伴可能只执行<code>npm install</code>就行了，不过按照上面的三步是最稳妥的。</p>
+<p>这里提一嘴，当新电脑上的操作成功之后，其实对于新电脑还是老电脑其实都无所谓了，任何一台电脑包括老电脑只要安装了NodeJs环境，就都可以按照在新电脑上的操作完整地复刻出一个hexo环境，你甚至可以把老电脑原有的hexo工程删掉再执行上面这几步一样可以快速构建hexo环境，可以看到步骤非常简单。</p>
+<p>此外，为了保证同步，推荐先<code>git pull</code>合并更新再进行博客的编写。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.jianshu.com/p/0b1fccce74e0">利用Hexo在多台电脑上提交和更新github pages博客 - 简书 (jianshu.com)</a></p>
+<p><a href="https://www.cnblogs.com/eidolonw/p/13066869.html">hexo源码上传到GitHub-以防多台电脑操作&#x2F;重装系统&#x2F;要将hexo移动到其他磁盘 - 巧莓兔 - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://www.jianshu.com/p/57b5a384f234">Hexo博客备份 - 简书 (jianshu.com)</a></p>
+<p><a href="https://www.zhihu.com/question/21193762">使用hexo，如果换了电脑怎么更新博客？ - 知乎 (zhihu.com)</a></p>
+<hr>
+<p>版权声明：本文为CSDN博主「Kakaluotuo」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/K1052176873/article/details/122879462">Hexo在多台电脑上提交和更新_hexo两个设备-CSDN博客</a></p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>转载</tag>
+        <tag>Hexo</tag>
+        <tag>Github Pages</tag>
+        <tag>个人博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>时间与日期计算器</title>
+    <url>//post/72e1e7d8/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>事情的起因是这个月16号还是17号那天，我一个QQ群里发“2025年11月17日（反正就是当天）是董卓去世350234天”这个消息，还附上了和AI对话的截图来佐证。当时我信以为真，但是过不久就看见了辟谣的消息。这时候我就想自己写一个日期计算器来看能不能算这个问题，于是就有了这个时间与日期计算器</p>
+<p>以后的更新我都会发在这里，做出来一个小更新就发一次，也许以后会发展成像一个木函那样的小工具合集（</p>
+<hr>
+<h4 id="Date-Calculator-v0-0-1"><a href="#Date-Calculator-v0-0-1" class="headerlink" title="Date-Calculator v0.0.1"></a>Date-Calculator v0.0.1</h4><p>实现了以下三个功能：</p>
+<ol>
+<li><p>天数转日期：XX天转为年月日格式</p>
+</li>
+<li><p>日期推算：目前只能向后推算，就是“X年X月X日过后AAA天是Y年Y月Y日”</p>
+</li>
+<li><p>日期间隔计算：日期A到日期B之间有多少天</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>学习记录</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用gcc编译老内核</title>
     <url>//post/50843/</url>
     <content><![CDATA[<h2 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h2><ul>
@@ -584,6 +512,78 @@
 <p>但实际上你很不幸，编译过程中出现了很多错误<br>而且因为报错内容又臭又长，你基本看不懂也不会想去研究<br>下一篇我就会编译过程中碰到的所有错误和解决办法列出来</p>
 <h2 id="可用的替代方案：使用Android预构建工具链"><a href="#可用的替代方案：使用Android预构建工具链" class="headerlink" title="可用的替代方案：使用Android预构建工具链"></a>可用的替代方案：使用Android预构建工具链</h2><p>如果系统GCC版本太新，导致出现各种问题，考虑使用Android官方工具链：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载Android NDK</span></span><br><span class="line">wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip</span><br><span class="line">unzip android-ndk-r21e-linux-x86_64.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NDK工具链</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>安卓</tag>
+        <tag>内核编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译过程中遇到的各种问题（持续更新）</title>
+    <url>//post/acd9767d/</url>
+    <content><![CDATA[<p>我在用gcc编译时出现的错误如下，用ai解决这些问题之后，编译居然成功了<br>但是给我的米板4刷进去之后并不能开机……</p>
+<p>二编：我换了个内核进行编译，还想集成kernelsu，可是一直都不成功，气得我鬼火冒</p>
+<p>三编：换了魅蓝note6的内核，编译进行地异常顺利，刷进去之后也开机了，可是kernelsu并没有成功集成。。。</p>
+<h2 id="NR-CPUS配置错误"><a href="#NR-CPUS配置错误" class="headerlink" title="NR_CPUS配置错误"></a>NR_CPUS配置错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/trace/events/sched.h:875:2: error: <span class="comment">#error &quot;Unsupported NR_CPUS for lb tracepoint.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入&quot;General setup&quot; -&gt; &quot;Maximum number of CPUs&quot;</span></span><br><span class="line"><span class="comment"># 将值设置为一个较小的数字（如8或16）</span></span><br><span class="line"><span class="comment"># 保存配置并退出</span></span><br></pre></td></tr></table></figure>
+
+<p>或者编辑内核配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑.config文件</span></span><br><span class="line">vi .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到并修改CONFIG_NR_CPUS</span></span><br><span class="line">CONFIG_NR_CPUS=8</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数cpuid-feature-extract-field参数不匹配"><a href="#函数cpuid-feature-extract-field参数不匹配" class="headerlink" title="函数cpuid_feature_extract_field参数不匹配"></a>函数<code>cpuid_feature_extract_field</code>参数不匹配</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./arch/arm64/include/asm/kvm_mmu.h:309:17: error: too few arguments to <span class="keyword">function</span> <span class="string">&#x27;cpuid_feature_extract_field&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<p>编辑文件<code>./arch/arm64/include/asm/kvm_mmu.h</code>，找到第309行附近的代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (cpuid_feature_extract_field(reg, ID_AA64MMFR1_VMIDBITS_SHIFT, <span class="number">0</span>) == <span class="number">2</span>) ? <span class="number">16</span> : <span class="number">8</span>;\</span><br></pre></td></tr></table></figure>
+
+<p>注意：第三个参数的具体值需要根据<code>cpuid_feature_extract_field</code>函数的定义来确定，可能需要查看相关头文件</p>
+<h2 id="devfreq-simple-ondemand-data结构体类型不完整"><a href="#devfreq-simple-ondemand-data结构体类型不完整" class="headerlink" title="devfreq_simple_ondemand_data结构体类型不完整"></a><code>devfreq_simple_ondemand_data</code>结构体类型不完整</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">include/linux/mmc/host.h:331:54: error: field <span class="string">&#x27;ondemand_gov_data&#x27;</span> has incomplete <span class="built_in">type</span></span><br><span class="line">  331 |         struct          devfreq_simple_ondemand_data ondemand_gov_data;</span><br><span class="line">      |                                                      ^~~~~~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑内核配置</span></span><br><span class="line">make menuconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导航到以下路径并启用选项：</span></span><br><span class="line"><span class="comment"># Device Drivers -&gt; Generic Driver Options -&gt; Devfreq drivers -&gt; Generic Dynamic Voltage and Frequency Scaling (DVFS) support</span></span><br><span class="line"><span class="comment"># 然后启用 &quot;Simple Ondemand&quot; governor</span></span><br></pre></td></tr></table></figure>
+
+<p>或者编辑内核配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用相关配置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y&quot;</span> &gt;&gt; .config</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;CONFIG_PM_DEVFREQ=y&quot;</span> &gt;&gt; .config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新生成配置</span></span><br><span class="line">make oldconfig</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量phdr重复声明"><a href="#变量phdr重复声明" class="headerlink" title="变量phdr重复声明"></a>变量phdr重复声明</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drivers/soc/qcom/smem.c: In <span class="keyword">function</span> <span class="string">&#x27;qcom_smem_alloc_private&#x27;</span>:</span><br><span class="line">drivers/soc/qcom/smem.c:305:39: error: redeclaration of <span class="string">&#x27;phdr&#x27;</span> with no linkage</span><br><span class="line">  305 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br><span class="line">drivers/soc/qcom/smem.c:303:39: note: previous declaration of <span class="string">&#x27;phdr&#x27;</span> with <span class="built_in">type</span> <span class="string">&#x27;struct smem_partition_header *&#x27;</span></span><br><span class="line">  303 |         struct smem_partition_header *phdr;</span><br><span class="line">      |                                       ^~~~</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑文件 drivers/soc/qcom/smem.c</span></span><br><span class="line">vi drivers/soc/qcom/smem.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到函数 qcom_smem_alloc_private</span></span><br><span class="line"><span class="comment"># 删除第305行的重复声明：</span></span><br><span class="line"><span class="comment"># struct smem_partition_header *phdr;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者用sed命令修复</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除第305行的重复声明</span></span><br><span class="line">sed -i <span class="string">&#x27;305d&#x27;</span> drivers/soc/qcom/smem.c</span><br></pre></td></tr></table></figure>
+
+<h2 id="DTC链接错误"><a href="#DTC链接错误" class="headerlink" title="DTC链接错误"></a>DTC链接错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of `yylloc<span class="string">&#x27;; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">make[3]: *** [scripts/Makefile.host:100：scripts/dtc/dtc] 错误 1</span></span><br><span class="line"><span class="string">make[2]: *** [../scripts/Makefile.build:489：scripts/dtc] 错误 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>在内核源码根目录中找到<code>Makefile</code>文件<br>然后搜索找到<code>HOSTCFLAGS</code>项，添加<code>HOSTCFLAGS += -fcommon</code><br>重新运行<code>./build.sh</code></p>
+<h2 id="编译VDSO时出现的汇编语法错误"><a href="#编译VDSO时出现的汇编语法错误" class="headerlink" title="编译VDSO时出现的汇编语法错误"></a>编译VDSO时出现的汇编语法错误</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">../arch/arm64/kernel/vdso/gettimeofday.S:223:24: error: too many positional arguments</span><br><span class="line">clock_gettime_return, <span class="built_in">shift</span>=1</span><br><span class="line">                       ^</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>找到<code>/arch/arm64/kernel/vdso/gettimeofday.S</code>文件<br>然后修改此文件中第223、246和267行的宏调用方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 原代码</span><br><span class="line">clock_gettime_return, shift=1</span><br><span class="line"></span><br><span class="line"># 应修改为</span><br><span class="line">clock_gettime_return shift=1</span><br></pre></td></tr></table></figure>
+
+<p>然后重新运行<code>./build.sh</code></p>
+<h2 id="ld无法辨认aarch64linux仿真模式"><a href="#ld无法辨认aarch64linux仿真模式" class="headerlink" title="ld无法辨认aarch64linux仿真模式"></a>ld无法辨认aarch64linux仿真模式</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ld: 无法辨认的仿真模式: aarch64linux</span><br><span class="line">支持的仿真： elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu elf_l1om elf_k1om i386pep i386pe</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>移除<code>/bin/ld</code>以确保使用的是<code>/bin/ld.lld</code></p>
+<h2 id="编译EFI-stub时的绝对符号引用"><a href="#编译EFI-stub时的绝对符号引用" class="headerlink" title="编译EFI stub时的绝对符号引用"></a>编译EFI stub时的绝对符号引用</h2><p>可能出现的报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drivers/firmware/efi/libstub/lib-sort.stub.o: absolute symbol references not allowed <span class="keyword">in</span> the EFI stub</span><br><span class="line">make[5]: *** [../drivers/firmware/efi/libstub/Makefile:72：drivers/firmware/efi/libstub/lib-sort.stub.o] 错误 1</span><br><span class="line">make[4]: *** [../scripts/Makefile.build:656：drivers/firmware/efi/libstub] 错误 2</span><br><span class="line">make[3]: *** [../scripts/Makefile.build:656：drivers/firmware/efi] 错误 2</span><br><span class="line">make[2]: *** [../scripts/Makefile.build:656：drivers/firmware] 错误 2</span><br><span class="line">make[1]: *** [/home/abc/android_kernel_meizu_m1721/Makefile:1168：drivers] 错误 2</span><br><span class="line">make[1]: *** 正在等待未完成的任务....</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：</strong><br>修改<code>build.sh</code>，添加禁用efi功能的代码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make <span class="variable">$&#123;args&#125;</span> m1721_defconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在编译默认配置代码之后添加禁用 EFI 相关选项</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;禁用 EFI 相关配置...&quot;</span></span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_STUB</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_RUNTIME_WRAPPERS</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_CAPSULE_LOADER</span><br><span class="line">./scripts/config --file out/.config --<span class="built_in">disable</span> EFI_TEST</span><br><span class="line"></span><br><span class="line">make <span class="variable">$&#123;args&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>学习记录</category>
       </categories>
