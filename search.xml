@@ -13,32 +13,60 @@
       </tags>
   </entry>
   <entry>
-    <title>时间与日期计算器</title>
+    <title>多功能计算器（大嘘）</title>
     <url>//post/72e1e7d8/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>事情的起因是这个月16号还是17号那天，我一个QQ群里发“2025年11月17日（反正就是当天）是董卓去世350234天”这个消息，还附上了和AI对话的截图来佐证。当时我信以为真，但是过不久就看见了辟谣的消息。这时候我就想自己写一个日期计算器来看能不能算这个问题，于是就有了这个时间与日期计算器</p>
+    <content><![CDATA[<h1 id="多功能计算器（大嘘）"><a href="#多功能计算器（大嘘）" class="headerlink" title="多功能计算器（大嘘）"></a>多功能计算器（大嘘）</h1><p>看起来是一个项目，但实际上是为了JAVA大作业粗制滥造的一个东西</p>
+<p>爱来自南京邮电大学</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>事情的起因是这个月16号还是17号那天，我一个QQ群里发“2025年11月17日（反正就是当天）是董卓去世350234天”这个消息，还附上了和AI对话的截图来佐证。当时我信以为真，但是过不久就看见了辟谣的消息。这时候我就想自己写一个日期计算器来看能不能算这个问题，于是就有了这个时间与日期计算器</p>
 <p>以后的更新我都会发在这里，做出来一个小更新就发一次，也许以后会发展成像一个木函那样的小工具合集（</p>
+</blockquote>
+<blockquote>
+<p><strong>二编</strong>：一个月没在网站上更新了，现在计算器的名称改成了“多功能计算器”，也上传到<a href="https://github.com/CMCC-114514/Multifunctional-Calculator">GitHub</a>上了。但是Java大作业还没写，而且下周就得交（呜呜呜）。</p>
+</blockquote>
 <hr>
-<h4 id="Date-Calculator-v0-0-1"><a href="#Date-Calculator-v0-0-1" class="headerlink" title="Date-Calculator v0.0.1"></a>Date-Calculator v0.0.1</h4><p>实现了以下三个功能：</p>
+<h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><h4 id="Date-Calculator-v0-0-1"><a href="#Date-Calculator-v0-0-1" class="headerlink" title="Date-Calculator v0.0.1"></a>Date-Calculator v0.0.1</h4><p>实现了以下三个功能：</p>
 <ol>
-<li><p>天数转日期：XX天转为年月日格式</p>
-</li>
-<li><p>日期推算：目前只能向后推算，就是“X年X月X日过后AAA天是Y年Y月Y日”</p>
-</li>
-<li><p>日期间隔计算：日期A到日期B之间有多少天</p>
-</li>
+<li>天数转日期：XX天转为年月日格式</li>
+<li>日期推算：目前只能向后推算，就是“X年X月X日过后AAA天是Y年Y月Y日”</li>
+<li>日期间隔计算：日期A到日期B之间有多少天</li>
 </ol>
 <h4 id="Date-Calculator-v0-0-2"><a href="#Date-Calculator-v0-0-2" class="headerlink" title="Date-Calculator v0.0.2"></a>Date-Calculator v0.0.2</h4><p>增加了功能：</p>
 <ol>
-<li><p>osu！mania的pp计算器</p>
-</li>
-<li><p>实现了日期的向前推算，输入负数天数就能推算</p>
-</li>
+<li>osu！mania的pp计算器</li>
+<li>实现了日期的向前推算，输入负数天数就能推算</li>
 </ol>
 <p>目前发现的问题：</p>
 <ol>
 <li>pp计算器还没测试过，不知道有没有用</li>
 <li>日期向后推算的结果会出现类似“2025年16月28日”的日期，正在寻找解决办法</li>
 <li>日期向前推算的天数小于365天时会出现极大的误差，正在寻找解决办法</li>
+</ol>
+<h4 id="Date-Calculator-v0-0-3"><a href="#Date-Calculator-v0-0-3" class="headerlink" title="Date-Calculator v0.0.3"></a>Date-Calculator v0.0.3</h4><p>增加了功能：</p>
+<ol>
+<li>单位换算</li>
+<li>简易几何计算</li>
+</ol>
+<p>修复了bug：</p>
+<ol>
+<li>解决了日期推算在某些情况下误差过大的问题，但是仍然有一到三天的误差</li>
+</ol>
+<p>目前的缺陷：</p>
+<ol>
+<li>仍然没有测试过pp计算器</li>
+</ol>
+<h4 id="Multifunctional-Calculator-v0-0-4"><a href="#Multifunctional-Calculator-v0-0-4" class="headerlink" title="Multifunctional-Calculator v0.0.4"></a>Multifunctional-Calculator v0.0.4</h4><p>说明：将项目名称改为了“多功能计算器”而不是“日期计算器”</p>
+<p>移除了功能：osu！mania的pp计算器</p>
+<h4 id="Multifunctional-Calculator-v0-1-0"><a href="#Multifunctional-Calculator-v0-1-0" class="headerlink" title="Multifunctional-Calculator v0.1.0"></a>Multifunctional-Calculator v0.1.0</h4><p>添加了GUI：程序现在有GUI了</p>
+<h4 id="Multifunctional-Calculator-v0-1-1"><a href="#Multifunctional-Calculator-v0-1-1" class="headerlink" title="Multifunctional-Calculator v0.1.1"></a>Multifunctional-Calculator v0.1.1</h4><p>添加了功能：公农历转换（支持1900年1月1日到2099年12月31日）</p>
+<h4 id="Multifunctional-Calculator-v0-1-2"><a href="#Multifunctional-Calculator-v0-1-2" class="headerlink" title="Multifunctional-Calculator v0.1.2"></a>Multifunctional-Calculator v0.1.2</h4><p>添加了功能：进制转换</p>
+<p>发现了BUG： </p>
+<ol>
+<li>公农历转换在某些日期会出现错误，出现错误的日期范围：2025年6月26日-2026年2月16日</li>
+</ol>
+<h4 id="Multifunctional-Calculator-v0-1-2-d1"><a href="#Multifunctional-Calculator-v0-1-2-d1" class="headerlink" title="Multifunctional-Calculator v0.1.2_d1"></a>Multifunctional-Calculator v0.1.2_d1</h4><p>部分修复了BUG：</p>
+<ol>
+<li>将公农历转换在某些日期会出现错误的日期范围缩小至2025年6月25日至2025年8月23日。<br>在这个范围内会出现的问题有：1. 应该输出六月，但是输出的是闰六月；2. 部分日期存在一天的偏移</li>
 </ol>
 ]]></content>
       <categories>
@@ -151,7 +179,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>因此每当我们执行<code>hexo d</code>的时候，hexo都会帮我们把生成好的静态页面文件推到master分支上。</p>
-<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
+<p>(我这里可能和你的不太一样，因为之前使用http推送经常由于网络问题推送上不去，所以我复制了username.github.io仓库的ssh链接，用ssh推送成功率更搞，所以我的链接形式是<a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">git@github.com</a>:username&#x2F;username.github.io.git这样的)</p>
 <p>在我们第一次部署好博客的时候，github给我们创建的唯一一个分支就是master分支，同时也是默认分支。默认分支就意味着每次我们执行<code>git clone 仓库地址</code>或者<code>git pull 仓库地址</code>拉取的是默认分支的代码。</p>
 <p>但是执行hexo d 对应的分支和默认分支是没有关系的，因为这是由配置文件决定的，配置文件写的哪个分支就是哪个分支。</p>
 <p>因此，hexo生成的静态博客文件默认放在master分支上。hexo的源文件（部署环境文件）可以都放在source分支上（可以新创建一个source分支）。然后把source分支设置成默认分支。有小伙伴可能会担心默认分支的改变会不会影响到原来的网页的正常显示，其实如果是用GitHub Pages对博客进行托管的话也很简单，第一次搭建博客默认使用master分支作为页面。在下图所示的设置里可以找到。如果不小心搞错了只要把分支设置成静态页面对应的分支就好了。</p>
