@@ -1,7 +1,6 @@
 ---
 title: VS Code 配置 C/C++ 编程运行环境（保姆级教程）
 hidden: true
-date: 2025-11-24 22:54:55
 description: 教你安装并使用vscode
 categories: 学习记录
 tags:
@@ -9,6 +8,8 @@ tags:
   - vscode
   - ide
   - c++
+abbrlink: a57909c8
+date: 2025-11-24 22:54:55
 ---
 
 在本教程中，将会安装 Visual Studio Code（后简称 VS Code），并在 VS Code 中安装 C/C++ 相关插件， 同时也将 VS Code 配置为使用 MinGW-W64 中的 GCC C/C++ 编译器（gcc/g++）和 GDB 调试器来创建在 Windows 上运行的程序。配置 VS Code 后，你将编写、编译、运行和调试大多数的 C/C++ 程序。
