@@ -1,262 +1,191 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Tag: 数据结构 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>标签: 数据结构 - kk的小窝</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="kk的小窝"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="kk的小窝"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="kk的小窝"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="kk的小窝"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="kk3TWT"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"kk的小窝","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"kk3TWT"},"publisher":{"@type":"Organization","name":"kk的小窝","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="kk的小窝" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">标签</a></li><li class="is-active"><a href="#" aria-current="page">数据结构</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-11-06T14:23:46.000Z" title="2025/11/6 22:23:46">2025-11-06</time>发表</span><span class="level-item"><time dateTime="2026-04-04T07:55:31.301Z" title="2026/4/4 15:55:31">2026-04-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></span><span class="level-item">7 分钟读完 (大约1027个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2025/11/06/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework4/">南邮数据结构作业 - 第四章</a></p><div class="content"><h4 id="给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。"><a href="#给出如下稀疏矩阵，请设计一种高效的转置算法-根据设计思想-采用C-C-语言实现-给出注释-并给出运行及结果截图。" class="headerlink" title="给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。"></a>给出如下稀疏矩阵，请设计一种高效的转置算法,根据设计思想,采用C&#x2F;C++语言实现,给出注释;并给出运行及结果截图。</h4><p><img src="/images/86c33f9b/p1.png"></p>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>假设三元组表按照行优先存储稀疏矩阵的非零元素，稀疏矩阵A进行转置后的结果存储到稀疏矩阵B中。<br>实现快速转置算法需要借助两个一维数组<strong>num</strong>和<strong>sum</strong>，这两个数组的长度都为n（矩阵A的列数）</p>
+<p>数组<strong>num</strong>存储矩阵每一列的非零元素个数，通过三元组表统计原矩阵每一列的非零元素个数，<br>数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</p>
+<p>数组<strong>sum</strong>的元素 <strong>sum[i]</strong> 统计稀疏矩阵A中列号从<strong>0</strong>到<strong>i-1</strong>的非零元素总个数，<br><strong>sum[i]</strong> 的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</p>
+<p>因此只需要对稀疏矩阵A的行三元组表进行一次扫描就可以快速转置</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<p><strong>三元组和三元组表定义</strong></p>
+<p>稀疏矩阵可以转化为三元组表来压缩存储。三元组表记录稀疏矩阵中非零元素的三个特征：行坐标、列坐标和元素值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Term</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> col, row;        <span class="comment">//行坐标row和列坐标col</span></span><br><span class="line">    elemtype value;        <span class="comment">//元素值</span></span><br><span class="line">&#125;term;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SparseMatrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> m, n, t;        <span class="comment">//原矩阵的行数m和列数n，t为非零元素个数</span></span><br><span class="line">    term table[maxsize];    <span class="comment">//三元组表主体</span></span><br><span class="line">&#125;sparsematrix;</span><br></pre></td></tr></table></figure>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
+<p><strong>算法的代码实现</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">sparsematrix <span class="title function_">transpose</span><span class="params">(sparsematrix a)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num[C] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义辅助数组num和sum，长度均为稀疏矩阵a的列数</span></span><br><span class="line">    <span class="type">int</span> sum[C] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组num存储矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//通过三元组表a统计原矩阵每一列的非零元素个数</span></span><br><span class="line">        <span class="comment">//数组的下标i就代表原矩阵的第i列，对应的元素num[i]就代表非零元素个数</span></span><br><span class="line">        num[a.table[i].col]++;        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; C; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//数组sum存储矩阵a中列号从0到i-1的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//比如sum[3]就存储了列号从0到2的所有非零元素的个数</span></span><br><span class="line">        <span class="comment">//sum[i]的值决定了原矩阵中第i列的第一个非零元素在三元组表中的位置</span></span><br><span class="line">        <span class="comment">//比如sum[2]=4，说明第2列第一个非零元素在三元组表中的下标是4</span></span><br><span class="line">        sum[i] = sum[i - <span class="number">1</span>] + num[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sparsematrix b;</span><br><span class="line">    b.m = C;</span><br><span class="line">    b.n = R;</span><br><span class="line">    b.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> index = sum[a.table[i].col]++;</span><br><span class="line">        b.table[index].col = a.table[i].row;</span><br><span class="line">        b.table[index].row = a.table[i].col;</span><br><span class="line">        b.table[index].value = a.table[i].value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2025/11/06/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework4/" class="archive-article-date">
-  <time class="dt-published" datetime="2025-11-06T14:23:46.000Z" itemprop="datePublished">Nov 6</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/11/06/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework4/">南邮数据结构作业 - 第四章</a>
-    </h1>
-  
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxsize 100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C 6        <span class="comment">//矩阵的行数R和列数C</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R 6</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sparsematrix s;        <span class="comment">//定义三元组表s</span></span><br><span class="line"></span><br><span class="line">    s.m = R;            <span class="comment">//设置行数和列数，非零元素个数为7</span></span><br><span class="line">    s.n = C;</span><br><span class="line">    s.t = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m[R][C] = &#123; <span class="number">0</span> &#125;;    <span class="comment">//定义稀疏矩阵m并赋值</span></span><br><span class="line">    m[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-5</span>;</span><br><span class="line">    m[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">-2</span>;</span><br><span class="line">    m[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">-6</span>;</span><br><span class="line">    m[<span class="number">3</span>][<span class="number">1</span>] = <span class="number">-3</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">0</span>] = <span class="number">-7</span>;</span><br><span class="line">    m[<span class="number">4</span>][<span class="number">3</span>] = <span class="number">-4</span>;</span><br><span class="line">    m[<span class="number">5</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)        <span class="comment">//将稀疏矩阵存储到三元组表中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (m[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s.table[k].row = i;</span><br><span class="line">                s.table[k].col = j;</span><br><span class="line">                s.table[k].value = m[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出转置前的三元组表</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置前：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s = transpose(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n转置后：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.t; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, s.table[i].row, s.table[i].col, s.table[i].value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2025/11/05/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework3/" class="archive-article-date">
-  <time class="dt-published" datetime="2025-11-05T14:19:35.000Z" itemprop="datePublished">Nov 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/11/05/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework3/">南邮数据结构作业 - 第三章</a>
-    </h1>
-  
+<ul>
+<li><strong>运行结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">转置前：</span><br><span class="line">0 0 -5</span><br><span class="line">0 1 -2</span><br><span class="line">1 3 -6</span><br><span class="line">3 1 -3</span><br><span class="line">4 0 -7</span><br><span class="line">4 3 -4</span><br><span class="line">5 2 -1</span><br><span class="line"></span><br><span class="line">转置后：</span><br><span class="line">0 0 -5</span><br><span class="line">0 4 -7</span><br><span class="line">1 0 -2</span><br><span class="line">1 3 -3</span><br><span class="line">2 5 -1</span><br><span class="line">3 1 -6</span><br><span class="line">3 4 -4</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第四章作业\x64\Debug\第四章作业.exe (进程 34352)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-11-05T14:19:35.000Z" title="2025/11/5 22:19:35">2025-11-05</time>发表</span><span class="level-item"><time dateTime="2026-04-04T07:55:31.301Z" title="2026/4/4 15:55:31">2026-04-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></span><span class="level-item">8 分钟读完 (大约1219个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2025/11/05/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework3/">南邮数据结构作业 - 第三章</a></p><div class="content"><h4 id="用递归和非递归算法分别求解汉诺塔问题"><a href="#用递归和非递归算法分别求解汉诺塔问题" class="headerlink" title="用递归和非递归算法分别求解汉诺塔问题"></a>用递归和非递归算法分别求解汉诺塔问题</h4><blockquote>
+<p>这里首先声明，作者只理解了递归算法，非递归算法是用ai生成的</p>
+</blockquote>
+<ul>
+<li><strong>汉诺塔问题的递归算法</strong></li>
+</ul>
+<p>先分成两种情况：<br>1.如果这个塔只含有一个盘子，则直接将盘子移动到目标盘<br>2.如果这个塔含有n个盘子，那么将问题从“将最大的盘子n通过辅助柱移动到目标柱”<br>  转化为“将次大的盘子n-1通过辅助柱移动到目标柱”<br>然后对于情况二，算法步骤为：</p>
+<p>将n-1个盘子从起始柱移动到辅助柱</p>
+<p>将最大的盘子从起始柱移动到目标柱</p>
+<p>将n-1个盘子从辅助柱移动到目标柱</p>
+<ul>
+<li><strong>递归算法的代码实现</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">hanoi1</span><span class="params">(<span class="type">int</span> n, <span class="type">char</span> from, <span class="type">char</span> to, <span class="type">char</span> dest)</span> &#123;</span><br><span class="line">    <span class="comment">// 情况1：如果只有一个盘子，直接移动</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;盘子 1 从 %c 移动到 %c\n&quot;</span>, from, to);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 情况2的递归步骤：</span></span><br><span class="line">    <span class="comment">// 1. 将n-1个盘子从起始柱移动到辅助柱</span></span><br><span class="line">    hanoi1(n - <span class="number">1</span>, from, dest, to);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 将最大的盘子从起始柱移动到目标柱</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;盘子 %d 从 %c 移动到 %c\n&quot;</span>, n, from, to);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 将n-1个盘子从辅助柱移动到目标柱</span></span><br><span class="line">    hanoi1(n - <span class="number">1</span>, dest, to, from);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2025/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework2/" class="archive-article-date">
-  <time class="dt-published" datetime="2025-11-01T10:52:09.000Z" itemprop="datePublished">Nov 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework2/">南邮数据结构作业 - 第二章</a>
-    </h1>
-  
+<ul>
+<li><strong>汉诺塔问题的非递归算法</strong></li>
+</ul>
+<p>汉诺塔问题的非递归算法需要借助堆栈来实现<br>用三个堆栈代表三个柱子，然后根据盘子数量的奇偶性来决定盘子第一步的移动方向<br>偶数个盘子：起始柱-&gt;辅助柱, 起始柱-&gt;目标柱, 辅助柱-&gt;目标柱<br>奇数个盘子：起始柱-&gt;目标柱, 起始柱-&gt;辅助柱, 目标柱-&gt;辅助柱</p>
+<ul>
+<li><strong>非递归算法的代码实现</strong></li>
+</ul>
+<p><strong>定义堆栈</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> elemtype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">stack</span>&#123;</span></span><br><span class="line">    elemtype* element;</span><br><span class="line">    <span class="type">int</span> top;</span><br><span class="line">    <span class="type">int</span> maxsize;</span><br><span class="line">&#125; Stack;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+<p><strong>堆栈初始化</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Stack* <span class="title function_">createStack</span><span class="params">(<span class="type">int</span> maxsize)</span> &#123;</span><br><span class="line">    Stack* <span class="built_in">stack</span> = (Stack*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Stack));</span><br><span class="line">    <span class="built_in">stack</span>-&gt;element = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * maxsize);</span><br><span class="line">    <span class="built_in">stack</span>-&gt;top = <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">stack</span>-&gt;maxsize = maxsize;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">stack</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>移动盘子的辅助函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">moveDisk</span><span class="params">(Stack* stacks[], <span class="type">int</span> fromIdx, <span class="type">int</span> toIdx, <span class="type">char</span> fromChar, <span class="type">char</span> toChar, <span class="type">char</span> auxChar)</span> &#123;</span><br><span class="line">    <span class="type">char</span> poleNames[<span class="number">3</span>] = &#123; fromChar, auxChar, toChar &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查从fromIdx移动到toIdx是否合法</span></span><br><span class="line">    <span class="keyword">if</span> (stacks[fromIdx]-&gt;top &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">        (stacks[toIdx]-&gt;top &lt; <span class="number">0</span> ||</span><br><span class="line">            stacks[fromIdx]-&gt;element[stacks[fromIdx]-&gt;top] &lt; stacks[toIdx]-&gt;element[stacks[toIdx]-&gt;top])) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> disk = stacks[fromIdx]-&gt;element[stacks[fromIdx]-&gt;top--];</span><br><span class="line">        stacks[toIdx]-&gt;element[++stacks[toIdx]-&gt;top] = disk;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;将盘子 %d 从 %c 移动到 %c\n&quot;</span>, disk, poleNames[fromIdx], poleNames[toIdx]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 检查从toIdx移动到fromIdx是否合法</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (stacks[toIdx]-&gt;top &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">        (stacks[fromIdx]-&gt;top &lt; <span class="number">0</span> ||</span><br><span class="line">            stacks[toIdx]-&gt;element[stacks[toIdx]-&gt;top] &lt; stacks[fromIdx]-&gt;element[stacks[fromIdx]-&gt;top])) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> disk = stacks[toIdx]-&gt;element[stacks[toIdx]-&gt;top--];</span><br><span class="line">        stacks[fromIdx]-&gt;element[++stacks[fromIdx]-&gt;top] = disk;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;将盘子 %d 从 %c 移动到 %c\n&quot;</span>, disk, poleNames[toIdx], poleNames[fromIdx]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E8%AF%B4/">小说</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a></li></ul>
-    </div>
-  </div>
+<p><strong>非递归算法实现</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">hanoi2</span><span class="params">(<span class="type">int</span> n, <span class="type">char</span> from, <span class="type">char</span> to, <span class="type">char</span> aux)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用三个堆栈来表示三个柱子</span></span><br><span class="line">    Stack* stacks[<span class="number">3</span>];</span><br><span class="line">    stacks[<span class="number">0</span>] = createStack(n);  <span class="comment">// 起始柱A</span></span><br><span class="line">    stacks[<span class="number">1</span>] = createStack(n);  <span class="comment">// 辅助柱B  </span></span><br><span class="line">    stacks[<span class="number">2</span>] = createStack(n);  <span class="comment">// 目标柱C</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化起始柱，最大的盘子在底部</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">        stacks[<span class="number">0</span>]-&gt;element[++stacks[<span class="number">0</span>]-&gt;top] = i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 总移动次数</span></span><br><span class="line">    <span class="type">int</span> totalMoves = (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>;  <span class="comment">// 2^n - 1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据盘子数量的奇偶性决定第一步的移动方向</span></span><br><span class="line">    <span class="type">char</span> src = <span class="number">0</span>, dest, temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 偶数个盘子：A-&gt;B, A-&gt;C, B-&gt;C</span></span><br><span class="line">        dest = <span class="number">1</span>;</span><br><span class="line">        temp = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 奇数个盘子：A-&gt;C, A-&gt;B, C-&gt;B</span></span><br><span class="line">        dest = <span class="number">2</span>;</span><br><span class="line">        temp = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> move = <span class="number">1</span>; move &lt;= totalMoves; move++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (move % <span class="number">3</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 在src和dest之间移动</span></span><br><span class="line">            moveDisk(stacks, src, dest, from, to, aux);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (move % <span class="number">3</span> == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="comment">// 在src和temp之间移动</span></span><br><span class="line">            moveDisk(stacks, src, temp, from, to, aux);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 在dest和temp之间移动</span></span><br><span class="line">            moveDisk(stacks, dest, temp, from, to, aux);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>main函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入汉诺塔的盘子数量：&quot;</span>);</span><br><span class="line">    scanf_s(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;汉诺塔的移动步骤：\n&quot;</span>);</span><br><span class="line">    hanoi1(n, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;B&#x27;</span>);  <span class="comment">// 递归算法：A是起始柱，C是目标柱，B是辅助柱</span></span><br><span class="line">    <span class="comment">//hanoi2(n, &#x27;A&#x27;, &#x27;C&#x27;, &#x27;B&#x27;);   // 非递归算法：A是起始柱，C是目标柱，B是辅助柱</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/" rel="tag">Github Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sakura-Frp/" rel="tag">Sakura Frp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ide/" rel="tag">ide</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test-post/" rel="tag">test post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="tag">个人博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/" rel="tag">内核编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="tag">学习记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA/" rel="tag">安卓刷机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/" rel="tag">我的世界</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag">版本管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li></ul>
-    </div>
-  </div>
+<ul>
+<li><strong>运行结果（递归算法和非递归算法的结果相同）</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">请输入汉诺塔的盘子数量：4</span><br><span class="line">汉诺塔的移动步骤：</span><br><span class="line">盘子 1 从 A 移动到 B</span><br><span class="line">盘子 2 从 A 移动到 C</span><br><span class="line">盘子 1 从 B 移动到 C</span><br><span class="line">盘子 3 从 A 移动到 B</span><br><span class="line">盘子 1 从 C 移动到 A</span><br><span class="line">盘子 2 从 C 移动到 B</span><br><span class="line">盘子 1 从 A 移动到 B</span><br><span class="line">盘子 4 从 A 移动到 C</span><br><span class="line">盘子 1 从 B 移动到 C</span><br><span class="line">盘子 2 从 B 移动到 A</span><br><span class="line">盘子 1 从 C 移动到 A</span><br><span class="line">盘子 3 从 B 移动到 C</span><br><span class="line">盘子 1 从 A 移动到 B</span><br><span class="line">盘子 2 从 A 移动到 C</span><br><span class="line">盘子 1 从 B 移动到 C</span><br><span class="line"></span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第三章作业\x64\Debug\第三章作业.exe (进程 36636)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-11-01T10:52:09.000Z" title="2025/11/1 18:52:09">2025-11-01</time>发表</span><span class="level-item"><time dateTime="2026-04-04T07:55:31.301Z" title="2026/4/4 15:55:31">2026-04-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></span><span class="level-item">9 分钟读完 (大约1398个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2025/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/NJUPT-SJJG-homework2/">南邮数据结构作业 - 第二章</a></p><div class="content"><h4 id="第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。"><a href="#第一题：设计算法-将一个带头结点的单链表A分解为两个带头结点的单链表A和B-使得A表中含有原表中序号为奇数的元素-而B表中含有原表中序号为偶数的元素-且保持其相对顺序不变。" class="headerlink" title="第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。"></a>第一题：设计算法,将一个带头结点的单链表A分解为两个带头结点的单链表A和B,使得A表中含有原表中序号为奇数的元素,而B表中含有原表中序号为偶数的元素,且保持其相对顺序不变。</h4><ul>
+<li><p><strong>算法思想</strong><br>要求是将单链表中序号奇数和偶数的元素分到两个单链表中，所以创建两个带头结点的单链表M和N，其中M储存原来序号为奇数的元素，N储存原来序号为偶数的元素。<br>然后遍历原链表A，当序号为奇数的时候，将对应的元素存储到M，序号为偶数的时候存储到N，添加元素的位置均为链表的末尾。<br>要考虑元素之间相对顺序不变，所以还要另外定义两个int变量m和n代表链表M和N的下标，每添加一个元素，下标就加1</p>
+</li>
+<li><p><strong>代码实现</strong></p>
+</li>
+</ul>
+<p><strong>结点定义</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemType element;        <span class="comment">//结点的数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">link</span>;</span>        <span class="comment">//结点的指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
 
+<p><strong>带头结点的单链表定义</strong>，head作为头节点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">headerList</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    <span class="type">int</span> n;        <span class="comment">//单链表的长度n</span></span><br><span class="line">&#125;HeaderList;</span><br></pre></td></tr></table></figure>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">C语言</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Sakura-Frp/" style="font-size: 10px;">Sakura Frp</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/test/" style="font-size: 15px;">test</a> <a href="/tags/test-post/" style="font-size: 10px;">test post</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">个人博客</a> <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/" style="font-size: 20px;">内核编译</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 10px;">内网穿透</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 20px;">学习记录</a> <a href="/tags/%E5%AE%89%E5%8D%93/" style="font-size: 20px;">安卓</a> <a href="/tags/%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">安卓刷机</a> <a href="/tags/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/" style="font-size: 10px;">我的世界</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 20px;">杂谈</a> <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" style="font-size: 10px;">版本管理</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">编辑器</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 15px;">转载</a>
-    </div>
-  </div>
+<p><strong>初始化运算</strong>：生成空表</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Init</span><span class="params">(HeaderList* h)</span></span><br><span class="line">&#123;</span><br><span class="line">    h-&gt;head = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));        <span class="comment">//生成表头结点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!h-&gt;head)            <span class="comment">//表头结点为空返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    h-&gt;head-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">    h-&gt;n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li></ul>
-    </div>
-  </div>
+<p><strong>查找运算</strong>：根据下标i查找元素，并通过x返回值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(HeaderList L, <span class="type">int</span> i, ElemType* x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; L.n<span class="number">-1</span>)        <span class="comment">//对i进行越界检查</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L.head-&gt;link;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)            <span class="comment">//从头结点开始查找下标i的元素</span></span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    *x = p-&gt;element;                <span class="comment">//通过x返回元素值（传地址）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>插入运算</strong>：根据下标i插入元素x</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(HeaderList* h, <span class="type">int</span> i, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p, * q;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">-1</span> || i&gt;h-&gt;n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = h-&gt;head;                      <span class="comment">//从头结点开始找a(i)元素所在的结点p</span></span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= i; j++)</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line"></span><br><span class="line">    q = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//生成新结点q</span></span><br><span class="line"></span><br><span class="line">    q-&gt;element = x;                    <span class="comment">//将元素x赋值到新结点q</span></span><br><span class="line">    q-&gt;link = p-&gt;link;              <span class="comment">//将新结点q插在p之后</span></span><br><span class="line">    p-&gt;link = q;</span><br><span class="line">    h-&gt;n++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/04/04/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/">编译过程中遇到的各种问题（持续更新）</a>
-          </li>
-        
-          <li>
-            <a href="/2026/03/31/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Git%E5%88%86%E6%94%AF%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">Git分支版本管理</a>
-          </li>
-        
-          <li>
-            <a href="/2025/11/24/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/VS-Code-%E9%85%8D%E7%BD%AE-C-C-%E7%BC%96%E7%A8%8B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%88%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%89/">VS Code 配置 C/C++ 编程运行环境（保姆级教程）</a>
-          </li>
-        
-          <li>
-            <a href="/2025/11/17/%E6%9D%82%E8%B0%88/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">关于学习</a>
-          </li>
-        
-          <li>
-            <a href="/2025/11/12/%E6%9D%82%E8%B0%88/%E5%85%B3%E4%BA%8E%E5%81%9A%E6%A2%A6/">关于做梦</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<p><strong>输出运算</strong>：输出链表的所有元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Output</span><span class="params">(HeaderList* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    Node* p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!L-&gt;n)                        <span class="comment">//判空运算</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    p = L-&gt;head-&gt;link;</span><br><span class="line">    <span class="keyword">while</span> (p)                        <span class="comment">//依次输出每个元素</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;element);</span><br><span class="line">        p = p-&gt;link;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+<p><strong>主程序步骤</strong><br>1.先生成原链表A和待存储链表M和N，以及对应的下标m和n<br>  (M储存原来序号为奇数的元素，N储存原来序号为偶数的元素)<br>2.使用查找运算遍历链表A，用变量x存储返回值<br>3.用if语句根据下标的奇偶性将a插入链表M和N中<br>4.当链表A遍历完成后，输出链表A、M和N，验证程序是否有错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HeaderList A, M, N;</span><br><span class="line">    <span class="type">int</span> i, m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    Init(&amp;A);        <span class="comment">//初始化链表</span></span><br><span class="line">    Init(&amp;M);</span><br><span class="line">    Init(&amp;N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)        <span class="comment">//给链表A插入0~9</span></span><br><span class="line">        Insert(&amp;A, i - <span class="number">1</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原List:&quot;</span>);    <span class="comment">//输出链表A</span></span><br><span class="line">    Output(&amp;A);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Find(A, i, &amp;x);            <span class="comment">//用查找运算遍历链表A，用x存储返回值</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;M, m - <span class="number">1</span>, x);    <span class="comment">//下标为奇数时，将元素添加至链表M</span></span><br><span class="line">            m++;    <span class="comment">//m表示链表M的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Insert(&amp;N, n - <span class="number">1</span>, x);    <span class="comment">//下标为偶数时，加元素添加至链表N</span></span><br><span class="line">            n++;    <span class="comment">//n表示链表N的下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（奇数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;M);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nList（偶数下标）:&quot;</span>);</span><br><span class="line">    Output(&amp;N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+<ul>
+<li><strong>输出结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">原List:0 1 2 3 4 5 6 7 8</span><br><span class="line">List（奇数下标）:1 3 5 7</span><br><span class="line">List（偶数下标）:0 2 4 6 8</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 12624)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
 
+<hr>
+<h4 id="第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O"><a href="#第二题：设将n-n-1-个整数存放到一维数组R中-设计一个算法-将R中保存的序列循环左移p-O" class="headerlink" title="第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。"></a>第二题：设将n(n&gt;1)个整数存放到一维数组R中,设计一个算法,将R中保存的序列循环左移p(O&lt;p&lt;n)个位置,即将R中的数据由(r0, r1,…,rn-1)变换为(rp,rp+1,…,rn-1,r0,r1,…,rp-1)。</h4><blockquote>
+<p>首先声明，作者的做法大概率是错的，这一题的做法应该使用循环链表</p>
+</blockquote>
+<ul>
+<li><strong>算法思想</strong></li>
+</ul>
+<p>要将n个整数存放到一维数组而且能左移n个位置，就要先定义一个长度至少为2n的数组<br>因为是将元素左移，所以将元素内容储存在数组下标较大的一端<br>然后从第一个元素开始遍历数组R，将下标为i的元素和下标为i-p的元素交换<br>最后输出数组，验证算法是否成功</p>
+<ul>
+<li><strong>代码实现</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 14        <span class="comment">//n为7，所以数组最大长度N应该至少为14</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="type">int</span> R[N] = &#123; <span class="number">0</span> &#125;;        <span class="comment">//定义一维数组R</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//将n个整数存放到R中</span></span><br><span class="line">        R[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;数组下标：&quot;</span>);        <span class="comment">//输出下标</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之前：&quot;</span>);        <span class="comment">//输出移动元素前下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> p = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = N - n; i &lt; N; i++)        <span class="comment">//从第一个元素开始交换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p &gt; n || p &lt; <span class="number">0</span>)        <span class="comment">//保证0&lt;p&lt;n，超出范围跳出循环</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;不能这么移动！&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        temp = R[i - p];</span><br><span class="line">        R[i - p] = R[i];</span><br><span class="line">        R[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n移动之后：&quot;</span>);        <span class="comment">//输出移动元素后下标对应的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, R[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+<ul>
+<li><strong>输出结果</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">数组下标：0     1       2       3       4       5       6       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之前：0     0       0       0       0       0       0       7       8       9       10      11      12      13</span><br><span class="line"></span><br><span class="line">移动之后：0     0       7       8       9       10      11      12      13      0       0       0       0       0</span><br><span class="line">E:\Buildings\c\数据结构与算法作业\第二章作业\x64\Debug\第二章作业.exe (进程 7828)已退出，代码为 0 (0x0)。</span><br><span class="line">要在调试停止时自动关闭控制台，请启用“工具”-&gt;“选项”-&gt;“调试”-&gt;“调试停止时自动关闭控制台”。</span><br><span class="line">按任意键关闭此窗口. . .</span><br></pre></td></tr></table></figure>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://picui.ogmua.cn/s1/2026/03/15/69b6681501b62.webp" alt="kk3TWT"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">kk3TWT</p><p class="is-size-6 is-block">爱来自NJUPT</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">16</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/CMCC-114514" target="_blank" rel="me noopener">关注我</a></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><span class="level-start"><span class="level-item">学习记录</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B0%8F%E8%AF%B4/"><span class="level-start"><span class="level-item">小说</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9D%82%E8%B0%88/"><span class="level-start"><span class="level-item">杂谈</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="level-start"><span class="level-item">测试</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-04-04T08:37:02.104Z">2026-04-04</time></p><p class="title"><a href="/2026/04/04/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/">编译过程中遇到的各种问题（持续更新）</a></p><p class="categories"><a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-03-31T09:23:23.000Z">2026-03-31</time></p><p class="title"><a href="/2026/03/31/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Git%E5%88%86%E6%94%AF%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">Git分支版本管理</a></p><p class="categories"><a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-24T14:54:55.000Z">2025-11-24</time></p><p class="title"><a href="/2025/11/24/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/VS-Code-%E9%85%8D%E7%BD%AE-C-C-%E7%BC%96%E7%A8%8B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%88%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%89/">VS Code 配置 C/C++ 编程运行环境（保姆级教程）</a></p><p class="categories"><a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-17T05:19:56.000Z">2025-11-17</time></p><p class="title"><a href="/2025/11/17/%E6%9D%82%E8%B0%88/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">关于学习</a></p><p class="categories"><a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-12T15:35:12.000Z">2025-11-12</time></p><p class="title"><a href="/2025/11/12/%E6%9D%82%E8%B0%88/%E5%85%B3%E4%BA%8E%E5%81%9A%E6%A2%A6/">关于做梦</a></p><p class="categories"><a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="kk的小窝" height="28"></a><p class="is-size-7"><span>&copy; 2026 kk3TWT</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
