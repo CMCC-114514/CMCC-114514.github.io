@@ -1,139 +1,250 @@
-/* eslint-disable node/no-unsupported-features/node-builtins */
-(function($, moment, ClipboardJS, config) {
-    $('.article img:not(".not-gallery-item")').each(function() {
-        // wrap images with link and add caption if possible
-        if ($(this).parent('a').length === 0) {
-            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
-            if (this.alt) {
-                $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
-            }
-        }
+/* main function */
+import initBookmarkNav from "./layouts/bookmarkNav.js";
+import initCategoryList from "./layouts/categoryList.js";
+import initEssays from "./layouts/essays.js";
+import initHomeBanner from "./layouts/homeBanner.js";
+import initLazyLoad from "./layouts/lazyload.js";
+import { initTOC } from "./layouts/toc.js";
+import { navbarShrink } from "./layouts/navbarShrink.js";
+import initMasonry from "./plugins/masonry.js";
+import initMermaid from "./plugins/mermaid.js";
+import initPangu from "./plugins/pangu.js";
+import initTabs from "./plugins/tabs.js";
+import initTyped from "./plugins/typed.js";
+import initCopyCode from "./tools/codeBlock.js";
+import initExpirationDate from "./tools/expirationDate.js";
+import initModeToggle from "./tools/lightDarkSwitch.js";
+import {
+  initLocalSearchGlobals,
+  initLocalSearchPage,
+} from "./tools/localSearch.js";
+import initFooterRuntime from "./tools/runtime.js";
+import initScrollTopBottom from "./tools/scrollTopBottom.js";
+import initImageViewer from "./tools/imageViewer.js";
+import { initTocToggle } from "./tools/tocToggle.js";
+import { initUtilsGlobals, initUtilsPage } from "./utils.js";
+import {
+  onBeforeContentReplace,
+  onPageView,
+  onReady,
+  onVisitStart,
+} from "./app/lifecycle.js";
+import { abortPageScope, createPageScope, getAppSignal } from "./app/pageScope.js";
+import {
+  getStyleStatus,
+  setStyleStatus,
+  styleStatus,
+} from "./state/styleStatus.js";
+
+const safeRun = (label, callback) => {
+  try {
+    callback();
+  } catch (error) {
+    console.error(`[redefine] ${label} failed:`, error);
+  }
+};
+
+const pageRefreshEvent = "redefine:page:refresh";
+let globalsInitialized = false;
+let didInitRefreshEvent = false;
+
+const initGlobalsOnce = () => {
+  if (globalsInitialized) {
+    return;
+  }
+
+  globalsInitialized = true;
+  const appSignal = getAppSignal();
+
+  safeRun("utils:globals", () => {
+    initUtilsGlobals({ signal: appSignal });
+  });
+  safeRun("navbar:globals", () => {
+    navbarShrink.initGlobals({ signal: appSignal });
+  });
+  safeRun("tocToggle:globals", () => {
+    initTocToggle({ signal: appSignal });
+  });
+  safeRun("scrollTopBottom:globals", () => {
+    initScrollTopBottom({ signal: appSignal });
+  });
+  safeRun("tabs:globals", () => {
+    initTabs({ signal: appSignal });
+  });
+  safeRun("categoryList:globals", () => {
+    initCategoryList({ signal: appSignal });
+  });
+  safeRun("localSearch:globals", () => {
+    initLocalSearchGlobals({ signal: appSignal });
+  });
+
+  if (!didInitRefreshEvent) {
+    didInitRefreshEvent = true;
+    window.addEventListener(pageRefreshEvent, () => {
+      initPage();
     });
+  }
+};
 
-    if (typeof $.fn.lightGallery === 'function') {
-        $('.article').lightGallery({ selector: '.gallery-item' });
+const initPage = () => {
+  const pageSignal = createPageScope();
+  const appSignal = getAppSignal();
+
+  safeRun("utils:page", () => {
+    initUtilsPage({ signal: pageSignal });
+  });
+  safeRun("homeBanner", () => {
+    initHomeBanner({ signal: pageSignal });
+  });
+  safeRun("expirationDate", () => {
+    initExpirationDate();
+  });
+  safeRun("modeToggle", () => {
+    initModeToggle({ signal: pageSignal, appSignal });
+  });
+  safeRun("imageViewer", () => {
+    initImageViewer({ signal: pageSignal, appSignal });
+  });
+
+  navbarShrink.setNavigating(false);
+  navbarShrink.refresh();
+
+  safeRun("footerRuntime", () => {
+    if (theme.footer?.runtime) {
+      initFooterRuntime();
     }
-    if (typeof $.fn.justifiedGallery === 'function') {
-        if ($('.justified-gallery > p > .gallery-item').length) {
-            $('.justified-gallery > p > .gallery-item').unwrap();
-        }
-        $('.justified-gallery').justifiedGallery();
+  });
+
+  safeRun("toc", () => {
+    if (theme.articles?.toc?.enable) {
+      initTOC({ signal: appSignal });
     }
+  });
 
-    if (typeof moment === 'function') {
-        $('.article-meta time').each(function() {
-            $(this).text(moment($(this).attr('datetime')).fromNow());
-        });
+  safeRun("tabs", () => {
+    if (theme.articles?.toc?.enable) {
+      initTabs({ signal: appSignal });
     }
+  });
 
-    $('.article > .content > table').each(function() {
-        if ($(this).width() > $(this).parent().width()) {
-            $(this).wrap('<div class="table-overflow"></div>');
-        }
-    });
-
-    function adjustNavbar() {
-        const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
-        if ($(document).outerWidth() < navbarWidth) {
-            $('.navbar-main .navbar-menu').addClass('justify-content-start');
-        } else {
-            $('.navbar-main .navbar-menu').removeClass('justify-content-start');
-        }
+  safeRun("essays", () => {
+    if (typeof moment !== "undefined") {
+      initEssays();
     }
-    adjustNavbar();
-    $(window).resize(adjustNavbar);
+  });
 
-    function toggleFold(codeBlock, isFolded) {
-        const $toggle = $(codeBlock).find('.fold i');
-        !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
-        !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
-        !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
+  safeRun("pangu", () => {
+    if (theme.articles?.pangu_js) {
+      initPangu();
     }
+  });
 
-    function createFoldButton(fold) {
-        return '<span class="fold">' + (fold === 'unfolded' ? '<i class="fas fa-angle-down"></i>' : '<i class="fas fa-angle-right"></i>') + '</span>';
+  safeRun("mermaid", () => {
+    if (theme.plugins?.mermaid?.enable) {
+      initMermaid();
     }
+  });
 
-    $('figure.highlight table').wrap('<div class="highlight-body">');
-    if (typeof config !== 'undefined'
-        && typeof config.article !== 'undefined'
-        && typeof config.article.highlight !== 'undefined') {
+  safeRun("masonry", () => {
+    initMasonry({ signal: pageSignal });
+  });
 
-        $('figure.highlight').addClass('hljs');
-        $('figure.highlight .code .line span').each(function() {
-            const classes = $(this).attr('class').split(/\s+/);
-            for (const cls of classes) {
-                $(this).addClass('hljs-' + cls);
-                $(this).removeClass(cls);
-            }
-        });
+  safeRun("typed", () => {
+    const subtitleConfig = theme.home_banner?.subtitle || {};
+    const subtitleText = subtitleConfig.text;
+    const subtitleEntries = Array.isArray(subtitleText)
+      ? subtitleText
+      : subtitleText
+        ? [subtitleText]
+        : [];
+    const shouldInitTyped =
+      subtitleEntries.length !== 0 ||
+      (subtitleConfig.hitokoto && subtitleConfig.hitokoto.enable);
 
-
-        const clipboard = config.article.highlight.clipboard;
-        const fold = config.article.highlight.fold.trim();
-
-        $('figure.highlight').each(function() {
-            if ($(this).find('figcaption').length) {
-                $(this).find('figcaption').addClass('level is-mobile');
-                $(this).find('figcaption').append('<div class="level-left">');
-                $(this).find('figcaption').append('<div class="level-right">');
-                $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
-                $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
-            } else {
-                if (clipboard || fold) {
-                    $(this).prepend('<figcaption class="level is-mobile"><div class="level-left"></div><div class="level-right"></div></figcaption>');
-                }
-            }
-        });
-
-        if (typeof ClipboardJS !== 'undefined' && clipboard) {
-            $('figure.highlight').each(function() {
-                const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
-                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
-                $(this).attr('id', id);
-                $(this).find('figcaption div.level-right').append(button);
-            });
-            new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
-        }
-
-        if (fold) {
-            $('figure.highlight').each(function() {
-                $(this).addClass('foldable'); // add 'foldable' class as long as fold is enabled
-
-                if ($(this).find('figcaption').find('span').length > 0) {
-                    const span = $(this).find('figcaption').find('span');
-                    if (span[0].innerText.indexOf('>folded') > -1) {
-                        span[0].innerText = span[0].innerText.replace('>folded', '');
-                        $(this).find('figcaption div.level-left').prepend(createFoldButton('folded'));
-                        toggleFold(this, true);
-                        return;
-                    }
-                }
-                $(this).find('figcaption div.level-left').prepend(createFoldButton(fold));
-                toggleFold(this, fold === 'folded');
-            });
-
-            $('figure.highlight figcaption .level-left').click(function() {
-                const $code = $(this).closest('figure.highlight');
-                toggleFold($code.eq(0), !$code.hasClass('folded'));
-            });
-        }
+    if (shouldInitTyped && location.pathname === config.root) {
+      initTyped("subtitle");
     }
+  });
 
-    const $toc = $('#toc');
-    if ($toc.length > 0) {
-        const $mask = $('<div>');
-        $mask.attr('id', 'toc-mask');
-
-        $('body').append($mask);
-
-        function toggleToc() { // eslint-disable-line no-inner-declarations
-            $toc.toggleClass('is-active');
-            $mask.toggleClass('is-active');
-        }
-
-        $toc.on('click', toggleToc);
-        $mask.on('click', toggleToc);
-        $('.navbar-main .catalogue').on('click', toggleToc);
+  safeRun("localSearch", () => {
+    if (theme.navbar?.search?.enable === true) {
+      initLocalSearchPage();
     }
-}(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
+  });
+
+  safeRun("copyCode", () => {
+    if (theme.articles?.code_block?.copy === true) {
+      initCopyCode();
+    }
+  });
+
+  safeRun("lazyload", () => {
+    if (theme.articles?.lazyload === true) {
+      initLazyLoad();
+    }
+  });
+
+  safeRun("bookmarkNav", () => {
+    if (theme.bookmarks && theme.bookmarks.length !== 0) {
+      initBookmarkNav({ signal: appSignal });
+    }
+  });
+
+  safeRun("categoryList", () => {
+    initCategoryList();
+  });
+};
+
+const teardownPage = () => {
+  abortPageScope();
+};
+
+export const main = {
+  themeInfo: {
+    theme: `Redefine v${theme.version}`,
+    author: "EvanNotFound",
+    repository: "https://github.com/EvanNotFound/hexo-theme-redefine",
+  },
+  styleStatus,
+  getStyleStatus,
+  setStyleStatus,
+  printThemeInfo: () => {
+    console.log(`
+  +======================================================================================+
+  |                                                                                      |
+  |    _____ _   _ _____ __  __ _____   ____  _____ ____  _____ _____ ___ _   _ _____    |
+  |   |_   _| | | | ____|  \\/  | ____| |  _ \\| ____|  _ \\| ____|  ___|_ _| \\ | | ____|   |
+  |     | | | |_| |  _| | |\\/| |  _|   | |_) |  _| | | | |  _| | |_   | ||  \\| |  _|     |
+  |     | | |  _  | |___| |  | | |___  |  _ <| |___| |_| | |___|  _|  | || |\\  | |___    |
+  |     |_| |_| |_|_____|_|  |_|_____| |_| \\_\\_____|____/|_____|_|   |___|_| \\_|_____|   |
+  |                                                                                      |
+  |                  https://github.com/EvanNotFound/hexo-theme-redefine                 |
+  +======================================================================================+
+                  `,
+    ); // console log message
+  },
+  refresh: () => {
+    initPage();
+  },
+};
+
+export function initMain() {
+  main.printThemeInfo();
+}
+
+onReady(() => {
+  initMain();
+  initGlobalsOnce();
+});
+
+onPageView(() => {
+  initPage();
+});
+
+onBeforeContentReplace(() => {
+  teardownPage();
+});
+
+onVisitStart(() => {
+  navbarShrink.setNavigating(true);
+});
