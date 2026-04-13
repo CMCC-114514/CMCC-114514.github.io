@@ -1,7 +1,9 @@
 ---
 title: 使用SakuraFrp实现mc的流畅联机
 description: 玩ow破防之后，我又开始玩起mc......
-categories: 学习记录
+categories: 
+  - 学习记录
+    - 其他
 abbrlink: a4b13916
 date: 2025-09-13 19:40:09
 tags:

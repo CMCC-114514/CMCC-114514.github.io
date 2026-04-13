@@ -1,14 +1,16 @@
 ---
 title: Spring配置文件
 hidden: false
-categories: Spring学习
+categories: 
+  - 学习记录
+    - Spring框架
 tags:
   - Spring
   - Java
 abbrlink: 84072a14
 date: 2026-04-05 19:03:38
 ---
-#### 一、Bean 标签
+### Bean 标签
 
 ```xml
 <bean id="userDao" class="kk3twt.implement1.UserDaoImplement"></bean>
@@ -22,7 +24,7 @@ date: 2026-04-05 19:03:38
 
 -  `class` 标识：表示 `Bean` 的全限定名
 
-#### 二、Bean 的范围配置
+### Bean 的范围配置
 
 `Bean` 标签使用 `scope` 标识配置范围，
 
@@ -44,7 +46,7 @@ date: 2026-04-05 19:03:38
 
 **而使用 `prototype` 配置 `scope` 的时候**，`Bean` 的对象在执行 `getBean` 方法之后才会创建，而且执行一次 `getBean` 就创建一个对象
 
-#### 三、Bean 的生命周期配置
+### Bean 的生命周期配置
 
 如果在 `Bean` 的类中定义了初始化或销毁方法，可以使用 `init-method` 标签和 `destroy-method` 标签指明对应的方法
 
@@ -55,7 +57,7 @@ date: 2026-04-05 19:03:38
       init-method="init" destroy-method="destroy"></bean>
 ```
 
-#### 四、Bean实例化的三种方式
+### Bean实例化的三种方式
 
 - 无参构造方法（默认）
 

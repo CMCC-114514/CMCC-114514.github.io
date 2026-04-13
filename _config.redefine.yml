@@ -131,8 +131,8 @@ home_banner:
   style: fixed # static or fixed
   # Home banner image
   image: 
-    light: /images/wallhaven-wqery6-light.webp # light mode
-    dark: /images/wallhaven-wqery6-dark.webp # dark mode
+    light: /images/wallhaven-wqery6-light.png # light mode
+    dark: /images/wallhaven-wqery6-dark.png # dark mode
   # Home banner title
   title: “岁月更迭间，神明会将智慧留在你身旁。”
   # Home banner subtitle
@@ -180,6 +180,8 @@ home_banner:
         url: https://github.com/CMCC-114514
       - icon: fa-brands fa-bilibili
         url: https://space.bilibili.com/456982439
+      - icon: fa-brands fa-qq
+        url: https://qm.qq.com/q/Ivfx847mUe
       - icon: twitter
         url: https://x.com/Forrest81780021
       - icon: email
@@ -413,7 +415,7 @@ comment:
 # Docs: https://redefine-docs.ohevan.com/footer
 footer:
   # Show website running time
-  runtime: true # show website running time or not
+  runtime: false # show website running time or not
   # Icon in footer, write fontawesome icon code here
   icon: '<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>'
   # The start time of the website, format: YYYY/MM/DD HH:mm:ss

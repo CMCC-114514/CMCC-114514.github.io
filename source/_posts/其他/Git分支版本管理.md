@@ -2,7 +2,9 @@
 title: Git分支版本管理
 hidden: false
 description: Git分支版本管理
-categories: 学习记录
+categories: 
+  - 学习记录
+    - 其他
 tags:
   - Git
   - 版本管理

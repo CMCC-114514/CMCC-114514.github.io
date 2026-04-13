@@ -1,7 +1,9 @@
 ---
 title: 使用dd命令提取boot
 description: 一直忘记怎么操作，所以写这篇教程方便查找顺便防止忘记（说白了不就是不会）
-categories: 学习记录
+categories: 
+  - 学习记录
+    - 其他
 abbrlink: e8bec2d1
 date: 2025-09-22 20:19:23
 tags: 

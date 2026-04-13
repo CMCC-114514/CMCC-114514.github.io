@@ -2,7 +2,9 @@
 title: 用gcc编译老内核
 date: 2025-09-09 16:00:19
 description: 用gcc编译老内核，比如4.4.x版本的内核
-categories: 学习记录
+categories: 
+  - 学习记录
+    - 其他
 abbrlink: 50843
 tags:
   - 内核编译

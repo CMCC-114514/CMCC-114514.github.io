@@ -1,7 +1,9 @@
 ---
 title: 为非gki内核添加KernelSU支持
 description: 手把手教你如何集成kernelsu
-categories: 学习记录
+categories: 
+  - 学习记录
+    - 其他
 abbrlink: 57133
 date: 2025-09-09 22:35:03
 tags:
@@ -54,7 +56,7 @@ https://git.drg.fi/drgreen/android_kernel_oneplus_sm8250.git
 
 - 下载所需的交叉编译器
 
-​ 由于这个内核自带了编译脚本，所以我们就根据脚本里的的clang版本下载(至于编译脚本我后面再说)
+ 由于这个内核自带了编译脚本，所以我们就根据脚本里的的clang版本下载(至于编译脚本我后面再说)
 **当然，其实我更推荐第三方的*clang*，因为比较省事**比如：[ZyC clang](https://github.com/ZyCromerZ/Clang) 、[proton-clang](https://github.com/kdrag0n/proton-clang) 或者[clang-build-catalogue](https://github.com/Neutron-Toolchains/clang-build-catalogue)
 使用方法也都差不多，当然你也可以使用谷歌官方的clang不过第三方有的更省事直接用就完事了
 
