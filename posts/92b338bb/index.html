@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/posts/0/"/>
+    <link rel="canonical" href="http://example.com/posts/92b338bb/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,14 +87,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kk的小窝">
-<meta property="og:url" content="http://example.com/posts/0/index.html">
+<meta property="og:title" content="Android中的权限">
+<meta property="og:url" content="http://example.com/posts/92b338bb/index.html">
 <meta property="og:site_name" content="kk的小窝">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-04-12T10:58:36.756Z">
-<meta property="article:modified_time" content="2026-04-12T11:28:39.359Z">
+<meta property="article:published_time" content="2026-04-13T04:23:07.000Z">
+<meta property="article:modified_time" content="2026-04-13T04:25:08.520Z">
 <meta property="article:author" content="kk3TWT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -109,9 +109,9 @@
     
     <title>
         
-            kk的小窝 - 我将进入天空之城
+            Android中的权限 | kk的小窝
         
-    </title>
+    </title><meta name="robots" content="noindex">
 
     
 <link rel="stylesheet" href="/fonts/Chillax/chillax.css">
@@ -409,7 +409,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -432,7 +432,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Android中的权限</h1>
 			</div>
 			
 		</div>
@@ -453,15 +453,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-04-12 18:58:36</span>
-        <span class="mobile">2026-04-12 18:58:36</span>
+        <span class="desktop">2026-04-13 12:23:07</span>
+        <span class="mobile">2026-04-13 12:23:07</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-04-12 19:28:39</span>
-            <span class="mobile">2026-04-12 19:28:39</span>
+            <span class="desktop">2026-04-13 12:25:08</span>
+            <span class="mobile">2026-04-13 12:25:08</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -488,38 +488,25 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="线性布局（LinearLayout）"><a href="#线性布局（LinearLayout）" class="headerlink" title="线性布局（LinearLayout）"></a>线性布局（LinearLayout）</h3><h4 id="视图的排列方式"><a href="#视图的排列方式" class="headerlink" title="视图的排列方式"></a>视图的排列方式</h4><p>使用 orientation 属性值决定内部视图的排列方式（horizontal 为水平，vertical 为垂直）</p>
-<p>如果不指定排列，则默认为水平排列</p>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">&quot;@color/teal_200&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 所有的子布局 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<h4 id="视图的权重"><a href="#视图的权重" class="headerlink" title="视图的权重"></a>视图的权重</h4><p>权重使用 layout_weight 参数设置，指的是布局中，<strong>下级视图</strong>各自拥有宽高的比例。</p>
-<p>这个参数在该视图的下级视图中设置，表示下级视图占据的宽高比例。</p>
-<ul>
-<li>当设置子布局的宽为0时，权重就表示占据宽度的比例</li>
-<li>当设置子布局的高为0时，权重就表示占据高度的比例</li>
-</ul>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子部件1 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;200dp</span></span></span><br><span class="line"><span class="string"><span class="tag">    android:layout_margin=&quot;</span><span class="attr">10dp</span>&quot;</span></span><br><span class="line"><span class="tag">                                </span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_weight</span>=<span class="string">&quot;3&quot;</span></span></span><br><span class="line"><span class="tag">                             </span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">&quot;#3388FF&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;10dp&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 子部件2 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;200dp</span></span></span><br><span class="line"><span class="string"><span class="tag">    android:layout_margin=&quot;</span><span class="attr">10dp</span>&quot;</span></span><br><span class="line"><span class="tag">              </span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">              </span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">&quot;#3388FF&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;10dp&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>上面的代码中，子部件1权重为3，子部件2权重为1，那么子部件1就占据宽度的3&#x2F;4，而子部件2占据宽度的1&#x2F;4</p>
-
+			<!-- flag of hidden posts -->
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> </li>
+        <li><strong>标题:</strong> Android中的权限</li>
         <li><strong>作者:</strong> kk3TWT</li>
         <li><strong>创建于
-                :</strong> 2026-04-12 18:58:36</li>
+                :</strong> 2026-04-13 12:23:07</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-04-12 19:28:39
+                    :</strong> 2026-04-13 12:25:08
             </li>
         
         <li>
-            <strong>链接:</strong> https://kk-is-very-happy.online/posts/0/
+            <strong>链接:</strong> https://kk-is-very-happy.online/posts/92b338bb/
         </li>
         <li>
             <strong>
@@ -542,35 +529,6 @@
 		
 
 		
-		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/posts/0/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48"></span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
-			
-			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/posts/70152484/">
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">安卓-视图设置</span>
-						<span class="post-nav-item">下一篇</span>
-					</span>
-					<span class="right arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-right"></i>
-					</span>
-				</a>
-			</div>
-			
-		</div>
-		
 
 
 		
@@ -581,8 +539,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title"></div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%88LinearLayout%EF%BC%89"><span class="nav-text">线性布局（LinearLayout）</span></a></li></ol>
+		<div class="page-title">Android中的权限</div>
+		
 
 	</div>
 </div>
@@ -612,7 +570,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 21 篇文章
+                        共撰写了 18 篇文章
                     </span>
                     
                 </p>
