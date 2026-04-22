@@ -93,8 +93,8 @@
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-04-18T11:06:14.531Z">
-<meta property="article:modified_time" content="2026-04-18T12:35:33.015Z">
+<meta property="article:published_time" content="2026-04-22T14:37:24.322Z">
+<meta property="article:modified_time" content="2026-04-22T14:38:04.688Z">
 <meta property="article:author" content="kk3TWT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -353,7 +353,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -397,15 +397,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-04-18 19:06:14</span>
-        <span class="mobile">2026-04-18 19:06:14</span>
+        <span class="desktop">2026-04-22 22:37:24</span>
+        <span class="mobile">2026-04-22 22:37:24</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-04-18 20:35:33</span>
-            <span class="mobile">2026-04-18 20:35:33</span>
+            <span class="desktop">2026-04-22 22:38:04</span>
+            <span class="mobile">2026-04-22 22:38:04</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -432,35 +432,8 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="按钮（Button）"><a href="#按钮（Button）" class="headerlink" title="按钮（Button）"></a>按钮（Button）</h3><p>Button由TextView派生，其与后者有以下区别：</p>
-<ol>
-<li>按钮拥有默认背景</li>
-<li>按钮文本默认居中</li>
-<li>按钮文本中的英文字母默认为大写（可由textAllCaps属性决定）</li>
-</ol>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;this is a Button.&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textAllCaps</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<h4 id="按钮的点击事件"><a href="#按钮的点击事件" class="headerlink" title="按钮的点击事件"></a>按钮的点击事件</h4><p>按钮通过两种方法来设置点击事件：</p>
-<ol>
-<li><p>按钮的onClick属性（已过时），此时需要在activity.java中定义对应的方法</p>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;this is a Button.&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:onClick</span>=<span class="string">&quot;setText&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>setOnClickListener() 方法，类似于Swing中的AddActionListener() 方法，这时需要实现OnClickListener接口中的onClick() 方法</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setText</span><span class="params">()</span> &#123;</span><br><span class="line">    button.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">            textView.setText(<span class="string">&quot;the button is clicked.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);		<span class="comment">// 这里的匿名内部类也可以直接代替为OnClickListener的实现类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<p>对于第二种方法，也分为<strong>独立点击监听</strong>和<strong>公共点击监听</strong>两种</p>
-<ul>
-<li><p>独立点击监听：这种监听器只服务于单个按钮</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    Button button;</span><br><span class="line">    <span class="keyword">static</span> TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        button = findViewById(R.id.aButton);</span><br><span class="line">        textView = findViewById(R.id.buttonText);</span><br><span class="line">        button.setOnClickListener(<span class="keyword">new</span> <span class="title class_">OnClickListenerExample</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">OnClickListenerExample</span> <span class="keyword">implements</span> <span class="title class_">View</span>.OnClickListener &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">            textView.setText(<span class="string">&quot;the button is clicked.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>公共点击监听：将整个Activity类作为OnClickListener接口的实现类，那样这个Activity中的所有按钮均能监听，适用于Activity中包含多个监听对象的情况</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title class_">View</span>.OnClickListener &#123;</span><br><span class="line">    Button abutton;</span><br><span class="line">    Button bbutton;</span><br><span class="line">    <span class="keyword">static</span> TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        abutton = findViewById(R.id.aButton);</span><br><span class="line">        bbutton = findViewById(R.id.bButton);</span><br><span class="line">        textView = findViewById(R.id.buttonText);</span><br><span class="line"></span><br><span class="line">        abutton.setOnClickListener(<span class="built_in">this</span>);</span><br><span class="line">        bbutton.setOnClickListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (v.getId() == R.id.aButton) &#123;</span><br><span class="line">            textView.setText(<span class="string">&quot;aButton is clicked.&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v.getId() == R.id.bButton) &#123;</span><br><span class="line">            textView.setText(<span class="string">&quot;bButton is clicked.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="按钮的长按事件"><a href="#按钮的长按事件" class="headerlink" title="按钮的长按事件"></a>按钮的长按事件</h4><p>按住按钮500ms以上，点击事件就变成了长按事件</p>
-<p>长按事件对应的接口叫做OnLongClickListener，其中包含onLongClick() 方法，但与onClick() 方法不同的是，onLongClick() 方法会返回 boolean 类型的值，表示是否消耗本次长按事件</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    Button abutton;</span><br><span class="line">    Button bbutton;</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        abutton = findViewById(R.id.aButton);</span><br><span class="line">        bbutton = findViewById(R.id.bButton);</span><br><span class="line">        textView = findViewById(R.id.buttonText);</span><br><span class="line"></span><br><span class="line">        abutton.setOnLongClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnLongClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onLongClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                textView.setText(<span class="string">&quot;abutton long click&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>onLongClick() 方法返回 boolean 值的原因是，同一个屏幕上可能有多个需要使用长按事件的组件，这时需要对长按事件的发生位置作判断（判断顺序是从级别最小的组件开始，依次向上），onLongClick() 方法返回true表示“本次长按事件发生在该组件上”，此时只有该组件会响应长按事件。而方法返回false时则继续在其他组件上判断，直到所有组件都被判断或有组件响应了本次长按事件（也就是onLongClick() 方法返回了true）</p>
+			<hr>
+<hr>
 
 		</div>
 
@@ -471,11 +444,11 @@
         <li><strong>标题:</strong> </li>
         <li><strong>作者:</strong> kk3TWT</li>
         <li><strong>创建于
-                :</strong> 2026-04-18 19:06:14</li>
+                :</strong> 2026-04-22 22:37:24</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-04-18 20:35:33
+                    :</strong> 2026-04-22 22:38:04
             </li>
         
         <li>
@@ -506,9 +479,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/posts/c17bd6c/">
+				<a class="next" rel="next" href="/posts/41b27046/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">Java-内部类</span>
+						<span class="post-nav-title-item truncate max-w-48">按钮</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -530,7 +503,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title"></div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E9%92%AE%EF%BC%88Button%EF%BC%89"><span class="nav-text">按钮（Button）</span></a></li></ol>
+		
 
 	</div>
 </div>
@@ -560,7 +533,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 21 篇文章
+                        共撰写了 23 篇文章
                     </span>
                     
                 </p>
