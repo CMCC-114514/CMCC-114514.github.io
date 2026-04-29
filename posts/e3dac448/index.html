@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/posts/1e31206d/"/>
+    <link rel="canonical" href="http://example.com/posts/e3dac448/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,17 +87,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git分支版本管理">
-<meta property="og:url" content="http://example.com/posts/1e31206d/index.html">
+<meta property="og:title" content="常用API">
+<meta property="og:url" content="http://example.com/posts/e3dac448/index.html">
 <meta property="og:site_name" content="kk的小窝">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-03-31T09:23:23.000Z">
-<meta property="article:modified_time" content="2026-04-06T06:27:42.048Z">
+<meta property="article:published_time" content="2026-04-29T14:41:27.000Z">
+<meta property="article:modified_time" content="2026-04-29T14:42:26.203Z">
 <meta property="article:author" content="kk3TWT">
-<meta property="article:tag" content="Git">
-<meta property="article:tag" content="版本管理">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -111,7 +110,7 @@
     
     <title>
         
-            Git分支版本管理 | kk的小窝
+            常用API | kk的小窝
         
     </title>
 
@@ -378,7 +377,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Git分支版本管理</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">常用API</h1>
 			</div>
 			
 		</div>
@@ -399,15 +398,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-03-31 17:23:23</span>
-        <span class="mobile">2026-03-31 17:23:23</span>
+        <span class="desktop">2026-04-29 22:41:27</span>
+        <span class="mobile">2026-04-29 22:41:27</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-04-06 14:27:42</span>
-            <span class="mobile">2026-04-06 14:27:42</span>
+            <span class="desktop">2026-04-29 22:42:26</span>
+            <span class="mobile">2026-04-29 22:42:26</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -421,7 +420,7 @@
                     
                         
                         <li>
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%85%B6%E4%BB%96/">学习记录 - 其他</a>&nbsp;
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-Java%E5%BC%80%E5%8F%91/">学习记录 - Java开发</a>&nbsp;
                         </li>
                     
                     
@@ -435,11 +434,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Git/">Git</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a>&nbsp;
+                        <a href="/tags/Java/">Java</a>&nbsp;
                     </li>
                 
             </ul>
@@ -465,58 +460,20 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="main分支和dev分支"><a href="#main分支和dev分支" class="headerlink" title="main分支和dev分支"></a>main分支和dev分支</h3><ul>
-<li><p><code>main</code> 分支用于存放<strong>稳定且可发布</strong>的代码，每次提交（或合并）到main分支时，都应该使用<strong>tag</strong>标记正式版本。</p>
-</li>
-<li><p><code>dev</code> 分支作为<strong>开发集成分支</strong>，所有的新功能、改进和Bug修复都在这个分支上进行。这个分支上的代码可以不稳定，但应该保持可编译&#x2F;可运行的状态。</p>
-</li>
-</ul>
-<h3 id="日常工作流"><a href="#日常工作流" class="headerlink" title="日常工作流"></a>日常工作流</h3><h5 id="日常开发"><a href="#日常开发" class="headerlink" title="日常开发"></a>日常开发</h5><ul>
-<li>所有的开发工作都在<code>dev</code>分支上进行：</li>
-</ul>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line"><span class="comment"># 编写代码，多次提交</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;添加功能X&quot;</span></span><br></pre></td></tr></table></figure></div>
+			<h3 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h3><h4 id="1-Math类"><a href="#1-Math类" class="headerlink" title="1. Math类"></a>1. Math类</h4><p>Math类是用于数学计算的类，不需要创建对象就可以调用类中的方法，如求绝对值、四舍五入、求某个数的n次幂等，以下为一些常见的Math方法示例：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Math.abs(-<span class="number">1</span>));                               <span class="comment">// 取绝对值</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">3.21</span>));                            <span class="comment">// 向上取整</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">4.56</span>));                           <span class="comment">// 向下取整</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">5.51</span>));                           <span class="comment">// 四舍五入</span></span><br><span class="line">        System.out.println(Math.max(<span class="number">3</span>,<span class="number">5.4</span>) + Math.min(<span class="number">3</span>,<span class="number">5.4</span>));          <span class="comment">// 比较大小</span></span><br><span class="line">        System.out.println(Math.pow(<span class="number">3.5</span>,<span class="number">3</span>));                            <span class="comment">// a的b次幂</span></span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">4</span>) + Math.cbrt(<span class="number">8</span>));                <span class="comment">// 开平方根与立方根</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<ul>
-<li>如果某个功能比较复杂，也可以从 <code>dev</code> 创建临时功能分支（例如 <code>feature/login</code>），开发完成后再合并回 <code>dev</code>：</li>
-</ul>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/login dev</span><br><span class="line"><span class="comment"># 开发...</span></span><br><span class="line">git checkout dev</span><br><span class="line">git merge --no-ff feature/login   <span class="comment"># 保留合并记录</span></span><br><span class="line">git branch -d feature/login</span><br></pre></td></tr></table></figure></div>
+<p>Math类也定义了一些较高精度的数学常数，如圆周率pi和自然常数e等</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Math.java</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">E</span> <span class="operator">=</span> <span class="number">2.718281828459045</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.141592653589793</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">TAU</span> <span class="operator">=</span> <span class="number">2.0</span> * PI;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">DEGREES_TO_RADIANS</span> <span class="operator">=</span> <span class="number">0.017453292519943295</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">RADIANS_TO_DEGREES</span> <span class="operator">=</span> <span class="number">57.29577951308232</span>;</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="定期同步远程仓库"><a href="#定期同步远程仓库" class="headerlink" title="定期同步远程仓库"></a>定期同步远程仓库</h5><ul>
-<li>建议经常将分支推送到 GitHub&#x2F;GitLab 等远程仓库，以防本地丢失：</li>
-</ul>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main dev</span><br></pre></td></tr></table></figure></div>
+<h4 id="2-System类"><a href="#2-System类" class="headerlink" title="2. System类"></a>2. System类</h4><p>System类是与系统相关的类，提供了操作系统相关的方法，不需要创建对象就可以调用类中的方法，以下是示例方法：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(System.currentTimeMillis());    <span class="comment">// 返回当前时间与时间原点的差值（单位ms）</span></span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        <span class="type">int</span>[] arr1 = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line">            <span class="comment">// arraycopy(原数组, 原数组起始下标, 目标数组, 目标数组起始下标, 复制长度)</span></span><br><span class="line">        System.arraycopy(arr, <span class="number">3</span>, arr1, <span class="number">0</span>, <span class="number">3</span>);   <span class="comment">// 按要求复制数组</span></span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">        System.out.println(Arrays.toString(arr1));</span><br><span class="line"></span><br><span class="line">        System.exit(<span class="number">0</span>);    <span class="comment">// 退出Java虚拟机并返回指定的exitCode</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h5 id="发布版本"><a href="#发布版本" class="headerlink" title="发布版本"></a>发布版本</h5><ul>
-<li>当 <code>dev</code> 分支累积了足够的功能，并经过测试达到可发布状态时，将其合并到 <code>main</code> 并打上版本标签：</li>
-</ul>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge --no-ff dev          <span class="comment"># 确保合并历史清晰</span></span><br><span class="line">git tag -a v1.0.0 -m <span class="string">&quot;版本1.0.0正式发布&quot;</span></span><br><span class="line">git push origin main --tags</span><br></pre></td></tr></table></figure></div>
+<p>其中<strong>时间原点</strong>为1970年1月1日0时0分0秒（UTC+0）</p>
+<h4 id="3-Runtime类"><a href="#3-Runtime类" class="headerlink" title="3. Runtime类"></a>3. Runtime类</h4><p>Runtime类与程序运行的环境有关，也不需要创建对象就可以调用类中的方法，以下为一些常见的方法示例：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">Runtime</span> <span class="variable">rt</span> <span class="operator">=</span> Runtime.getRuntime();              <span class="comment">// 获取运行环境对象</span></span><br><span class="line">        System.out.println(rt.availableProcessors());   <span class="comment">// 获取cpu线程数</span></span><br><span class="line">        System.out.println(rt.maxMemory());             <span class="comment">// 查询JVM可以获取的最大内存（单位为Byte）</span></span><br><span class="line">        System.out.println(rt.totalMemory());           <span class="comment">// 查询JVM已经获取的内存大小（单位为Byte）</span></span><br><span class="line">        System.out.println(rt.freeMemory());            <span class="comment">// 查询JVM剩余内存大小（单位为Byte）</span></span><br><span class="line">        rt.exec(<span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;notepad&quot;</span>&#125;);               <span class="comment">// 运行cmd命令（这里为打开记事本）</span></span><br><span class="line">        rt.exit(<span class="number">0</span>);                                     <span class="comment">// 退出虚拟机</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<ul>
-<li>发布后，如果 <code>main</code> 有新的提交（比如通过热修复产生的提交），需要将这些变更同步回 <code>dev</code>：</li>
-</ul>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git merge main                 <span class="comment"># 将 main 的更新合并到 dev</span></span><br><span class="line">git push origin dev</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="紧急热修复流程"><a href="#紧急热修复流程" class="headerlink" title="紧急热修复流程"></a>紧急热修复流程</h3><p>如果线上版本（<code>main</code>）发现严重 Bug，需要立即修复，不能等待 <code>dev</code> 的常规发布周期。此时可以从 <code>main</code> 创建热修复分支：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git checkout -b hotfix/v1.0.1</span><br><span class="line"><span class="comment"># 修复 Bug，提交</span></span><br><span class="line">git commit -m <span class="string">&quot;修复紧急Bug&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>修复完成后，将热修复分支合并回 <code>main</code> 和 <code>dev</code>：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 合并到 main 并打标签</span></span><br><span class="line">git checkout main</span><br><span class="line">git merge --no-ff hotfix/v1.0.1</span><br><span class="line">git tag -a v1.0.1 -m <span class="string">&quot;紧急修复版本&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并到 dev，确保开发分支也包含修复</span></span><br><span class="line">git checkout dev</span><br><span class="line">git merge --no-ff hotfix/v1.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除临时分支</span></span><br><span class="line">git branch -d hotfix/v1.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到远程</span></span><br><span class="line">git push origin main --tags</span><br><span class="line">git push origin dev</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="多设备并行开发流程"><a href="#多设备并行开发流程" class="headerlink" title="多设备并行开发流程"></a>多设备并行开发流程</h3><p>在多设备并行开发时，一个设备完成开发并合并到远程仓库后，另一个设备上未完成的功能分支会出现“落后”的情况。你需要将远程的最新变更（比如 <code>dev</code> 分支的更新）同步到本地，并将当前功能分支基于最新代码进行调整。</p>
-<h5 id="先同步主开发分支（dev）"><a href="#先同步主开发分支（dev）" class="headerlink" title="先同步主开发分支（dev）"></a>先同步主开发分支（<code>dev</code>）</h5><p>在尚未完成开发的设备上，首先更新本地 <code>dev</code> 分支，使其与远程保持一致。</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到 dev 分支</span></span><br><span class="line">git checkout dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取远程最新代码（推荐使用 rebase 保持历史线性）</span></span><br><span class="line">git pull --rebase origin dev</span><br></pre></td></tr></table></figure></div>
-
-<h5 id="将功能分支基于最新的-dev-进行变基（rebase）"><a href="#将功能分支基于最新的-dev-进行变基（rebase）" class="headerlink" title="将功能分支基于最新的 dev 进行变基（rebase）"></a>将功能分支基于最新的 <code>dev</code> 进行变基（rebase）</h5><p>切换到你的功能分支（假设叫 <code>feature/xxx</code>），并将它“移植”到最新的 <code>dev</code> 之上：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature/xxx</span><br><span class="line">git rebase dev</span><br></pre></td></tr></table></figure></div>
-
-<p>如果出现冲突，Git 会暂停并提示你解决。</p>
-<ul>
-<li><p>解决冲突后，执行 <code>git add .</code> 然后 <code>git rebase --continue</code>。</p>
-</li>
-<li><p>如果想放弃变基，可以用 <code>git rebase --abort</code>。</p>
-</li>
-</ul>
-<p>现在你的功能分支已经基于最新的 <code>dev</code> 代码，可以继续开发、提交。完成后按正常流程合并回 <code>dev</code> 即可。</p>
+<h4 id="4-Object和Objects类"><a href="#4-Object和Objects类" class="headerlink" title="4. Object和Objects类"></a>4. Object和Objects类</h4><p>Object类是Java中的最高父类，所有的类都直接或间接继承于Object类</p>
 
 		</div>
 
@@ -524,18 +481,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> Git分支版本管理</li>
+        <li><strong>标题:</strong> 常用API</li>
         <li><strong>作者:</strong> kk3TWT</li>
         <li><strong>创建于
-                :</strong> 2026-03-31 17:23:23</li>
+                :</strong> 2026-04-29 22:41:27</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-04-06 14:27:42
+                    :</strong> 2026-04-29 22:42:26
             </li>
         
         <li>
-            <strong>链接:</strong> https://kk-is-very-happy.online/posts/1e31206d/
+            <strong>链接:</strong> https://kk-is-very-happy.online/posts/e3dac448/
         </li>
         <li>
             <strong>
@@ -557,11 +514,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/Git/">#Git</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">#版本管理</a>&nbsp;
+				<a href="/tags/Java/">#Java</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -573,12 +526,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/posts/acd9767d/">
+				<a class="prev" rel="prev" href="/posts/f3c64f14/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">编译过程中遇到的各种问题（持续更新）</span>
+						<span class="post-nav-title-item truncate max-w-48">图像视图</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -586,9 +539,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/posts/86c33f9b/">
+				<a class="next" rel="next" href="/posts/7fc33a05/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">南邮数据结构作业 - 第四章</span>
+						<span class="post-nav-title-item truncate max-w-48">MQTT-EMQX环境搭建</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -609,8 +562,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">Git分支版本管理</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#main%E5%88%86%E6%94%AF%E5%92%8Cdev%E5%88%86%E6%94%AF"><span class="nav-text">main分支和dev分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-text">日常工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A7%E6%80%A5%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%B5%81%E7%A8%8B"><span class="nav-text">紧急热修复流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%AE%BE%E5%A4%87%E5%B9%B6%E8%A1%8C%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="nav-text">多设备并行开发流程</span></a></li></ol>
+		<div class="page-title">常用API</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8API"><span class="nav-text">常用API</span></a></li></ol>
 
 	</div>
 </div>
