@@ -57,7 +57,7 @@ ignore: null
 theme: redefine
 deploy:
   type: git
-  repo: https://github.com/CMCC-114514/CMCC-114514.github.io
+  repo: git@github.com:CMCC-114514/CMCC-114514.github.io.git
   branch: main
 
 # abbrlink config

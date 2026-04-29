@@ -1,5 +1,5 @@
 ---
-title: 安卓-App开发基础
+title: 安卓-开发基础
 hidden: false
 categories:
   - 学习记录 - 安卓应用开发
