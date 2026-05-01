@@ -1,7 +1,13 @@
 ---
-abbrlink: '0'
+title: 常用API类
+hidden: false
+categories:
+  - 学习记录 - Java开发
+tags:
+  - Java
+abbrlink: e3dac448
+date: 2026-04-29 22:41:27
 ---
-### 常用API
 
 #### 1. Math类
 
@@ -77,6 +83,29 @@ public class test1 {
 }
 ```
 
-#### 4. Object和Objects类
+#### 4. Object类
 
 Object类是Java中的最高父类，所有的类都直接或间接继承于Object类
+
+Object类没有带参数的构造方法，只有空参构造方法，但是可以使用其子类的构造方法
+
+```java
+public static void main(String[] args) {
+    Object obj = new Object();		// 使用空参构造
+    Object obj1 = new int[4];		// 使用int[]的构造方法
+}
+```
+
+以下为Object类中的常见成员方法，这些方法都可以被重写：
+
+```java
+public class test {
+    public static void main(String[] args) {
+        Object obj1 = new Object();
+        Object obj2 = new Object();
+        System.out.println(obj1.toString());        // 将对象转为字符串
+        System.out.println(obj1.equals(obj2));      // 判断两个对象是否相等
+    }
+}
+
+```

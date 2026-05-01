@@ -1,9 +1,9 @@
 ---
-title: Spring配置文件
+title: Spring-配置文件
 hidden: false
 categories: 
   - 学习记录
-    - Spring框架
+  - Spring框架
 tags:
   - Spring
   - Java
