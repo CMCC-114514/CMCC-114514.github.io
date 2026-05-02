@@ -386,7 +386,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -426,7 +426,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -441,87 +441,6 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/posts/92b338bb/">
-                            安卓-权限
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            概述应用权限有助于保护对以下数据和操作的访问&#x2F;执行权限，从而为保护用户隐私提供支持：
-
-受限数据，例如系统状态和用户的联系信息
-受限操作，例如连接到已配对的设备并录制音频
-
-获取应用权限的工作流程：
-flowchart TD
-
-A{能否在不获取权限的情况下实现相关功能}
-
-A -- 能 --> B[实现功能而不使用权限]
-B --> G([结束])
-
-A -- 不能 --> C[在...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Apr 13 2026 12:23:07 GMT+0800">
-                
-                    2026-04-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">学习记录 - 安卓应用开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8/">安卓应用</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/posts/92b338bb/">阅读全文<span class="seo-reader-text">安卓-权限</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
         
             <li class="home-article-item">
 
@@ -1194,12 +1113,12 @@ NR_CPUS配置错误可能出现的报错：
                     
                         <li>
                             
-                            <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/">内核编译</a>&nbsp;
+                            <a href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>&nbsp;
+                            <a href="/tags/%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91/">内核编译</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1208,6 +1127,88 @@ NR_CPUS配置错误可能出现的报错：
     </div>
 
     <a href="/posts/acd9767d/">阅读全文<span class="seo-reader-text">编译过程中遇到的各种问题（持续更新）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/posts/1e31206d/">
+                            Git分支版本管理
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            main分支和dev分支
+main 分支用于存放稳定且可发布的代码，每次提交（或合并）到main分支时，都应该使用tag标记正式版本。
+
+dev 分支作为开发集成分支，所有的新功能、改进和Bug修复都在这个分支上进行。这个分支上的代码可以不稳定，但应该保持可编译&#x2F;可运行的状态。
+
+
+日常工作流日常开发
+所有的开发工作都在dev分支上进行：
+
+1234git checkout dev...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Mar 31 2026 17:23:23 GMT+0800">
+                
+                    2026-03-31
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%85%B6%E4%BB%96/">学习记录 - 其他</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Git/">Git</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/posts/1e31206d/">阅读全文<span class="seo-reader-text">Git分支版本管理</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1245,7 +1246,7 @@ NR_CPUS配置错误可能出现的报错：
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 29 篇文章
+                        共撰写了 28 篇文章
                     </span>
                     
                 </p>
