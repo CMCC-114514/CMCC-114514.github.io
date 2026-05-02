@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-05-02T08:43:15.000Z">
-<meta property="article:modified_time" content="2026-05-02T08:47:15.595Z">
+<meta property="article:modified_time" content="2026-05-02T08:53:47.775Z">
 <meta property="article:author" content="kk3TWT">
 <meta property="article:tag" content="MQTT">
 <meta property="article:tag" content="物联网">
@@ -406,8 +406,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-05-02 16:47:15</span>
-            <span class="mobile">2026-05-02 16:47:15</span>
+            <span class="desktop">2026-05-02 16:53:47</span>
+            <span class="mobile">2026-05-02 16:53:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -479,7 +479,8 @@
 <p>以MQTT发送的信息为例，在客户端发送的数据中，不仅包含花括号里面的内容（也就是我们发送的信息），也包括一些其他内容，这两部分是一个整体（数据块），作为控制报文进行发送</p>
 <h2 id="常见的控制报文类型"><a href="#常见的控制报文类型" class="headerlink" title="常见的控制报文类型"></a>常见的控制报文类型</h2><p>MQTT定义了15种报文类型，可按功能分为三类：</p>
 <ol>
-<li><p>连接类：</p>
+<li>连接类：</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -519,8 +520,9 @@
 <td align="left">是 MQTT 5.0 引入的全新的报文类型，它仅用于增强认证，为客户端和服务端提供更安全的身份验证。</td>
 </tr>
 </tbody></table>
-</li>
-<li><p>发布类：</p>
+<ol start="2">
+<li>发布类：</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -534,12 +536,30 @@
 <td align="center">PUBLISH</td>
 <td align="left">用于发布消息</td>
 </tr>
+<tr>
+<td align="center">4</td>
+<td align="center">PUBACK</td>
+<td align="left">分别用于 QoS 1 和 QoS 2 消息的确认流程</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">PUBREC</td>
+<td align="left">分别用于 QoS 1 和 QoS 2 消息的确认流程</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">PUBREL</td>
+<td align="left">分别用于 QoS 1 和 QoS 2 消息的确认流程</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">PUBCOMP</td>
+<td align="left">分别用于 QoS 1 和 QoS 2 消息的确认流程</td>
+</tr>
 </tbody></table>
-</li>
-</ol>
-<p>| 4         | PUBACK         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 5        | PUBREC         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 6        | PUBREL         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 7       | PUBCOMP        | 分别用于 QoS 1 和 QoS 2 消息的确认流程     |</p>
 <ol start="3">
-<li><p>订阅类：</p>
+<li>订阅类：</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -569,8 +589,6 @@
 <td>返回取消订阅结果</td>
 </tr>
 </tbody></table>
-</li>
-</ol>
 <h2 id="控制报文的格式"><a href="#控制报文的格式" class="headerlink" title="控制报文的格式"></a>控制报文的格式</h2><p>报文主要由三部分组成：</p>
 <ol>
 <li>固定报头</li>
@@ -625,7 +643,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p1.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp1.png"
                      
                 ></p>
 </li>
@@ -633,7 +651,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p2.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp2.png"
                      
                 ></p>
 </li>
@@ -641,19 +659,19 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p8.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp8.png"
                      
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p3.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp3.png"
                      
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p4.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp4.png"
                      
                 ></p>
 </li>
@@ -661,7 +679,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p6.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp6.png"
                      
                 ></p>
 </li>
@@ -669,7 +687,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p5.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp5.png"
                      
                 ></p>
 </li>
@@ -677,7 +695,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p7.png"
+                     data-src="/%5Cimages%5Cmqtt3%5Cp7.png"
                      
                 ></p>
 </li>
@@ -696,7 +714,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-05-02 16:47:15
+                    :</strong> 2026-05-02 16:53:47
             </li>
         
         <li>
