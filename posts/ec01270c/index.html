@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/posts/9366018b/"/>
+    <link rel="canonical" href="http://example.com/posts/ec01270c/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,14 +87,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MQTT-基本概念">
-<meta property="og:url" content="http://example.com/posts/9366018b/index.html">
+<meta property="og:title" content="MQTT-控制报文">
+<meta property="og:url" content="http://example.com/posts/ec01270c/index.html">
 <meta property="og:site_name" content="kk的小窝">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-04-29T14:02:17.000Z">
-<meta property="article:modified_time" content="2026-04-29T14:35:18.055Z">
+<meta property="article:published_time" content="2026-05-02T08:43:15.000Z">
+<meta property="article:modified_time" content="2026-05-02T08:43:56.397Z">
 <meta property="article:author" content="kk3TWT">
 <meta property="article:tag" content="MQTT">
 <meta property="article:tag" content="物联网">
@@ -111,7 +111,7 @@
     
     <title>
         
-            MQTT-基本概念 | kk的小窝
+            MQTT-控制报文 | kk的小窝
         
     </title>
 
@@ -355,7 +355,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -378,7 +378,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">MQTT-基本概念</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">MQTT-控制报文</h1>
 			</div>
 			
 		</div>
@@ -399,15 +399,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-04-29 22:02:17</span>
-        <span class="mobile">2026-04-29 22:02:17</span>
+        <span class="desktop">2026-05-02 16:43:15</span>
+        <span class="mobile">2026-05-02 16:43:15</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-04-29 22:35:18</span>
-            <span class="mobile">2026-04-29 22:35:18</span>
+            <span class="desktop">2026-05-02 16:43:56</span>
+            <span class="mobile">2026-05-02 16:43:56</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -475,9 +475,213 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>指任何运行MQTT客户端库（即MQTT开发工具包）的应用或设备</p>
-<h4 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h4><p>实现了MQTT协议的代理软件</p>
-<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><p>存在于Broker中的字符串，用于对消息进行分类。发布消息到Broker就是发布消息到Broker的主题</p>
+			<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>报文是网络中交换与传输数据的最小数据单元，即<strong>一次性需要发送的数据块</strong>。它包含发送的完整数据信息，长度不限且可变。MQTT客户端和服务端就是通过交换控制报文完成工作（如订阅主题、发布信息）的</p>
+<p>以MQTT发送的信息为例，在客户端发送的数据中，不仅包含花括号里面的内容（也就是我们发送的信息），也包括一些其他内容，这两部分是一个整体（数据块），作为控制报文进行发送</p>
+<h2 id="常见的控制报文类型"><a href="#常见的控制报文类型" class="headerlink" title="常见的控制报文类型"></a>常见的控制报文类型</h2><p>MQTT定义了15种报文类型，可按功能分为三类：</p>
+<ol>
+<li><p>连接类：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">报文名称</th>
+<th align="left">报文说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">CONNECT</td>
+<td align="left">用于客户端向服务器发起连接</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">CONNACK</td>
+<td align="left">作为响应返回连接的结果</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">PINGREQ</td>
+<td align="left">用于连接保持和探测，客户端定期发出 PINGREQ 报文向服务器表示自己仍然活跃</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">PINGRESP</td>
+<td align="left">用于连接保持和探测，客户端在发出 PINGREQ 报文后，根据 PINGRESP 报文是否及时返回判断服务器是否活跃。</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">DISCONNECT</td>
+<td align="left">想要结束通信，或者遇到了一个必须终止连接的错误，发送该报文关闭网络连接</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">AUTH</td>
+<td align="left">是 MQTT 5.0 引入的全新的报文类型，它仅用于增强认证，为客户端和服务端提供更安全的身份验证。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>发布类：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">报文名称</th>
+<th align="left">报文说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">3</td>
+<td align="center">PUBLISH</td>
+<td align="left">用于发布消息</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>| 4         | PUBACK         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 5        | PUBREC         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 6        | PUBREL         | 分别用于 QoS 1 和 QoS 2 消息的确认流程                                 |<br>| 7       | PUBCOMP        | 分别用于 QoS 1 和 QoS 2 消息的确认流程     |</p>
+<ol start="3">
+<li><p>订阅类：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">报文名称</th>
+<th>报文说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">8</td>
+<td align="center">SUBSCRIBE</td>
+<td>用于客户端向服务器发送订阅</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">SUBACK</td>
+<td>返回订阅结果</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">UNSUBSCRIBE</td>
+<td>用于客户端向服务器发送取消订阅</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">UNSUBACK</td>
+<td>返回取消订阅结果</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="控制报文的格式"><a href="#控制报文的格式" class="headerlink" title="控制报文的格式"></a>控制报文的格式</h2><p>报文主要由三部分组成：</p>
+<ol>
+<li>固定报头</li>
+<li>可变报头</li>
+<li>有效载荷</li>
+</ol>
+<p>其中固定报头一定存在于所有的报文中，而后两个部分的存在情况取决于控制报文的类型</p>
+<p>以 <code>PINGREQ</code> 类型报文为例，客户端会定期发出 <code>PINGREQ</code> 报文向服务器表示自己仍然活跃，它只包含固定报头，而不包含可变报头和有效载荷</p>
+<p>又以 <code>PUBLISH</code> 类型报文为例，客户端使用 <code>PUBLIC</code> 报文发送消息，它包含以上的所有部分（固定报头、可变报头、有效载荷）</p>
+<h3 id="固定报头"><a href="#固定报头" class="headerlink" title="固定报头"></a>固定报头</h3><p>固定报头由三个字段组成（表格视为整个固定报头）：</p>
+<table>
+<thead>
+<tr>
+<th align="center">报文类型 Packet Type（4bit)</th>
+<th align="center">标志位 Flag（4bit）</th>
+<th align="center">剩余长度 Remain Length（1~4bit）</th>
+</tr>
+</thead>
+</table>
+<ol>
+<li>报文类型：无符号整数，转换为十进制后，得到的值就对应控制报文的类型（值与报文类型的对应关系见上文表格）</li>
+<li>标识位：仅在 <code>PUBLISH</code> 报文中有明确定义，在其他类型的报文中作为保留位：<ul>
+<li>bit 3（DUP）表示当前报文是否为重传报文</li>
+<li>bit 2、1（QoS）表示当前报文的质量等级</li>
+<li>bit 0（Retain）表示当前报文是否为保留信息</li>
+</ul>
+</li>
+<li>剩余长度：表示报文剩余部分的字节数，即<strong>可变报头+有效载荷</strong>的总字节数</li>
+</ol>
+<h3 id="可变报头"><a href="#可变报头" class="headerlink" title="可变报头"></a>可变报头</h3><p>对于不同报文类型，可变报头的内容也不同</p>
+<p>以 <code>CONNECT</code> 报文为例，它的可变报头包括五个字段：协议名称、协议级别、连接标识、保持活跃和属性</p>
+<p>又以 <code>PUBLISH</code> 报文为例，它的可变报头包括三个字段：主题名称、报文标识和属性</p>
+<p>其中<strong>属性</strong>字段基本上都是可变报头的最后一部分，在 MQTT 5.0 之后引入，包括如下组成部分：</p>
+<table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">属性长度 Length</th>
+<th align="center">属性内容（Property 1 ~ n）</th>
+</tr>
+</thead>
+</table>
+<p>属性通常是为了某个专门的用途而设计的，不同的报文，其支持的属性也不同</p>
+<p>属性长度指所有属性的总长度，如果报文没有任何属性，那么属性长度就是0</p>
+<h3 id="有效载荷"><a href="#有效载荷" class="headerlink" title="有效载荷"></a>有效载荷</h3><p>用于实现报文的核心功能</p>
+<p>以 <code>PUBLISH</code> 报文为例，载荷用于承载具体的消息内容</p>
+<p>又以 <code>SUBSCRIBE</code> 报文为例，载荷包含了订阅主题和订阅选项 </p>
+<h2 id="通过-Wireshark-获取报文"><a href="#通过-Wireshark-获取报文" class="headerlink" title="通过 Wireshark 获取报文"></a>通过 Wireshark 获取报文</h2><p>安装并进入 Wireshark 程序，选择需要监听的网卡，然后在搜索框内输入 MQTT 筛选出通过 MQTT 协议发送的消息</p>
+<p>以下为不同情况下获取到的报文：</p>
+<ol>
+<li><p>连接服务端</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p1.png"
+                     
+                ></p>
+</li>
+<li><p>发送保活信息</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p2.png"
+                     
+                ></p>
+</li>
+<li><p>发送普通信息（从上到下分别为 QoS 0~2）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p8.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p3.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p4.png"
+                     
+                ></p>
+</li>
+<li><p>订阅主题</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p6.png"
+                     
+                ></p>
+</li>
+<li><p>取消订阅主题</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p5.png"
+                     
+                ></p>
+</li>
+<li><p>断开连接</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="E:\Code\CMCC-114514.github.io\source\images\mqtt3\p7.png"
+                     
+                ></p>
+</li>
+</ol>
 
 		</div>
 
@@ -485,18 +689,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> MQTT-基本概念</li>
+        <li><strong>标题:</strong> MQTT-控制报文</li>
         <li><strong>作者:</strong> kk3TWT</li>
         <li><strong>创建于
-                :</strong> 2026-04-29 22:02:17</li>
+                :</strong> 2026-05-02 16:43:15</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-04-29 22:35:18
+                    :</strong> 2026-05-02 16:43:56
             </li>
         
         <li>
-            <strong>链接:</strong> https://kk-is-very-happy.online/posts/9366018b/
+            <strong>链接:</strong> https://kk-is-very-happy.online/posts/ec01270c/
         </li>
         <li>
             <strong>
@@ -534,12 +738,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/posts/7fc33a05/">
+				<a class="prev" rel="prev" href="/posts/ec01270c/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">MQTT-EMQX环境搭建</span>
+						<span class="post-nav-title-item truncate max-w-48">MQTT-控制报文</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -547,9 +751,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/posts/3d2f4032/">
+				<a class="next" rel="next" href="/posts/4364fdb7/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">MQTT-MQTTX客户端的基本使用</span>
+						<span class="post-nav-title-item truncate max-w-48">Spring-配置数据源</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -570,8 +774,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">MQTT-基本概念</div>
-		
+		<div class="page-title">MQTT-控制报文</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B"><span class="nav-text">常见的控制报文类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-text">控制报文的格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E5%AE%9A%E6%8A%A5%E5%A4%B4"><span class="nav-text">固定报头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E6%8A%A5%E5%A4%B4"><span class="nav-text">可变报头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E8%BD%BD%E8%8D%B7"><span class="nav-text">有效载荷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-Wireshark-%E8%8E%B7%E5%8F%96%E6%8A%A5%E6%96%87"><span class="nav-text">通过 Wireshark 获取报文</span></a></li></ol>
 
 	</div>
 </div>
@@ -601,7 +805,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 28 篇文章
+                        共撰写了 29 篇文章
                     </span>
                     
                 </p>
