@@ -3,7 +3,7 @@ title: 为非gki内核添加KernelSU支持
 description: 手把手教你如何集成kernelsu
 categories: 
   - 学习记录
-    - 其他
+  - 其他
 abbrlink: 57133
 date: 2025-09-09 22:35:03
 tags:

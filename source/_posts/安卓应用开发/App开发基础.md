@@ -2,14 +2,15 @@
 title: 安卓-开发基础
 hidden: false
 categories:
-  - 学习记录 - 安卓应用开发
+  - 学习记录 
+  - 安卓应用开发
 tags:
   - 安卓应用
 abbrlink: 1ba5f561
 date: 2026-04-06 17:25:08
 ---
 
-### 项目工程结构
+## 项目工程结构
 
 App工程分为两层：项目（**Project**）和模块（**Module**）
 
@@ -27,7 +28,7 @@ App工程分为两层：项目（**Project**）和模块（**Module**）
 
 App项目下有两个分类：App目录（App模块）和Gradle Scripts目录（工程编译配置文件）
 
-#### App目录
+### App目录
 
 App目录包含以下子目录：
 
@@ -57,7 +58,7 @@ App目录包含以下子目录：
   - mipmap：存放启动图标
   - values：定义App需要用到的常量
 
-#### Gradle Scripts目录
+### Gradle Scripts目录
 
 Gradle Script目录主要包含以下文件：
 
@@ -81,9 +82,9 @@ Gradle Script目录主要包含以下文件：
 - settings.gradle：配置需要编译的模块
 - local.properties：描述本地配置，如开发环境等，由 Android Studio 自动生成
 
-### 项目设计规范
+## 项目设计规范
 
-#### AndroidManifest.xml 文件
+### AndroidManifest.xml 文件
 
 每个应用的根目录下都必须包含一个AndroidManifest.xml文件，这个文件包含了App的配置信息，系统需要根据里面的内容运行App的代码，显示界面。
 
@@ -120,7 +121,7 @@ Gradle Script目录主要包含以下文件：
 - supportsRtl属性：是否支持从右往左的排版
 - theme属性：应用的显示风格
 
-#### build.gradle 文件
+### build.gradle 文件
 
 Gradle.Script目录中存在两个build.gradle.kts，分别对应于整个项目（My_Application1）和具体模块（app），这里主要说明模块的build.gradle.kts
 

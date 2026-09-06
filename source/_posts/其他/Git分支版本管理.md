@@ -4,7 +4,7 @@ hidden: false
 description: Git分支版本管理
 categories: 
   - 学习记录
-    - 其他
+  - 其他
 tags:
   - Git
   - 版本管理

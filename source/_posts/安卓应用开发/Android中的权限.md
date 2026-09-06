@@ -4,12 +4,13 @@ hidden: false
 abbrlink: 92b338bb
 date: 2026-04-13 12:23:07
 categories:
-  - 学习记录 - 安卓应用开发
+  - 学习记录 
+  - 安卓应用开发
 tags:
   - 安卓应用
 ---
 
-### 概述
+## 概述
 
 应用权限有助于保护对以下数据和操作的访问/执行权限，从而为保护用户隐私提供支持：
 
@@ -44,7 +45,7 @@ E --> G
 
 > 对于每一项权限的保护级别，参见[权限API参考文档](https://developer.android.google.cn/reference/android/Manifest.permission)
 
-### 声明权限
+## 声明权限
 
 如果应用需要请求权限，那么就应该在 AndroidManifest.xml 中声明权限
 
@@ -64,7 +65,7 @@ Manifest.xml 使用 `<uses-permission>` 标签添加权限元素：
 </manifest>
 ```
 
-#### 特殊硬件权限的声明
+### 特殊硬件权限的声明
 
 有些权限需要访问只能在部分设备上使用的特殊硬件（比如三星的spen），如果应用声明了这些权限，这时候就需要考虑应用能否在没有这种硬件的设备上正常运行。因此可以使用 `<uses-feature>` 标签，并将其中的 `android:required` 属性设置为false，这样就可以兼容没有特殊硬件的设备了（不然应用就必须要在有特殊硬件的情况下才能运行）
 
@@ -87,7 +88,7 @@ if (getApplicationContext().getPackageManager().hasSystemFeature(
 }
 ```
 
-#### 安卓 6.0 及以上版本权限的声明
+### 安卓 6.0 及以上版本权限的声明
 
 运行时权限是在安卓 6.0 及以上版本出现的（之前这类权限在安装或更新应用时就已经授予了），所以针对支持运行时权限的设备声明权限时，可以使用 `<uses-permission-sdk-23>` （ 而非 `<uses-permission>` ）标签声明权限
 
@@ -99,7 +100,7 @@ if (getApplicationContext().getPackageManager().hasSystemFeature(
     android:maxSdkVersion="32"/>
 ```
 
-### 请求权限
+## 请求权限
 
 除了安装时权限以外，所有类型的权限都需要请求并由用户授权
 
@@ -127,7 +128,7 @@ flowchart TD
     I -- 否 --> J[不使用该功能但不阻止用户使用应用]
 ```
 
-#### 检查权限是否授予
+### 检查权限是否授予
 
 在 Activity.java 中使用 ContextCompat.checkSelfPermission() 方法来确定应用是否已经获得权限
 
@@ -141,7 +142,7 @@ if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAM
 }
 ```
 
-#### 请求并获取权限
+### 请求并获取权限
 
 传统上，使用 requestPermissions() 方法请求权限，并在 Activity 类中实现 onRequsetPermissionsResult() 方法来处理权限请求响应
 
@@ -186,7 +187,7 @@ public class Main2Activity extends AppCompatActivity {
 
 但是在新版 API 中，建议通过 ActivityResultLauncher 类和回调机制请求和处理权限相关问题，这里不做叙述（其实是我不会，但后面会补的）
 
-### 如果权限请求遭到拒绝
+## 如果权限请求遭到拒绝
 
 如果用户拒绝了权限请求，您的应用必须帮助他们了解拒绝授予权限的影响。具体而言，应用必须让用户知道因缺少权限而无法使用哪些功能。在处理这种情况时，请牢记以下最佳做法：
 

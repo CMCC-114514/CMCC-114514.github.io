@@ -3,7 +3,7 @@ title: 在多台电脑上提交和更新Hexo博客
 description: Hexo博客多设备提交和更新教程
 categories: 
   - 学习记录
-    - 其他
+  - 其他
 tags:
   - Hexo
   - Github Pages

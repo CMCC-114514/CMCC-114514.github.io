@@ -1,21 +1,25 @@
 ---
-title: Spring-项目开发步骤（WIP）
+
+title: Spring-项目开发步骤
 hidden: true
 categories: 
-  - 学习记录
-  - Spring框架
-tags:
-  - Spring
-  - Java
-abbrlink: e34971ac
-date: 2026-04-05 19:03:38
+
+- 学习记录
+- Spring框架
+  tags:
+- Spring
+- Java
+  abbrlink: e34971ac
+  date: 2026-04-05 19:03:38
+
 ---
-### 导入坐标
 
-### 创建 `Bean`
+## 准备工作
 
-### 创建 `applicationContext.xml`
+## 编写数据层DAO的接口及其实现
 
-### 在配置文件中配置 `Bean`
+## 在资源文件夹中创建配置文件
 
-### 在主类中创建 `ApplicationContext` 对象，并使用 `getBean` 方法获取 `Bean`
+## 编写业务逻辑层Service的接口及其实现
+
+## 在Service接口的实现类中，通过Spring框架获取数据层的对象

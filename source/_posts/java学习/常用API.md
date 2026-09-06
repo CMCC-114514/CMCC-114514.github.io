@@ -1,15 +1,16 @@
 ---
-title: 常用API类
+title: Java-常用工具类
 hidden: false
 categories:
-  - 学习记录 - Java开发
+  - 学习记录 
+  - Java开发
 tags:
   - Java
 abbrlink: e3dac448
 date: 2026-04-29 22:41:27
 ---
 
-#### 1. Math类
+## Math类
 
 Math类是用于数学计算的类，不需要创建对象就可以调用类中的方法，如求绝对值、四舍五入、求某个数的n次幂等，以下为一些常见的Math方法示例：
 
@@ -38,7 +39,7 @@ Math类也定义了一些较高精度的数学常数，如圆周率pi和自然�
     private static final double RADIANS_TO_DEGREES = 57.29577951308232;
 ```
 
-#### 2. System类
+## System类
 
 System类是与系统相关的类，提供了操作系统相关的方法，不需要创建对象就可以调用类中的方法，以下是示例方法：
 
@@ -63,7 +64,7 @@ public class test1 {
 
 其中**时间原点**为1970年1月1日0时0分0秒（UTC+0）
 
-#### 3. Runtime类
+## Runtime类
 
 Runtime类与程序运行的环境有关，也不需要创建对象就可以调用类中的方法，以下为一些常见的方法示例：
 
@@ -83,7 +84,7 @@ public class test1 {
 }
 ```
 
-#### 4. Object类
+## Object类
 
 Object类是Java中的最高父类，所有的类都直接或间接继承于Object类
 
@@ -91,8 +92,8 @@ Object类没有带参数的构造方法，只有空参构造方法，但是可�
 
 ```java
 public static void main(String[] args) {
-    Object obj = new Object();		// 使用空参构造
-    Object obj1 = new int[4];		// 使用int[]的构造方法
+    Object obj = new Object();        // 使用空参构造
+    Object obj1 = new int[4];        // 使用int[]的构造方法
 }
 ```
 
@@ -101,11 +102,68 @@ public static void main(String[] args) {
 ```java
 public class test {
     public static void main(String[] args) {
-        Object obj1 = new Object();
-        Object obj2 = new Object();
         System.out.println(obj1.toString());        // 将对象转为字符串
         System.out.println(obj1.equals(obj2));      // 判断两个对象是否相等
     }
 }
-
 ```
+
+此外，Object类中还有一个 `clone()` 方法，用于克隆对象的属性值：
+
+```java
+// test1.java（需要实现 Cloneable 接口）
+public class test1 implements Cloneable {
+    int anInt;
+    double aDouble;
+    String aString;
+
+    // 构造方法以及getter和setter
+
+    // 重写clone()方法
+    @Override
+    protected Object clone() throw CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+
+// Main.java
+public class Main {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        test1 t1 = new test1(1, 2.0, "3");
+        test1 t2 = (test1) t1.clone();        // 调用clone()方法
+        System.out.println(t1);
+        System.out.println(t2);                // 这两个对象的输出内容是相同的
+    }
+}
+```
+
+这里需要介绍一下深克隆与浅克隆的区别，它们主要体现在对引用数据类型成员变量的复制（除了字符串类型）：
+
+- 浅克隆：直接复制成员的地址。这表明浅克隆出来的对象B，与原对象A共用相同的引用数据类型成员变量
+- 深克隆：先创建与成员变量X相同类型的新变量Y，并复制成员变量X的内容，然后再复制新变量Y的地址。这表明深克隆出来的对象B，与原对象A不共用引用数据类型的成员变量
+
+`clone()` 方法默认为浅克隆，当然我们也可以通过重写方法来实现深克隆
+
+## Objects类
+
+Objects是一个工具类，提供了一些工具方法，不需要创建对象
+
+Objects有三个常用的成员方法：
+
+```java
+import java.util.Objects;
+
+public class Main {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        test1 t1 = new test1(1, 2.0, "3");
+        test1 t2 = (test1) t1.clone();
+
+        System.out.println(Objects.equals(t1, t2));        // 两个对象是否相等
+        System.out.println(Objects.isNull(t1));            // 对象是否为null
+        System.out.println(Objects.nonNull(t2));            // 对象是否不为null
+    }
+}
+```
+
+# 
