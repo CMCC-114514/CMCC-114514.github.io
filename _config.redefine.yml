@@ -131,8 +131,8 @@ home_banner:
   style: fixed # static or fixed
   # Home banner image
   image: 
-    light: /images/wallhaven-wqery6-light.png # light mode
-    dark: /images/wallhaven-wqery6-dark.png # dark mode
+    light: /images/wallhaven-wqery6-light.jpg # light mode
+    dark: /images/wallhaven-wqery6-dark.jpg # dark mode
   # Home banner title
   title: “岁月更迭间，神明会将智慧留在你身旁。”
   # Home banner subtitle
